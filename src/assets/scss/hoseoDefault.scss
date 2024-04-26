@@ -1,0 +1,21 @@
+@import "hoseoUtil.scss";
+
+.header_area {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.footer_area {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+.main_wrap {
+  height: 100%;
+  position: relative;
+}
