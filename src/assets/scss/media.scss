@@ -1,3 +1,170 @@
 @import "hoseoUtil.scss";
 
-@media (max-width: 1800px) {}
+@media (max-width: 1500px) {
+    .header_area {
+        .header_wrap {
+            .header_back {
+                width: 90%;
+            }
+
+            .header_top_box {
+                padding: 10px 0;
+
+                .top_small_menu {
+                    font-size: 10px !important;
+                }
+            }
+
+            .header_bottom_box {
+                padding: 12px 0 !important;
+
+                .logo_box {
+                    width: 115px !important;
+
+                    .logo_img {
+                        height: 30px !important;
+                    }
+                }
+
+                .right_box {
+                    width: calc(100% - 115px) !important;
+
+                    .menu_box {
+                        display: none !important;
+
+                    }
+
+                    .icon_box {
+                        border-left: none !important;
+
+                        .menu_icon {
+                            width: 34px;
+                            height: 34px;
+
+                            &.list {
+                                margin-left: 10px !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .footer_area {
+        .footer_back {
+            .footer_top_box {
+                padding: 20px 10px;
+
+                .footer_icon {
+                    width: 21px;
+                    height: 15px;
+
+                    &.insta {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+
+            .footer_bottom_box {
+                padding: 32px 10px 40px;
+
+                .bottom_first_info {
+                    padding-bottom: 16px !important;
+
+                    .line_text {
+                        font-size: 10px;
+                        border-right: 1px solid #fff;
+                    }
+                }
+
+                .bottom_second_info {
+                    font-size: 10px;
+                    line-height: 15px;
+                    padding-bottom: 16px;
+                }
+
+                .bottom_copy {
+                    font-size: 10px;
+                }
+            }
+
+        }
+    }
+
+    .main_area {
+        padding-top: 97px;
+
+        .main_back {
+            .scroll_box {
+                right: 10px;
+
+                .scroll_icon {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+
+            .main_banner_box {
+                height: 45vw;
+                min-height: 177px;
+
+                .slide_wrap {
+                    .swiper {
+                        .swiper_slide {
+                            .slide_image_box {
+                                .slide_text_box {
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    bottom: auto;
+
+                                    .banner_logo_box {
+                                        display: block;
+                                        padding-right: 0;
+                                        padding-bottom: 16px;
+
+                                        .banner_logo {
+                                            margin: 0 auto;
+                                            width: 41px;
+                                            height: 43px;
+                                        }
+                                    }
+
+                                    .banner_text {
+                                        font-size: 13px;
+                                        line-height: 20px;
+                                        width: 290px;
+                                        border-left: none;
+                                        padding-left: 0;
+                                        text-align: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .home_menu_container {
+                padding: 17px 0;
+
+                .home_menu_box {
+                    width: 90%;
+
+                    .home_menu_row {
+                        .home_menu_icon {
+                            width: 36px;
+                            height: 60px;
+
+                            &.sixth {
+                                width: 50px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

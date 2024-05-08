@@ -10,10 +10,14 @@ function App() {
   return (
     <Fragment>
       <div className="screen">
-        <div className={`main_area`}>
+        <div className="header_area">
           <Header />
+        </div>
+        <div className={`main_area`}>
           <Router />
-          <Footer />
+          <div className="footer_area">
+            <Footer />
+          </div>
         </div>
       </div>
     </Fragment>
