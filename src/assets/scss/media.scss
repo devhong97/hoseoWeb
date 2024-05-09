@@ -95,6 +95,7 @@
 
     .main_area {
         padding-top: 97px;
+        background-color: #F8FAFA;
 
         .main_back {
             .scroll_box {
@@ -148,18 +149,208 @@
             }
 
             .home_menu_container {
-                padding: 17px 0;
+                padding: 18px 0;
+                border-bottom: none;
 
                 .home_menu_box {
                     width: 90%;
+                    overflow: auto;
+                    white-space: nowrap;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
 
                     .home_menu_row {
+                        min-width: 70px;
+
                         .home_menu_icon {
-                            width: 36px;
-                            height: 60px;
+                            width: 50px;
+                            height: 70px;
 
                             &.sixth {
-                                width: 50px;
+                                width: 70px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .first_container {
+                padding: 10px 0 20px;
+
+                .first_back {
+                    width: 90%;
+
+                    .first_row {
+                        display: block;
+                        width: 100%;
+                        padding: 20px;
+
+                        &:last-child {
+                            margin-left: 0;
+                            margin-top: 10px;
+                        }
+
+                        .row_top_box {
+                            padding-bottom: 13px;
+
+                            .row_title {
+                                font-size: 13px;
+                                width: calc(100% - 65px);
+                            }
+
+                            .row_btn_box {
+                                .more_btn {
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+
+                        .contents_row {
+                            padding: 10px 0;
+
+                            .contents_title {
+                                font-size: 13px;
+                                padding-bottom: 8px;
+
+                                .new_btn {
+                                    font-size: 10px;
+                                    vertical-align: middle;
+                                }
+                            }
+
+                            .contents_text {
+                                font-size: 10px;
+                                height: 25px;
+                            }
+
+                            .contents_date {
+                                font-size: 10px;
+                                padding-top: 6px;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            .middle_banner_box {
+                height: 70px;
+
+                .banner_text_box {
+                    .banner_title {
+                        font-size: 13px;
+                        padding-bottom: 7px;
+                    }
+
+                    .banner_sub_text {
+                        display: none;
+                    }
+
+                    .more_btn {
+                        font-size: 10px;
+                    }
+                }
+            }
+
+            .second_container {
+                padding: 17px 0;
+
+                .second_back {
+                    width: 90%;
+                    overflow: auto;
+                    white-space: nowrap;
+                    padding-bottom: 15px;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .second_row {
+                        min-width: 128px;
+                        width: calc((100% - 18px) / 4);
+                        margin-right: 6px;
+
+                        .row_image {
+                            height: 78px;
+                        }
+
+                        .row_bottom_box {
+                            padding: 10px;
+                            white-space: break-spaces;
+
+                            .row_title {
+                                font-size: 10px;
+                                padding-bottom: 4px;
+                            }
+
+                            .row_text {
+                                font-size: 10px;
+                                height: 25px;
+                            }
+
+                            .more_btn {
+                                display: none;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            .third_container {
+                padding: 38px 0 50px;
+
+                .third_back {
+                    width: 90%;
+
+                    .third_top_box {
+                        padding-bottom: 25px;
+
+                        .third_title {
+                            font-size: 13px;
+                            padding-bottom: 7px;
+                        }
+
+                        .more_btn {
+                            font-size: 10px;
+                        }
+                    }
+
+                    .third_contents_box {
+                        overflow: auto;
+                        white-space: nowrap;
+                        padding-bottom: 15px;
+
+                        &::-webkit-scrollbar {
+                            display: none;
+                        }
+
+                        .third_row {
+                            min-width: 196px;
+                            width: calc((100% - 21px) / 4);
+                            margin-right: 7px;
+
+                            .title_box {
+                                font-size: 12px;
+                                padding: 9px 0;
+                            }
+
+                            .contents_box {
+                                padding: 15px;
+
+                                &::after {
+                                    width: 25px;
+                                    height: 26px;
+                                    top: 15px;
+                                    right: 15px;
+                                }
+
+                                .contents_text {
+                                    font-size: 10px;
+                                    padding-bottom: 7px;
+                                }
                             }
                         }
                     }
