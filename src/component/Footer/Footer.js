@@ -1,7 +1,6 @@
 import React from "react";
 
 const Footer = () => {
-
   return (
     <div className="footer_wrap">
       <div className="footer_back">
@@ -17,6 +16,7 @@ const Footer = () => {
             <div className="line_text">개인정보처리방침</div>
             <div className="line_text">이용약관</div>
             <div className="line_text">오시는길</div>
+            <div className="line_text">로그인</div>
           </div>
           <div className="bottom_second_info">
             <p>상호 : (사)충남산학융합원</p>
@@ -26,7 +26,6 @@ const Footer = () => {
             <br />
             <p>주소 : 충청남도 당진시 석문면 산단7로 201 기업연구동 302호</p>
             <p>개인정보보호책임자 : 충남산학융합원(master@ciuc.or.kr)</p>
-
           </div>
           <div className="bottom_copy">
             Copyright © 충남산학융합원. All rights reserved
