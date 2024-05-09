@@ -5,7 +5,11 @@ const Header = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const [openMenu, setOpenMenu] = useState(false);
 
+  const handleMenu = () => {
+    setOpenMenu(!openMenu);
+  }
   return (
     <div
       className={`header_wrap`}>
@@ -33,7 +37,64 @@ const Header = () => {
             </div>
             <div className="icon_box">
               <div className="menu_icon"></div>
-              <div className="menu_icon list"></div>
+              <div className="menu_icon list" onClick={() => handleMenu()}></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`menu_show_box ${openMenu && "mobile"}`}>
+        <div className="show_menu_back mobile">
+          <div className="menu_container">
+            <div className="menu_row">
+              <div className="main_menu">융합원 아카이브</div>
+              <div className="sub_menu_box">
+                <div className="sub_menu">이미지 게시판</div>
+                <div className="sub_menu">자료실</div>
+              </div>
+            </div>
+            <div className="menu_row">
+              <div className="main_menu">알림 및 소식</div>
+              <div className="sub_menu_box">
+                <div className="sub_menu">공지사항</div>
+                <div className="sub_menu">사업문의</div>
+                <div className="sub_menu">융합원 뉴스</div>
+              </div>
+            </div>
+            <div className="menu_row">
+              <div className="main_menu">기업연구동</div>
+              <div className="sub_menu_box">
+                <div className="sub_menu">입주기업현황</div>
+                <div className="sub_menu">입주안내</div>
+                <div className="sub_menu">입주문의</div>
+              </div>
+            </div>
+          </div>
+          <div className="menu_container">
+            <div className="menu_row">
+              <div className="main_menu">융합원 소개</div>
+              <div className="sub_menu_box">
+                <div className="sub_menu">인사말</div>
+                <div className="sub_menu">설립목적 및 비전</div>
+                <div className="sub_menu">연혁</div>
+                <div className="sub_menu">조직도</div>
+                <div className="sub_menu">소개자료</div>
+                <div className="sub_menu">오시는길</div>
+              </div>
+            </div>
+            <div className="menu_row">
+              <div className="main_menu">사업분야</div>
+              <div className="sub_menu_box">
+                <div className="sub_menu">산학융합지구조성사업</div>
+                <div className="sub_menu">기업지원사업</div>
+                <div className="sub_menu">인재양성사업</div>
+                <div className="sub_menu">창업육성사업</div>
+              </div>
+            </div>
+            <div className="menu_row">
+              <div className="main_menu">지원사업</div>
+              <div className="sub_menu_box">
+                <div className="sub_menu">년도별 지원사업 게시판</div>
+              </div>
             </div>
           </div>
         </div>
