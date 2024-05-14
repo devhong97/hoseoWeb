@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Login from "../Login/Login";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
 const Footer = () => {
-  const { logout } = useAuth();
+  const { logout, loginAccess } = useAuth(); // 로그인 상태를 가져옴
   const navigate = useNavigate();
 
   const getCookie = (name) => {
@@ -13,11 +12,17 @@ const Footer = () => {
     if (parts.length === 2) return parts.pop().split(";").shift();
   };
 
-  const [isLogged, setIsLogged] = useState(getCookie("Access") === "true");
+  const [isLogged, setIsLogged] = useState(loginAccess); // 초기 상태를 로그인 상태로 설정
 
   useEffect(() => {
-    setIsLogged(getCookie("Access") === "true");
-  }, []);
+    setIsLogged(loginAccess); // 로그인 상태를 업데이트
+  }, [loginAccess]); // 로그인 상태가 변경될 때마다 useEffect가 호출되도록 설정
+
+  // 로그아웃 함수
+  const handleLogout = () => {
+    logout(); // 로그아웃 호출
+    setIsLogged(false); // 로그아웃 상태로 변경
+  };
 
   return (
     <div className="footer_wrap">
@@ -35,9 +40,13 @@ const Footer = () => {
             <div className="line_text">이용약관</div>
             <div className="line_text">오시는길</div>
             {isLogged ? (
-              <div className="line_text" onClick={() => logout()}>로그아웃</div>
+              <div className="line_text" onClick={handleLogout}>
+                로그아웃
+              </div>
             ) : (
-              <div className="line_text" onClick={() => navigate("/login")}>로그인</div>
+              <div className="line_text" onClick={() => navigate("/login")}>
+                로그인
+              </div>
             )}
           </div>
           <div className="bottom_second_info">
