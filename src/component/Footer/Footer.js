@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Login from "../Login/Login";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
 const Footer = () => {
   const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
@@ -34,17 +35,9 @@ const Footer = () => {
             <div className="line_text">이용약관</div>
             <div className="line_text">오시는길</div>
             {isLogged ? (
-              <button
-                onClick={() => {
-                  logout();
-                }}
-              >
-                로그아웃
-              </button>
+              <div className="line_text" onClick={() => logout()}>로그아웃</div>
             ) : (
-              <Link to="/login" className="line_text">
-                로그인
-              </Link>
+              <div className="line_text" onClick={() => navigate("/login")}>로그인</div>
             )}
           </div>
           <div className="bottom_second_info">
