@@ -66,16 +66,16 @@ const Home = () => {
               <div className="home_menu_icon first" onClick={() => navigate("/intro")}></div>
             </div>
             <div className="home_menu_row">
-              <div className="home_menu_icon second"></div>
+              <div className="home_menu_icon second" onClick={() => navigate("/history")}></div>
             </div>
             <div className="home_menu_row">
-              <div className="home_menu_icon third"></div>
+              <div className="home_menu_icon third" onClick={() => navigate("/vision")}></div>
             </div>
             <div className="home_menu_row">
-              <div className="home_menu_icon fourth"></div>
+              <div className="home_menu_icon fourth" onClick={() => navigate("/field")}></div>
             </div>
             <div className="home_menu_row">
-              <div className="home_menu_icon fifth"></div>
+              <div className="home_menu_icon fifth" onClick={() => navigate("/map")}></div>
             </div>
             <div className="home_menu_row">
               <div className="home_menu_icon sixth"></div>
