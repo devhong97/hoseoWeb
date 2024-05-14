@@ -1,21 +1,39 @@
 import React, { useState } from "react";
+import Axios from "axios";
+import { useAuth } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const { login } = useAuth(); // 로그인 시 데이터
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // form태그 부분
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // 여기에 로그인 처리 로직을 추가합니다. (예: 서버로 아이디와 비밀번호 전송)
-    console.log("아이디:", id);
-    console.log("비밀번호:", pw);
-    // 로그인 후에 필요한 작업을 수행합니다. (예: 페이지 이동 등)
+    try {
+      const response = await Axios.post(
+        "http://localhost:3001/api/post/login",
+        {
+          id: id,
+          password: pw,
+        }
+      );
+      const { success, S1 } = response.data;
+      if (success) {
+        login(S1);
+        alert(`[ ${id} ]님 환영합니다.`);
+        navigate("/");
+      } else {
+        alert("로그인에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("로그인 실패:", error);
+      setError(true);
+    }
   };
-
-  const loginHandle = () => {
-    alert("로그인이 완료되었습니다.");
-  };
-
   return (
     <div>
       <h2>관리자 로그인</h2>
@@ -36,10 +54,13 @@ const Login = () => {
             onChange={(e) => setPw(e.target.value)}
           />
         </div>
-        <button type="submit" onClick={loginHandle}>
-          로그인
-        </button>
+        <button type="submit">로그인</button>
       </form>
+      {error && (
+        <div style={{ color: "red" }}>
+          아이디 또는 비밀번호가 일치하지 않습니다.
+        </div>
+      )}
     </div>
   );
 };
