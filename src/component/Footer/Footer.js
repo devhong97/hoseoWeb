@@ -1,4 +1,6 @@
 import React from "react";
+import Login from "../Login/Login";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -16,7 +18,9 @@ const Footer = () => {
             <div className="line_text">개인정보처리방침</div>
             <div className="line_text">이용약관</div>
             <div className="line_text">오시는길</div>
-            <div className="line_text">로그인</div>
+            <Link to="/login" className="line_text">
+              로그인
+            </Link>
           </div>
           <div className="bottom_second_info">
             <p>상호 : (사)충남산학융합원</p>
