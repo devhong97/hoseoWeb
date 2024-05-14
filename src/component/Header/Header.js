@@ -10,6 +10,15 @@ const Header = () => {
   const handleMenu = () => {
     setOpenMenu(!openMenu);
   }
+
+  const movePage = (path) => {
+    setOpenMenu(false);
+    navigate(path)
+  }
+  const moveBoard = (cate) => {
+    setOpenMenu(false);
+    navigate(`/board/${cate}`, { state: { cate: cate } });
+  }
   return (
     <div
       className={`header_wrap`}>
@@ -55,7 +64,7 @@ const Header = () => {
             <div className="menu_row">
               <div className="main_menu">알림 및 소식</div>
               <div className="sub_menu_box">
-                <div className="sub_menu">공지사항</div>
+                <div className="sub_menu" onClick={() => moveBoard("notice")}>공지사항</div>
                 <div className="sub_menu">사업문의</div>
                 <div className="sub_menu">융합원 뉴스</div>
               </div>
@@ -73,12 +82,12 @@ const Header = () => {
             <div className="menu_row">
               <div className="main_menu">융합원 소개</div>
               <div className="sub_menu_box">
-                <div className="sub_menu">인사말</div>
-                <div className="sub_menu">설립목적 및 비전</div>
-                <div className="sub_menu">연혁</div>
+                <div className="sub_menu" onClick={() => movePage("/intro")}>인사말</div>
+                <div className="sub_menu" onClick={() => movePage("/vision")}>설립목적 및 비전</div>
+                <div className="sub_menu" onClick={() => movePage("/history")}>연혁</div>
                 <div className="sub_menu">조직도</div>
                 <div className="sub_menu">소개자료</div>
-                <div className="sub_menu">오시는길</div>
+                <div className="sub_menu" onClick={() => movePage("/map")}>오시는길</div>
               </div>
             </div>
             <div className="menu_row">
