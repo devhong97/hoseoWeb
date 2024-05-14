@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Login from "../Login/Login";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 
 const Footer = () => {
+  const { logout } = useAuth();
+
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  };
+
+  const [isLogged, setIsLogged] = useState(getCookie("Access") === "true");
+
+  useEffect(() => {
+    setIsLogged(getCookie("Access") === "true");
+  }, []);
+
   return (
     <div className="footer_wrap">
       <div className="footer_back">
@@ -18,9 +33,19 @@ const Footer = () => {
             <div className="line_text">개인정보처리방침</div>
             <div className="line_text">이용약관</div>
             <div className="line_text">오시는길</div>
-            <Link to="/login" className="line_text">
-              로그인
-            </Link>
+            {isLogged ? (
+              <button
+                onClick={() => {
+                  logout();
+                }}
+              >
+                로그아웃
+              </button>
+            ) : (
+              <Link to="/login" className="line_text">
+                로그인
+              </Link>
+            )}
           </div>
           <div className="bottom_second_info">
             <p>상호 : (사)충남산학융합원</p>
