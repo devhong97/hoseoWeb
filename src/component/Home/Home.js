@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import MainSwiper from "../swiper/MainSwiper";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const containerRef = useRef(null);
   const containerRef2 = useRef(null);
   const containerRef3 = useRef(null);
@@ -61,7 +63,7 @@ const Home = () => {
         <div className="home_menu_container">
           <div className="home_menu_box" ref={containerRef}>
             <div className="home_menu_row">
-              <div className="home_menu_icon first"></div>
+              <div className="home_menu_icon first" onClick={() => navigate("/intro")}></div>
             </div>
             <div className="home_menu_row">
               <div className="home_menu_icon second"></div>
