@@ -1,10 +1,8 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const EducationDetail = () => {
-  const location = useLocation();
-  const { category } = useParams(); // 동적 라우트로부터 카테고리 값 받아오기
-  const { s1 } = location.state || {}; // s1 값 받아오기
+  const { category } = useParams();
 
   // 각 category에 따라 다른 JSX 출력
   let content = null;
@@ -29,7 +27,6 @@ const EducationDetail = () => {
     <div>
       <h2>Education Detail</h2>
       <p>category: {category}</p>
-      <p>s1: {s1}</p>
       {content} {/* 조건부 렌더링 */}
     </div>
   );
