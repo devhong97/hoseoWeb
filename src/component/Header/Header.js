@@ -15,7 +15,7 @@ const Header = () => {
       className={`header_wrap`}>
       <div className="header_top_box">
         <div className="header_back">
-          <div className="top_small_menu">HOME</div>
+          <div className="top_small_menu" onClick={() => navigate("/")}>HOME</div>
           <div className="top_small_menu">SITEMAP</div>
           <div className="top_small_menu">CONTACT</div>
         </div>

@@ -359,3 +359,260 @@
         }
     }
 }
+
+@media (max-width: 1000px) {
+    .sub_wrap {
+        .sub_back {
+            .sub_banner_area {
+                .sub_banner_back {
+                    width: 90%
+                }
+            }
+
+            .navi_area {
+                .navi_back {
+                    width: 90%;
+                }
+            }
+
+            .sub_main_area {
+                .sub_main_back {
+                    width: 90%;
+
+                    .intro_top_box {
+                        .intro_box {
+                            &.left {
+                                width: calc(100% - 150px);
+                            }
+
+                            &.right {
+                                width: 150px;
+                            }
+
+                            .blank_box {
+                                height: 150px;
+                            }
+
+                            .left_top_box {
+                                .logo_box {
+                                    .intro_logo {
+                                        width: 50px;
+                                        height: 50px;
+                                    }
+                                }
+
+                                .intro_title {
+                                    font-size: 20px;
+                                }
+                            }
+
+                            .left_bottom_box {
+                                .color_box {
+                                    width: 7px;
+                                    height: 7px;
+                                }
+                            }
+                        }
+                    }
+
+                    .intro_bottom_box {
+                        .intro_main_text {
+                            font-size: 20px;
+                            line-height: 40px;
+                            padding-bottom: 30px;
+                        }
+
+                        .intro_sub_text_row {
+                            font-size: 13px;
+                            line-height: 30px;
+                            padding-bottom: 30px;
+                        }
+                    }
+
+                    .intro_sign_box {
+                        .sign_box {
+                            &.right {
+                                width: 150px;
+                            }
+
+                            &.left {
+                                width: calc(100% - 150px);
+                            }
+
+                            .sign_text_box {
+                                font-size: 15px;
+                            }
+
+                            .sign_img {
+                                height: 80px;
+                            }
+                        }
+                    }
+
+                    .history_container {
+                        border-left: 3px solid $main-color;
+
+                        &::before {
+                            width: 10px;
+                            height: 10px;
+                            left: -6px;
+                            border: 2px solid $main-color;
+                        }
+
+                        &::after {
+                            width: 10px;
+                            height: 10px;
+                            left: -6px;
+                            border: 2px solid $main-color;
+                        }
+
+                        .history_contents_box {
+                            padding: 60px 0 0 20px;
+
+
+
+                            .history_top_box {
+                                padding-bottom: 15px;
+
+                                .logo_box {
+                                    width: 50px;
+
+                                    .logo_img {
+                                        height: 50px;
+                                    }
+                                }
+
+                                .history_title_box {
+                                    .title_text {
+                                        font-size: 20px;
+                                        line-height: 30px;
+                                    }
+                                }
+                            }
+
+                            .history_contents_row {
+                                padding-top: 50px;
+
+                                &::after {
+                                    width: 10px;
+                                    height: 10px;
+                                    top: 55px;
+                                    left: -26px;
+                                }
+
+                                .year_text {
+                                    font-size: 20px;
+                                    padding-right: 10px;
+
+                                }
+
+                                .year_contents_box {
+                                    padding-left: 10px;
+                                    width: calc(100% - 60px);
+
+                                    .contents_row {
+                                        .contents_text {
+                                            font-size: 13px;
+                                            width: calc(100% - 70px);
+                                        }
+
+                                        .sub_year {
+                                            font-size: 13px;
+                                            width: 70px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .sub_wrap {
+        .sub_back {
+            .navi_area {
+                .navi_back {
+                    width: 100%;
+
+                    .navi_box {
+                        width: 140px;
+                        padding: 14px 10px;
+                    }
+                }
+            }
+
+            .sub_main_area {
+                &.intro {
+                    padding: 50px 0;
+                }
+
+                .sub_main_back {
+                    .intro_top_box {
+                        .intro_box {
+                            &.left {
+                                width: 100%;
+                            }
+
+
+                            .blank_box {
+                                display: none;
+                            }
+
+                            .left_top_box {
+                                .intro_title {
+                                    padding-left: 10px;
+                                }
+                            }
+
+                            .left_bottom_box {
+                                padding-top: 50px;
+                            }
+                        }
+                    }
+
+                    .history_container {
+                        border-left: 3px solid $main-color;
+
+                        &::before {
+                            width: 10px;
+                            height: 10px;
+                            left: -6px;
+                            border: 2px solid $main-color;
+                        }
+
+                        &::after {
+                            width: 10px;
+                            height: 10px;
+                            left: -6px;
+                            border: 2px solid $main-color;
+                        }
+
+                        .history_contents_box {
+
+                            .history_contents_row {
+
+                                .year_contents_box {
+
+                                    .contents_row {
+                                        .contents_text {
+                                            width: 100%;
+                                        }
+
+                                        .sub_year {
+                                            display: block;
+                                            padding-bottom: 10px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
