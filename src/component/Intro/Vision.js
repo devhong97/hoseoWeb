@@ -49,7 +49,7 @@ const Vision = () => {
                                 </div>
                                 <div className='title_text'>충남산학융합원 비전/자세/경영방침</div>
                             </div>
-                            <div className='vision_contents_box'>
+                            <div className='vision_contents_box top'>
                                 <div className='first_box left'>
                                     <div className='left_box'>
                                         <div className='vision_row first'>
@@ -60,8 +60,14 @@ const Vision = () => {
                                         </div>
                                     </div>
                                     <div className='right_box'>
+                                        <div className='vision_row first visible'>
+                                            비전
+                                        </div>
                                         <div className='vision_row long'>
                                             고객과 나의 행복은 충남산학융합원으로부터
+                                        </div>
+                                        <div className='vision_row second visible'>
+                                            자세
                                         </div>
                                         <div className='vision_row long'>
                                             <span>Basic</span>
@@ -84,6 +90,9 @@ const Vision = () => {
                                         </div>
                                     </div>
                                     <div className='right_box'>
+                                        <div className='vision_row third visible'>
+                                            경영지침
+                                        </div>
                                         <div className='vision_row long'>
                                             신뢰와 협력
                                         </div>
@@ -115,8 +124,14 @@ const Vision = () => {
                                         </div>
                                     </div>
                                     <div className='right_box'>
+                                        <div className='vision_row first visible'>
+                                            비전
+                                        </div>
                                         <div className='vision_row long'>
                                             지역 밀착형 인적자원 기반 조성
+                                        </div>
+                                        <div className='vision_row fourth visible'>
+                                            비전
                                         </div>
                                         <div className='vision_row long'>
                                             지역 밀착형 인적자원 기반 조성
@@ -124,13 +139,45 @@ const Vision = () => {
 
                                     </div>
                                 </div>
+                                <div className='middle_arrow'></div>
+                                <div className='second_box'>
+                                    <div className='top_box'>
+                                        <div className='vision_row first'>
+                                            추천전략
+                                        </div>
+                                    </div>
+                                    <div className='middle_box'>
+                                        <div className='vision_row_box'>
+                                            <div className='vision_row second'>
+                                                인재개발실
+                                            </div>
+                                            <div className='vision_row bottom'>
+                                            </div>
+                                        </div>
+                                        <div className='vision_row_box'>
+                                            <div className='vision_row second'>
+                                                인재개발실
+                                            </div>
+                                            <div className='vision_row bottom'>
+                                            </div>
+                                        </div>
+                                        <div className='vision_row_box'>
+                                            <div className='vision_row second'>
+                                                인재개발실
+                                            </div>
+                                            <div className='vision_row bottom'>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

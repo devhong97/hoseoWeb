@@ -358,6 +358,64 @@
             }
         }
     }
+
+    .sub_wrap {
+        .sub_back {
+            .sub_main_area {
+                .sub_main_back {
+                    .vision_container {
+                        .vision_contents_box {
+                            &.top {
+                                .first_box {
+                                    display: block;
+                                    width: 100%;
+
+                                    &:last-child {
+                                        padding-left: 0;
+                                    }
+                                }
+                            }
+
+                            &.center {
+                                .first_box {
+                                    width: 100%;
+                                }
+
+                                .second_box {
+                                    .top_box {
+                                        border-bottom: none;
+
+                                        &::after {
+                                            display: none;
+                                        }
+                                    }
+                                }
+
+                                .vision_row_box {
+                                    display: block;
+                                    text-align: center;
+                                    width: 100%;
+                                    padding-bottom: 28px;
+                                    margin-right: 0;
+
+                                    .vision_row {
+                                        &.second {
+                                            &::after {
+                                                display: none;
+                                            }
+                                        }
+
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 1000px) {
@@ -376,8 +434,21 @@
             }
 
             .sub_main_area {
+                &.intro {
+                    padding: 50px 0;
+                }
+
+                &.vision {
+                    padding: 50px 0;
+                }
+
+                &.history {
+                    padding: 50px 0;
+                }
+
                 .sub_main_back {
                     width: 90%;
+
 
                     .intro_top_box {
                         .intro_box {
@@ -525,11 +596,42 @@
                             }
                         }
                     }
+
+                    .vision_container {
+                        .vision_contents_box {
+                            &.top {
+                                .vision_row {
+                                    font-size: 12px;
+
+                                    &.second {
+                                        &::after {
+                                            height: 175px;
+                                        }
+                                    }
+
+                                    &.third {
+                                        &::after {
+                                            height: 175px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.center {
+                                .vision_row {
+                                    font-size: 12px;
+                                }
+                            }
+
+                        }
+                    }
                 }
             }
         }
     }
 }
+
+
 
 @media (max-width: 500px) {
     .sub_wrap {
@@ -546,9 +648,6 @@
             }
 
             .sub_main_area {
-                &.intro {
-                    padding: 50px 0;
-                }
 
                 .sub_main_back {
                     .intro_top_box {
@@ -608,6 +707,61 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
+
+                    .vision_container {
+                        .vision_contents_box {
+                            .first_box {
+                                .left_box {
+                                    display: none;
+                                }
+
+                                .right_box {
+                                    width: 100%;
+                                }
+                            }
+
+                            .top_box {
+                                width: 100%;
+                            }
+
+                            .vision_row {
+                                padding: 33px 10px;
+
+                                &.visible {
+                                    display: block;
+                                }
+
+                                &.first {
+                                    width: 100%;
+                                }
+
+                                &::after {
+                                    display: none;
+                                }
+
+                                &.second {
+                                    &::after {
+                                        display: none;
+                                    }
+                                }
+
+                                &.third {
+                                    &::after {
+                                        display: none;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                    .map_container {
+                        .map_text_box {
+                            .text_box {
+                                width: 100%;
                             }
                         }
                     }

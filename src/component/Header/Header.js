@@ -22,7 +22,7 @@ const Header = () => {
       </div>
       <div className="header_bottom_box">
         <div className="header_back">
-          <div className="logo_box">
+          <div className="logo_box" onClick={() => navigate("/")}>
             <div className="logo_img"></div>
           </div>
           <div className="right_box">

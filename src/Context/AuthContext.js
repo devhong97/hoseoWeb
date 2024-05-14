@@ -33,12 +33,12 @@ export const AuthProvider = ({ children }) => {
 
   //로그아웃
   const logout = () => {
-    setLoginAccess(false);
-    setId("");
     Cookies.remove("Access");
     Cookies.remove("S1");
+    setLoginAccess(false);
+    setId("");
     alert("로그아웃 되었습니다.");
-    navigate("/");
+    window.location.reload(); // 새로 고침 실행
   };
 
   // JWT 토큰 디코딩
