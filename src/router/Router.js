@@ -10,6 +10,7 @@ import Education from "../component/Board/Education";
 import EducationDetail from "../component/Board/EducationDetail";
 import Field from "../component/Intro/Field";
 import Map from "../component/Intro/Map";
+import BoardList from "../component/Board/BoardList";
 
 const Router = () => {
   return (
@@ -27,6 +28,8 @@ const Router = () => {
       <Route path="/field" element={<Field />}></Route>
       {/* 오시는길 */}
       <Route path="/map" element={<Map />}></Route>
+      {/* 게시판 */}
+      <Route path="/board/:cate" element={<BoardList />}></Route>
       {/* 교육 */}
       <Route path="/education" element={<Education />} />
       <Route path="/education/:category" element={<EducationDetail />} />

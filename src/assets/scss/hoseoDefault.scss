@@ -47,6 +47,7 @@
         display: inline-block;
         vertical-align: middle;
         width: 205px;
+        cursor: pointer;
 
         .logo_img {
           @include background-set(100%, 50px, contain);
@@ -66,6 +67,7 @@
           padding-right: 30px;
           text-align: right;
           width: calc(90% - 150px);
+          cursor: pointer;
 
           .main_menu {
             display: inline-block;

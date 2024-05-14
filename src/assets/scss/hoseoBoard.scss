@@ -1,0 +1,234 @@
+@import "hoseoUtil.scss";
+
+.board_wrap {
+    background-color: #F8F8F8;
+
+    .board_back {
+        .navi_area {
+            background-color: #fff;
+            box-shadow: 0px 3px 6px #00000029;
+
+            .navi_back {
+                width: 80%;
+                margin: 0 auto;
+                padding: 8px 0;
+
+                .navi_box {
+                    display: inline-block;
+                    vertical-align: middle;
+                    color: #5A5A5A;
+                    width: 150px;
+                    border: 1px solid #D6D6D6;
+                    border-radius: 20px;
+                    font-size: 15px;
+                    padding: 9px 20px;
+                    cursor: pointer;
+                    position: relative;
+                    margin-right: 9px;
+
+                    .navi_select_box {
+                        display: none;
+                        position: absolute;
+                        background-color: #fff;
+                        border: 1px solid #D6D6D6;
+                        border-radius: 20px;
+                        width: 100%;
+                        left: 0;
+                        top: 40px;
+                        padding: 9px 20px;
+                        animation: growDown 500ms ease-in-out forwards;
+                        transform-origin: top center;
+
+                        &.active {
+                            display: block;
+                        }
+                    }
+
+                    .navi_main_text {
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: calc(100% - 6px);
+                    }
+
+                    .navi_arrow {
+                        width: 6px;
+                        height: 6px;
+                        border-top: 1px solid #5A5A5A;
+                        border-right: 1px solid #5A5A5A;
+                        display: inline-block;
+                        vertical-align: middle;
+                        transform: rotate(135deg);
+                    }
+                }
+            }
+        }
+
+        .board_container {
+            width: 80%;
+            margin: 0 auto;
+
+            .title_box {
+                padding: 50px 0;
+                text-align: center;
+
+                .navi_text {
+                    color: #5A5A5A;
+                    font-size: 15px;
+                    padding-bottom: 12px;
+                }
+
+                .title_text {
+                    font-size: 30px;
+                }
+            }
+
+            .list_area {
+                width: 100%;
+                padding-bottom: 77px;
+
+                .search_box {
+                    position: relative;
+                    box-shadow: 0px 5px 10px #0000000B;
+                    background-color: #fff;
+                    border-radius: 5px;
+
+
+
+                    .search_input {
+                        padding: 18px 25px;
+
+                        &::placeholder {
+                            color: #C3C3C3;
+                        }
+                    }
+
+                    .search_btn {
+                        position: absolute;
+                        @include background-set(19px, 19px, contain);
+                        background-image: url("../image/search_icon.png");
+                        top: 50%;
+                        right: 25px;
+                        transform: translate(0, -50%);
+                        cursor: pointer;
+                    }
+                }
+
+                .list_box {
+                    padding-top: 10px;
+                    box-shadow: 0px 5px 10px #0000000B;
+                    background-color: #fff;
+                    border-radius: 5px;
+                    width: 100%;
+
+                    .board_table {
+                        width: 100%;
+
+                        .table_head {
+                            border-bottom: 1px solid #F0F0F0;
+
+                            .head_section {
+                                font-size: 15px;
+                                color: #030303;
+                                font-family: "Pretendard_b";
+                                padding: 18px 0;
+                                border-bottom: 1px solid #F0F0F0;
+
+                                &.num {
+                                    width: 50px;
+                                }
+
+                            }
+                        }
+
+                        .table_body {
+                            text-align: center;
+                            width: 100%;
+
+                            .body_row {
+                                border-bottom: 1px solid #F0F0F0;
+                                text-align: center;
+                                cursor: pointer;
+
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+
+                                .body_section {
+                                    border-bottom: 1px solid #F0F0F0;
+                                    font-size: 15px;
+                                    color: #030303;
+                                    padding: 18px 5px;
+
+                                    &.num {}
+
+                                    &.title {
+                                        width: 40%;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        vertical-align: middle;
+                                    }
+
+                                    &.date {
+                                        width: 20%;
+                                    }
+
+                                    &.state {
+                                        color: #A2A2A2;
+                                    }
+
+                                    .state_icon {
+                                        color: #fff;
+                                        background-color: $sub-color;
+                                        font-family: "Pretendard_b";
+                                        border-radius: 13px;
+                                        padding: 4px 15px;
+                                        text-align: center;
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+
+                .pagination_box {
+                    padding: 50px 0 0;
+                    text-align: center;
+
+                    .arrow_btn {
+                        color: #4A4A4A;
+                        background-color: #fff;
+                        box-shadow: 0px 2px 6px #00000029;
+                        border-radius: 50%;
+                        margin: 0 7px;
+                        font-size: 15px;
+                        display: inline-block;
+                        vertical-align: middle;
+                        padding: 9px 15px;
+                        cursor: pointer;
+                    }
+
+                    .page_number {
+                        margin: 0 5px;
+                        color: #030303;
+                        font-size: 15px;
+                        display: inline-block;
+                        vertical-align: middle;
+                        cursor: pointer;
+                        padding: 9px 15px;
+
+                        &.active {
+                            background-color: $sub-color;
+                            border-radius: 50%;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
