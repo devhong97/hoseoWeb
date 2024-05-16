@@ -67,7 +67,6 @@
           padding-right: 30px;
           text-align: right;
           width: calc(90% - 150px);
-          cursor: pointer;
 
           .main_menu {
             display: inline-block;
@@ -76,6 +75,7 @@
             font-size: 20px;
             width: calc(100% / 7);
             text-align: center;
+            cursor: pointer;
           }
         }
 
