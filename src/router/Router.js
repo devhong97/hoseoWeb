@@ -11,6 +11,7 @@ import EducationList from "../component/Board/Education/EducationList";
 import Field from "../component/Intro/Field";
 import Map from "../component/Intro/Map";
 import BoardList from "../component/Board/BoardList";
+import FloorList from "../component/Board/Floor/FloorList";
 
 const Router = () => {
   return (
@@ -30,6 +31,8 @@ const Router = () => {
       <Route path="/map" element={<Map />}></Route>
       {/* 게시판 */}
       <Route path="/board/:cate" element={<BoardList />}></Route>
+      {/* 층별안내 */}
+      <Route path="/floor" element={<FloorList />}></Route>
       {/* 교육 */}
       <Route path="/education" element={<Education />} />
       <Route path="/education/:category" element={<EducationList />} />

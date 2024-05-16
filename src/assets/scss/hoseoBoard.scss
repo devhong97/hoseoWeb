@@ -102,6 +102,14 @@
                         }
                     }
 
+                    &.sixth {
+                        width: 100%;
+
+                        .tab_box {
+                            width: calc(100% / 6);
+                        }
+                    }
+
                     &.third {
 
                         .tab_box {
@@ -118,6 +126,7 @@
                         vertical-align: middle;
                         cursor: pointer;
                         position: relative;
+                        padding: 0 5px;
 
                         &::after {
                             position: absolute;
