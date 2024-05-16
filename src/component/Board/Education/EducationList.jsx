@@ -25,43 +25,66 @@ const EducationList = () => {
   }, [category]);
 
   const infoWrite = () => {
-
-  }
+    window.location.href = `/education/${category}/editor`;
+  };
 
   const handleTab = (num) => {
-    setTab(num)
-  }
+    setTab(num);
+    console.log("tab", tab);
+    categoryDataSet(category);
+    console.log("category", category);
+  };
   const handlePage = (cate) => {
     setPage(cate);
   };
 
-
   // 각 카테고리별 테이블 내용
   return (
-    <div className='board_wrap'>
-      <div className='board_back'>
-
-        <div className='board_container'>
-          <div className='title_box'>
-            <div className='navi_text'>
+    <div className="board_wrap">
+      <div className="board_back">
+        <div className="board_container">
+          <div className="title_box">
+            <div className="navi_text">
               홈{">"}알림 및 소식{">"}직원정보
             </div>
-            <div className='title_text'>직원정보</div>
+            <div className="title_text">직원정보</div>
             <div className="tab_area fourth">
-              <div className={`tab_box ${tab === "management" && "active"}`} onClick={() => handleTab("management")}>경영혁신실</div>
-              <div className={`tab_box ${tab === "enterprise" && "active"}`} onClick={() => handleTab("enterprise")}>기업지원실</div>
-              <div className={`tab_box ${tab === "resources" && "active"}`} onClick={() => handleTab("resources")}>인재개발실</div>
-              <div className={`tab_box ${tab === "founded" && "active"}`} onClick={() => handleTab("founded")}>창업지원실</div>
+              <div
+                className={`tab_box ${tab === "management" && "active"}`}
+                onClick={() => handleTab("management")}
+              >
+                경영혁신실
+              </div>
+              <div
+                className={`tab_box ${tab === "enterprise" && "active"}`}
+                onClick={() => handleTab("enterprise")}
+              >
+                기업지원실
+              </div>
+              <div
+                className={`tab_box ${tab === "resources" && "active"}`}
+                onClick={() => handleTab("resources")}
+              >
+                인재개발실
+              </div>
+              <div
+                className={`tab_box ${tab === "founded" && "active"}`}
+                onClick={() => handleTab("founded")}
+              >
+                창업지원실
+              </div>
             </div>
-
           </div>
 
-          <div className='list_area'>
-            <div className='search_box'>
-              <input className='search_input' placeholder='검색어를 입력해주세요'></input>
-              <div className='search_btn'></div>
+          <div className="list_area">
+            <div className="search_box">
+              <input
+                className="search_input"
+                placeholder="검색어를 입력해주세요"
+              ></input>
+              <div className="search_btn"></div>
             </div>
-            <div className='list_box'>
+            <div className="list_box">
               <table className="board_table">
                 <thead className="table_head">
                   <tr className="head_row">
@@ -75,10 +98,7 @@ const EducationList = () => {
                 <tbody className="table_body">
                   {boardData.map((data, index) => {
                     return (
-                      <tr
-                        className="body_row"
-                        key={index}
-                      >
+                      <tr className="body_row" key={index}>
                         <td className="body_section">{data.name}</td>
                         <td className="body_section date">{data.spot}</td>
                         <td className="body_section title">{data.work}</td>
@@ -89,27 +109,32 @@ const EducationList = () => {
                   })}
                 </tbody>
               </table>
-
             </div>
             <div className="write_box">
-              <div className="write_btn" onClick={infoWrite}>직원정보 등록</div>
+              <div className="write_btn" onClick={infoWrite}>
+                직원정보 등록
+              </div>
             </div>
-            <div className='pagination_box'>
-              <div className='arrow_btn'>{"<"}</div>
+            <div className="pagination_box">
+              <div className="arrow_btn">{"<"}</div>
               {[...Array(parseInt(5))].map((data, index) => {
                 return (
-                  <div className={`page_number ${page === index + 1 && "active"}`} onClick={() => handlePage(index + 1)}>{index + 1}</div>
+                  <div
+                    className={`page_number ${page === index + 1 && "active"}`}
+                    onClick={() => handlePage(index + 1)}
+                  >
+                    {index + 1}
+                  </div>
                 );
               })}
 
-              <div className='arrow_btn'>{">"}</div>
+              <div className="arrow_btn">{">"}</div>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-
 };
 
 export default EducationList;
