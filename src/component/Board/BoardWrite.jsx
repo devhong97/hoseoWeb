@@ -98,56 +98,6 @@ const BoardWrite = () => {
   }
 
   return (
-    // <div>
-    //   <div>
-    //     <div>제목</div>
-    //     <input
-    //       type="text"
-    //       id="title"
-    //       placeholder="제목을 입력해주세요."
-    //       value={title}
-    //       onChange={(e) => setTitle(e.target.value)}
-    //     />
-    //   </div>
-    //   <div>
-    //     <div>내용</div>
-    //     <div className="table_contents w100">
-    //       <Editor
-    //         initialValue=" " // content를 Editor의 초기값으로 사용
-    //         height="300px"
-    //         initialEditType="wysiwyg"
-    //         plugins={[colorSyntax]}
-    //         placeholder="내용을 입력하세요"
-    //         ref={editorRef}
-    //         hooks={{
-    //           addImageBlobHook: onUploadImage,
-    //         }}
-    //         onChange={handleContent}
-    //         id="content"
-    //       />
-    //     </div>
-    //   </div>
-    //   <div>
-    //     <div>첨부 파일</div>
-    //     <input
-    //       type="file"
-    //       accept=".jpg, .jpeg, .png, .pdf"
-    //       onChange={handleFileSelect}
-    //     />
-    //     {selectedFile && (
-    //       <div className="table_contents w100">
-    //         <img
-    //           style={{ width: "150px", height: "150px" }}
-    //           className="table_img"
-    //           src={fileUrl}
-    //           alt="첨부 이미지"
-    //         />
-    //         <button onClick={handleFileDelete}>삭제</button>
-    //       </div>
-    //     )}
-    //   </div>
-    //   <button onClick={handleSubmit}>등록</button>
-    // </div>
     <div className="detail_wrap">
       <div className="detail_back">
         <div className="detail_top_box">
