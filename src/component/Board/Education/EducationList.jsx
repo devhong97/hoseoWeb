@@ -23,8 +23,8 @@ const EducationList = () => {
   }, [category]);
 
   // 직원정보 등록 페이지로 이동
-  const handleNavigateToEditor = () => {
-    window.location.href = `/education/editor/${category}`;
+  const moveEditor = () => {
+    window.location.href = `/education/${category}/editor`;
   };
 
   // 각 카테고리별 테이블 내용
@@ -32,7 +32,7 @@ const EducationList = () => {
     return (
       <div>
         <div>
-          <div onClick={handleNavigateToEditor}>직원정보 등록</div>
+          <div onClick={moveEditor}>직원정보 등록</div>
         </div>
         <div>
           <input type="text" placeholder="검색..." />
