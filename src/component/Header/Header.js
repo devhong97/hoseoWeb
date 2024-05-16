@@ -72,7 +72,7 @@ const Header = () => {
             <div className="menu_row">
               <div className="main_menu">기업연구동</div>
               <div className="sub_menu_box">
-                <div className="sub_menu">입주기업현황</div>
+                <div className="sub_menu" onClick={() => movePage("/company")}>입주기업현황</div>
                 <div className="sub_menu">입주안내</div>
                 <div className="sub_menu">입주문의</div>
               </div>
@@ -86,7 +86,7 @@ const Header = () => {
                 <div className="sub_menu" onClick={() => movePage("/vision")}>설립목적 및 비전</div>
                 <div className="sub_menu" onClick={() => movePage("/history")}>연혁</div>
                 <div className="sub_menu">조직도</div>
-                <div className="sub_menu">소개자료</div>
+                <div className="sub_menu" onClick={() => movePage("/introduce")}>소개자료</div>
                 <div className="sub_menu" onClick={() => movePage("/map")}>오시는길</div>
               </div>
             </div>

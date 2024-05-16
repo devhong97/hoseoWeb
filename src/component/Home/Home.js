@@ -171,7 +171,7 @@ const Home = () => {
           <div className="third_back">
             <div className="third_top_box">
               <div className="third_title">기업연구동 입주현황</div>
-              <div className="more_btn">더보기 {">"}</div>
+              <div className="more_btn" onClick={() => navigate("/company")}>더보기 {">"}</div>
             </div>
             <div className="third_contents_box" ref={containerRef4}>
               {Array.from({ length: 4 }, (data, index) => (

@@ -640,6 +640,8 @@
 }
 
 .sub_wrap {
+  background-color: #F8F8F8;
+
   .sub_back {
     .sub_banner_area {
       @include background-set(100%, 187px, cover);
@@ -1000,6 +1002,7 @@
       }
 
       .vision_container {
+
         .vision_title_box {
           border-bottom: 1px solid $sub-color;
           color: $sub-color;
@@ -1022,6 +1025,23 @@
             font-size: 15px;
             padding-left: 10px;
             width: calc(100% - 18px);
+          }
+        }
+
+        .introduce_image_box {
+          padding-top: 37px;
+
+          .introduce_image {
+            @include background-set(100%, 30vw, cover);
+
+            &.top {
+              background-image: url("../image/introduce_image.png");
+              margin-bottom: 37px;
+            }
+
+            &.bottom {
+              background-image: url("../image/introduce_image_2.png");
+            }
           }
         }
 

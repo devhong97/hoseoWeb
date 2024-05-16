@@ -62,23 +62,15 @@ const FloorList = () => {
                     </div>
 
                     <div className="list_area">
-                        <div className="search_box">
-                            <input
-                                className="search_input"
-                                placeholder="검색어를 입력해주세요"
-                            ></input>
-                            <div className="search_btn"></div>
-                        </div>
                         <div className="list_box">
                             <table className="board_table">
                                 <thead className="table_head">
                                     <tr className="head_row">
                                         <th className="head_section num">번호</th>
-                                        <th className="head_section visiable">대상</th>
-                                        <th className="head_section title">교육명</th>
-                                        <th className="head_section date">접수일자</th>
-                                        <th className="head_section date">교육일자</th>
-                                        <th className="head_section state">상태</th>
+                                        <th className="head_section title">기업명</th>
+                                        <th className="head_section">대표자</th>
+                                        <th className="head_section date">연락처</th>
+                                        <th className="head_section date">홈페이지</th>
                                     </tr>
                                 </thead>
                                 <tbody className="table_body">
@@ -86,20 +78,17 @@ const FloorList = () => {
                                         return (
                                             <tr className="body_row">
                                                 <td className="body_section num">{index + 1}</td>
-                                                <td className="body_section visiable">학생</td>
                                                 <td className="body_section title">
-                                                    AI 기술 도입 빅데이터 분석 전문인력 양성교육
+                                                    에이솔루션
+                                                </td>
+                                                <td className="body_section">
+                                                    고상우
                                                 </td>
                                                 <td className="body_section date">
-                                                    2024.01.10~2024.10.10
+                                                    010-1234-1234
                                                 </td>
                                                 <td className="body_section date">
-                                                    2024.01.10~2024.10.10
-                                                </td>
-                                                <td className="body_section state">
-                                                    <div className="state_icon">접수중</div>
-
-                                                    {/* 접수마감 */}
+                                                    www.naver.com
                                                 </td>
                                             </tr>
                                         );
