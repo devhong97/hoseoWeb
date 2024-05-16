@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
 
-const BoardList = () => {
-  const location = useLocation();
-  const { cate } = location.state || {};
-  const [title, setTitle] = useState("");
+const FloorList = () => {
   const [page, setPage] = useState(1);
   const [select, setSelect] = useState(0);
   const [tab, setTab] = useState(1);
@@ -16,21 +12,6 @@ const BoardList = () => {
       setSelect(num);
     }
   };
-  useEffect(() => {
-    if (cate !== "") {
-      switch (cate) {
-        case "notice":
-          setTitle("공지사항");
-          break;
-        case "reference":
-          setTitle("자료실");
-          break;
-        default:
-          return;
-      }
-    }
-  }, [cate]);
-
   const handlePage = (num) => {
     setPage(num);
   };
@@ -38,7 +19,6 @@ const BoardList = () => {
   const handleTab = (num) => {
     setTab(num);
   };
-
   return (
     <div className="board_wrap">
       <div className="board_back">
@@ -52,10 +32,10 @@ const BoardList = () => {
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
-              <div className="navi_main_text">{title}</div>
+              <div className="navi_main_text">층별안내</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
-                <div className="select_row">{title}</div>
+                <div className="select_row">층별안내</div>
               </div>
             </div>
           </div>
@@ -64,35 +44,23 @@ const BoardList = () => {
           <div className="title_box">
             <div className="navi_text">
               홈{">"}알림 및 소식{">"}
-              {title}
+              층별안내
             </div>
-            <div className="title_text">{title}</div>
-            {title === "자료실" && (
-              <div className="tab_area third">
-                <div
-                  className={`tab_box ${tab === 1 && "active"}`}
-                  onClick={() => handleTab(1)}
-                >
-                  홍보자료
-                </div>
-                <div
-                  className={`tab_box ${tab === 2 && "active"}`}
-                  onClick={() => handleTab(2)}
-                >
-                  보도자료
-                </div>
-                <div
-                  className={`tab_box ${tab === 3 && "active"}`}
-                  onClick={() => handleTab(3)}
-                >
-                  기타
-                </div>
-              </div>
-            )}
+            <div className="title_text">층별안내</div>
+            <div className="tab_area sixth">
+              {[...Array(parseInt(6))].map((data, index) => {
+                return (
+                  <div
+                    className={`tab_box ${tab === index + 1 && "active"}`}
+                    onClick={() => handleTab(index + 1)}
+                  >
+                    {index + 1}F
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className="write_box">
-            <div className="write_btn">공지사항 등록</div>
-          </div>
+
           <div className="list_area">
             <div className="search_box">
               <input
@@ -161,4 +129,4 @@ const BoardList = () => {
   );
 };
 
-export default BoardList;
+export default FloorList;
