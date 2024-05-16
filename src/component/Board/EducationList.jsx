@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const EducationDetail = () => {
+const EducationList = () => {
   const { category } = useParams();
   const [data, setData] = useState([]);
-  const [writeData, setWriteData] = useState([]);
 
   //교육 상세데이터
   const categoryDataSet = (category) => {
@@ -23,24 +22,12 @@ const EducationDetail = () => {
     categoryDataSet(category);
   }, [category]);
 
-  const infoWrite = () => {
-    axios
-      .post(`http://localhost:3001/api/post/education_write/${category}/`)
-      .then((response) => {
-        // 성공적으로 등록되면 데이터를 다시 불러옴
-        setWriteData(response.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
   // 각 카테고리별 테이블 내용
   const renderTable = () => {
     return (
       <div>
         <div>
-          <div onClick={infoWrite}>직원정보 등록</div>
+          <div>직원정보 등록</div>
         </div>
         <div>
           <input type="text" placeholder="검색..." />
@@ -93,4 +80,4 @@ const EducationDetail = () => {
   return <div>{content}</div>;
 };
 
-export default EducationDetail;
+export default EducationList;
