@@ -83,7 +83,7 @@
           display: inline-block;
           vertical-align: middle;
           padding-left: 30px;
-          border-left: 1px solid #D0D0D0;
+          border-left: 1px solid #d0d0d0;
 
           .menu_icon {
             display: inline-block;
@@ -293,8 +293,6 @@
   }
 }
 
-
-
 .main_area {
   height: auto;
   min-height: 100%;
@@ -341,7 +339,11 @@
               content: "";
               width: 100%;
               height: 100%;
-              background: linear-gradient(180deg, #0000005A 60%, #000000D1 100%);
+              background: linear-gradient(
+                180deg,
+                #0000005a 60%,
+                #000000d1 100%
+              );
             }
 
             .slide_text_box {
@@ -373,7 +375,6 @@
             }
           }
         }
-
       }
     }
 
@@ -390,7 +391,7 @@
         .home_menu_row {
           display: inline-block;
           vertical-align: middle;
-          width: calc(100% / 6);
+          width: calc(100% / 5);
 
           .home_menu_icon {
             cursor: pointer;
@@ -418,7 +419,6 @@
               width: 104px;
               background-image: url("../image/home_menu_6.png");
             }
-
           }
         }
       }
@@ -473,8 +473,9 @@
           }
 
           .contents_row {
-            border-bottom: 1px solid #D8D8D8;
+            border-bottom: 1px solid #d8d8d8;
             padding: 20px 0 16px;
+            cursor: pointer;
 
             &:last-child {
               border-bottom: none;
@@ -701,7 +702,7 @@
 }
 
 .sub_wrap {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 
   .sub_back {
     .sub_banner_area {
@@ -714,7 +715,7 @@
         content: "";
         width: 100%;
         height: 100%;
-        background: linear-gradient(180deg, #000000A3 70%, #000000D1 100%);
+        background: linear-gradient(180deg, #000000a3 70%, #000000d1 100%);
       }
 
       .sub_banner_back {
@@ -795,7 +796,7 @@
     }
 
     .sub_main_area {
-      background-color: #F8F8F8;
+      background-color: #f8f8f8;
 
       &.intro {
         padding: 135px 0 400px;
@@ -813,7 +814,6 @@
         padding: 20px 0;
       }
 
-
       .sub_main_back {
         width: 70%;
         margin: 0 auto;
@@ -821,7 +821,6 @@
 
       .intro_top_box {
         padding-bottom: 70px;
-
 
         .intro_box {
           vertical-align: top;
@@ -836,7 +835,7 @@
           }
 
           .blank_box {
-            background-color: #F0F0F0;
+            background-color: #f0f0f0;
             border-radius: 50%;
             width: 100%;
             height: 238px;
@@ -862,7 +861,7 @@
               font-family: "Pretendard_b";
 
               span {
-                color: #D87F38;
+                color: #d87f38;
               }
             }
           }
@@ -874,15 +873,15 @@
               border-radius: 50%;
               width: 15px;
               height: 15px;
-              background-color: #4AA79D;
+              background-color: #4aa79d;
               margin-bottom: 19px;
 
               &:nth-child(2) {
-                background-color: #D87F38;
+                background-color: #d87f38;
               }
 
               &:nth-child(3) {
-                background-color: #AAC587;
+                background-color: #aac587;
                 margin-bottom: 0;
               }
             }
@@ -908,7 +907,6 @@
       }
 
       .intro_sign_box {
-
         .sign_box {
           display: inline-block;
           vertical-align: text-bottom;
@@ -965,14 +963,13 @@
           left: -13px;
         }
 
-
         .history_contents_box {
           display: inline-block;
           vertical-align: top;
           padding: 60px 0 0 40px;
 
           .history_top_box {
-            border-bottom: 1px solid #D0D0D0;
+            border-bottom: 1px solid #d0d0d0;
             padding-bottom: 35px;
 
             .logo_box {
@@ -1035,13 +1032,13 @@
             .year_contents_box {
               display: inline-block;
               vertical-align: top;
-              border-left: 1px solid #D0D0D0;
+              border-left: 1px solid #d0d0d0;
               padding-left: 20px;
               width: calc(100% - 95px);
 
               .contents_row {
                 .contents_text {
-                  color: #5A5A5A;
+                  color: #5a5a5a;
                   padding-bottom: 13px;
                   font-size: 20px;
                   display: inline-block;
@@ -1061,13 +1058,11 @@
                 }
               }
             }
-
           }
         }
       }
 
       .vision_container {
-
         .vision_title_box {
           border-bottom: 1px solid $sub-color;
           color: $sub-color;
@@ -1121,12 +1116,9 @@
             @include background-set(60px, 60px, cover);
             background-image: url("../image/middle_arrow.png");
             margin: 55px auto;
-
           }
 
           .second_box {
-
-
             .top_box {
               text-align: center;
               padding-bottom: 17px;
@@ -1145,7 +1137,7 @@
                 &::before {
                   position: absolute;
                   content: "";
-                  border-top: 2px dotted #C6C6C6;
+                  border-top: 2px dotted #c6c6c6;
                   width: 68%;
                   height: 2px;
                   top: 0;
@@ -1155,13 +1147,13 @@
               }
 
               &.two {
-                border-bottom: 2px dotted #C6C6C6;
+                border-bottom: 2px dotted #c6c6c6;
               }
 
               &::after {
                 position: absolute;
                 content: "";
-                border-left: 2px dotted #C6C6C6;
+                border-left: 2px dotted #c6c6c6;
                 width: 1px;
                 height: 17px;
                 bottom: 0;
@@ -1185,7 +1177,7 @@
                         &::before {
                           position: absolute;
                           content: "";
-                          border-left: 2px dotted #C6C6C6;
+                          border-left: 2px dotted #c6c6c6;
                           width: 1px;
                           height: 28px;
                           bottom: -28px;
@@ -1207,8 +1199,8 @@
                       border: 1px solid $sub-color;
 
                       &.one {
-                        border: 1px solid #03D68D;
-                        color: #03D68D;
+                        border: 1px solid #03d68d;
+                        color: #03d68d;
                       }
                     }
 
@@ -1231,7 +1223,6 @@
               &:last-child {
                 margin-right: 0;
               }
-
             }
 
             .vision_row {
@@ -1245,28 +1236,25 @@
 
               &.first {
                 color: #fff;
-                background-color: #00D68D;
+                background-color: #00d68d;
                 width: 200px;
 
                 &.one {
-                  background-color: #5ADBAF;
-
-
+                  background-color: #5adbaf;
                 }
 
                 &.two {
-                  background-color: #88E6C6;
-
+                  background-color: #88e6c6;
                 }
 
                 &.three {
                   position: relative;
-                  background-color: #7CB9A5;
+                  background-color: #7cb9a5;
 
                   &::after {
                     position: absolute;
                     content: "";
-                    border-left: 2px dotted #C6C6C6;
+                    border-left: 2px dotted #c6c6c6;
                     width: 1px;
                     height: 33px;
                     top: -33px;
@@ -1278,13 +1266,13 @@
 
               &.second {
                 color: #fff;
-                background-color: #52CEC3;
+                background-color: #52cec3;
                 position: relative;
 
                 &::after {
                   position: absolute;
                   content: "";
-                  border-left: 2px dotted #C6C6C6;
+                  border-left: 2px dotted #c6c6c6;
                   width: 1px;
                   height: 33px;
                   top: -33px;
@@ -1295,7 +1283,7 @@
 
               &.bottom {
                 background-color: #fff;
-                border: 1px solid #52CEC2;
+                border: 1px solid #52cec2;
                 border-radius: 20px;
                 height: 345px;
                 margin-top: 28px;
@@ -1305,7 +1293,7 @@
                 &::after {
                   position: absolute;
                   content: "";
-                  border-left: 2px dotted #C6C6C6;
+                  border-left: 2px dotted #c6c6c6;
                   width: 1px;
                   height: 28px;
                   top: -28px;
@@ -1347,10 +1335,7 @@
                   }
                 }
               }
-
             }
-
-
           }
 
           .first_box {
@@ -1379,7 +1364,7 @@
               padding-left: 26px;
 
               .vision_row {
-                border: 1px solid #03D68D;
+                border: 1px solid #03d68d;
                 background-color: #fff;
                 position: relative;
 
@@ -1393,7 +1378,7 @@
                 &::after {
                   position: absolute;
                   content: "";
-                  border-top: 2px dotted #03D68D;
+                  border-top: 2px dotted #03d68d;
                   width: 15px;
                   height: 1px;
                   top: 50%;
@@ -1412,9 +1397,9 @@
               margin-bottom: 10px;
 
               span {
-                color: #03D68D;
+                color: #03d68d;
                 font-family: "Pretendard_b";
-                border-right: 1px solid #BFBFBF;
+                border-right: 1px solid #bfbfbf;
                 padding-right: 10px;
                 margin-right: 10px;
               }
@@ -1425,18 +1410,18 @@
 
               &.first {
                 color: #fff;
-                background-color: #00D68D;
+                background-color: #00d68d;
               }
 
               &.second {
                 color: #fff;
-                background-color: #A0D9C6;
+                background-color: #a0d9c6;
                 position: relative;
 
                 &::after {
                   position: absolute;
                   content: "";
-                  border-left: 2px dotted #03D68D;
+                  border-left: 2px dotted #03d68d;
                   width: 1px;
                   height: 192px;
                   top: 46px;
@@ -1446,13 +1431,13 @@
 
               &.third {
                 color: #fff;
-                background-color: #52CEC4;
+                background-color: #52cec4;
                 position: relative;
 
                 &::after {
                   position: absolute;
                   content: "";
-                  border-left: 2px dotted #03D68D;
+                  border-left: 2px dotted #03d68d;
                   width: 1px;
                   height: 192px;
                   top: 46px;
@@ -1462,11 +1447,9 @@
 
               &.fourth {
                 color: #fff;
-                background-color: #A0D9C6;
+                background-color: #a0d9c6;
               }
             }
-
-
           }
         }
       }
@@ -1487,7 +1470,6 @@
       }
 
       .map_container {
-
         .map_box {
           padding-bottom: 30px;
           border-bottom: 1px solid #707070;
@@ -1499,7 +1481,6 @@
         }
 
         .map_text_box {
-
           .text_box {
             display: inline-block;
             vertical-align: top;

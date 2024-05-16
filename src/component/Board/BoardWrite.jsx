@@ -4,18 +4,26 @@ import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const BoardWrite = () => {
+  const { cate } = useParams();
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
-  const [selectedFile, setSelectedFile] = useState(null); // 파일 첨부
-  const [fileUrl, setFileUrl] = useState(""); // 파일 URL
+  const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부
+  const [fileUrls, setFileUrls] = useState([]); // 파일 URL
   const editorRef = useRef(null);
+  const navigate = useNavigate();
 
   // 파일 첨부 삭제
-  const handleFileDelete = () => {
-    setSelectedFile(null); // 파일 선택 상태 초기화
-    setFileUrl(""); // 파일 URL 초기화
+  const handleFileDelete = (index) => {
+    const updatedFiles = [...selectedFiles];
+    updatedFiles.splice(index, 1);
+    setSelectedFiles(updatedFiles);
+
+    const updatedUrls = [...fileUrls];
+    updatedUrls.splice(index, 1);
+    setFileUrls(updatedUrls);
   };
 
   // Editor 파일 업로드 관련 함수
@@ -48,11 +56,19 @@ const BoardWrite = () => {
     setContent(htmlContent);
   };
 
-  // 파일 선택 핸들러
   const handleFileSelect = (e) => {
-    setSelectedFile(e.target.files[0]);
-    const fileURL = URL.createObjectURL(e.target.files[0]);
-    setFileUrl(fileURL);
+    const files = Array.from(e.target.files);
+    const totalFiles = selectedFiles.length + files.length;
+
+    if (totalFiles > 5) {
+      alert("첨부파일은 최대 5개까지입니다.");
+      return;
+    }
+
+    const urls = files.map((file) => URL.createObjectURL(file));
+
+    setSelectedFiles([...selectedFiles, ...files]);
+    setFileUrls([...fileUrls, ...urls]);
   };
 
   // 글 등록 핸들러
@@ -69,16 +85,15 @@ const BoardWrite = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("cate", cate);
 
-    if (selectedFile) {
-      formData.append("file", selectedFile, selectedFile.name);
-    } else {
-      formData.append("file", ""); // 파일이 없는 경우 빈 값을 추가합니다.
-    }
+    selectedFiles.forEach((file, index) => {
+      formData.append(`files`, file);
+    });
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/notice_write",
+        "http://localhost:3001/api/post/board_write",
         formData,
         {
           headers: {
@@ -88,21 +103,28 @@ const BoardWrite = () => {
       );
       console.log(response.data);
       alert(`글 등록이 완료되었습니다.`);
+
+      setTitle("");
+      setContent("");
+      setSelectedFiles([]);
+      navigate(`/board/${cate}`, { state: { cate: cate } });
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleFileClick = () => {
-    document.getElementById('file_input').click();
-  }
+    document.getElementById("file_input").click();
+  };
 
   return (
     <div className="detail_wrap">
       <div className="detail_back">
         <div className="detail_top_box">
           <div className="detail_title">
-            <input className="detail_input" placeholder="제목을 입력하세요."
+            <input
+              className="detail_input"
+              placeholder="제목을 입력하세요."
               type="text"
               id="title"
               value={title}
@@ -125,39 +147,39 @@ const BoardWrite = () => {
             id="content"
           />
         </div>
-        <div className="detail_file_box pass">
-          <div className="file_title">비밀번호</div>
-          <div className="file_contents_box">
-            <div className="pass_input_box">
-              <input className="pass_input" placeholder="비밀번호 4자리를 입력하세요."></input>
-            </div>
-          </div>
-        </div>
         <div className="detail_file_box write">
-          <div className="file_title">첨부파일 <span>2</span></div>
+          <div className="file_title">첨부파일 (최대 5개)</div>
           <div className="file_contents_box">
             <div className="file_row color" onClick={() => handleFileClick()}>
               <div className="file_icon"></div>
-              <div className="file_text" >사진 및 파일 첨부</div>
+              <div className="file_text">사진 및 파일 첨부</div>
               <input
                 id="file_input"
                 className="file_input"
                 type="file"
                 accept=".jpg, .jpeg, .png, .pdf"
                 onChange={handleFileSelect}
+                multiple
               />
             </div>
-            {selectedFile && (
-              <div className="file_row ellipsis">
+            {selectedFiles.map((file, index) => (
+              <div className="file_row ellipsis" key={index}>
                 <div className="file_icon"></div>
-                <div className="file_text ellipsis">{selectedFile.name}</div>
-                <div className="delete_btn" onClick={() => handleFileDelete()}>X</div>
+                <div className="file_text ellipsis">{file.name}</div>
+                <div
+                  className="delete_btn"
+                  onClick={() => handleFileDelete(index)}
+                >
+                  X
+                </div>
               </div>
-            )}
+            ))}
           </div>
         </div>
         <div className="detail_btn_box">
-          <div className="detail_btn color" onClick={handleSubmit}>작성완료</div>
+          <div className="detail_btn color" onClick={handleSubmit}>
+            작성완료
+          </div>
         </div>
       </div>
     </div>

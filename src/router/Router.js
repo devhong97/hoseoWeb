@@ -6,16 +6,17 @@ import Login from "../component/Login/Login";
 import Intro from "../component/Intro/Intro";
 import History from "../component/Intro/History";
 import Vision from "../component/Intro/Vision";
-import Education from "../component/Board/Education/Education";
-import EducationList from "../component/Board/Education/EducationList";
+import Organization from "../component/SubBbs/Organization/Organization";
+import OrganizationList from "../component/SubBbs/Organization/OrganizationList";
 import Field from "../component/Intro/Field";
 import Map from "../component/Intro/Map";
 import BoardList from "../component/Board/BoardList";
-import FloorList from "../component/Board/Floor/FloorList";
+import FloorList from "../component/SubBbs/Floor/FloorList";
 import CompanyList from "../component/Board/CompanyList";
 import IntroImage from "../component/Intro/IntroImage";
 import BoardDetail from "./../component/Board/BoardDetail";
 import BoardWrite from "./../component/Board/BoardWrite";
+import OrganizationWrite from "./../component/SubBbs/Organization/OrganizationWrite";
 
 const Router = () => {
   return (
@@ -43,9 +44,15 @@ const Router = () => {
       <Route path="/company" element={<CompanyList />}></Route>
       {/* 소개자료 */}
       <Route path="/introduce" element={<IntroImage />}></Route>
-      {/* 교육 */}
-      <Route path="/education" element={<Education />} />
-      <Route path="/education/:category" element={<EducationList />} />
+
+      {/* 서브BOARD - 입주문의, 조직도, 종료된사업, 시설예약 */}
+      {/* 조직도 */}
+      <Route path="/organization" element={<Organization />} />
+      <Route path="/organization/:category" element={<OrganizationList />} />
+      <Route
+        path="/organization/:category/write"
+        element={<OrganizationWrite />}
+      />
     </Routes>
   );
 };
