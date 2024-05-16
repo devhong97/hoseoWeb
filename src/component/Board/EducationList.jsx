@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const EducationDetail = () => {
+const EducationList = () => {
   const { category } = useParams();
   const [data, setData] = useState([]);
 
@@ -25,7 +25,7 @@ const EducationDetail = () => {
   const infoWrite = () => {
 
   }
-  
+
   // 각 카테고리별 테이블 내용
   const renderTable = () => {
     return (
@@ -84,4 +84,4 @@ const EducationDetail = () => {
   return <div>{content}</div>;
 };
 
-export default EducationDetail;
+export default EducationList;

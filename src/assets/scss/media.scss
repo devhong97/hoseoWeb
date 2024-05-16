@@ -629,6 +629,80 @@
             }
         }
     }
+
+    .board_wrap {
+        .board_back {
+            .navi_area {
+                .navi_back {
+                    width: 90%;
+
+                    .navi_box {
+                        width: 120px;
+                        padding: 9px 10px;
+                    }
+                }
+            }
+
+            .board_container {
+                width: 90%;
+
+                .title_box {
+                    .navi_text {
+                        font-size: 12px;
+                    }
+
+                    .title_text {
+                        font-size: 20px;
+                    }
+
+                    .tab_area {
+                        .tab_box {
+                            font-size: 12px;
+                        }
+                    }
+                }
+
+                .list_area {
+                    .list_box {
+                        .board_table {
+                            .table_head {
+                                .head_section {
+                                    font-size: 12px;
+                                }
+                            }
+
+                            .table_body {
+                                .body_row {
+                                    .body_section {
+                                        font-size: 12px;
+
+                                        .state_icon {
+                                            font-size: 10px;
+                                            padding: 4px 5px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .pagination_box {
+                        .arrow_btn {
+                            font-size: 12px;
+                            padding: 4px 8px;
+                        }
+
+                        .page_number {
+                            font-size: 12px;
+                            padding: 4px 8px;
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
 }
 
 
