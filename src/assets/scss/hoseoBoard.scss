@@ -190,6 +190,11 @@
                     width: 100%;
                     overflow-x: auto;
 
+                    &.company {
+                        box-shadow: none;
+                        padding-top: 35px;
+                    }
+
                     &::-webkit-scrollbar {
                         display: none;
                     }
@@ -272,6 +277,55 @@
                         }
                     }
 
+                    .company_table {
+                        .company_row {
+                            box-shadow: 3px 3px 10px #00000039;
+                            background-color: #fff;
+                            border-radius: 5px;
+                            display: inline-block;
+                            vertical-align: middle;
+                            width: calc((100% - 24px) / 3);
+                            margin-right: 12px;
+                            margin-bottom: 12px;
+
+                            &:nth-child(3n) {
+                                margin-right: 0;
+                            }
+
+                            .title_box {
+                                background-color: $main-color;
+                                color: #fff;
+                                padding: 18px 0;
+                                text-align: center;
+                                font-size: 25px;
+                                font-family: "Pretendard_b";
+                                border-radius: 5px 5px 0 0;
+                            }
+
+                            .contents_box {
+                                padding: 30px;
+                                position: relative;
+
+                                &::after {
+                                    position: absolute;
+                                    content: "";
+                                    @include background-set(47px, 49px, contain);
+                                    background-image: url("../image/color_logo.png");
+                                    top: 30px;
+                                    right: 30px;
+                                }
+
+                                .contents_text {
+                                    font-size: 20px;
+                                    padding-bottom: 10px;
+
+                                    &:last-child {
+                                        padding-bottom: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                 }
 
