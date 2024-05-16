@@ -70,7 +70,7 @@ const BoardList = () => {
                                 <thead className="table_head">
                                     <tr className="head_row">
                                         <th className="head_section num">번호</th>
-                                        <th className="head_section">대상</th>
+                                        <th className="head_section visiable">대상</th>
                                         <th className="head_section title">교육명</th>
                                         <th className="head_section date">접수일자</th>
                                         <th className="head_section date">교육일자</th>
@@ -84,7 +84,7 @@ const BoardList = () => {
                                                 className="body_row"
                                             >
                                                 <td className="body_section num">{index + 1}</td>
-                                                <td className="body_section">
+                                                <td className="body_section visiable">
                                                     학생
                                                 </td>
                                                 <td className="body_section title">AI 기술 도입 빅데이터 분석 전문인력 양성교육</td>

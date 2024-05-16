@@ -167,10 +167,16 @@
                                         overflow: hidden;
                                         text-overflow: ellipsis;
                                         vertical-align: middle;
+                                        max-width: 150px;
                                     }
 
                                     &.date {
                                         width: 20%;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        vertical-align: middle;
+                                        max-width: 100px;
                                     }
 
                                     &.state {
