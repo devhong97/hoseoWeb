@@ -14,6 +14,8 @@ import BoardList from "../component/Board/BoardList";
 import FloorList from "../component/Board/Floor/FloorList";
 import CompanyList from "../component/Board/CompanyList";
 import IntroImage from "../component/Intro/IntroImage";
+import BoardDetail from "./../component/Board/BoardDetail";
+import BoardWrite from "./../component/Board/BoardWrite";
 
 const Router = () => {
   return (
@@ -33,6 +35,8 @@ const Router = () => {
       <Route path="/map" element={<Map />}></Route>
       {/* 게시판 */}
       <Route path="/board/:cate" element={<BoardList />}></Route>
+      <Route path="/board/:cate/:idx" element={<BoardDetail />} />
+      <Route path="/board/:cate/write" element={<BoardWrite />} />
       {/* 층별안내 */}
       <Route path="/floor" element={<FloorList />}></Route>
       {/* 입주기업현황 */}
