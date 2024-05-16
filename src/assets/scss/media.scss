@@ -416,6 +416,44 @@
             }
         }
     }
+
+    .board_wrap {
+        .board_back {
+            .board_container {
+                .list_area {
+                    .list_box {
+                        .company_table {
+                            .company_row {
+                                width: calc((100% - 14px) / 3);
+                                margin-right: 7px;
+
+                                .title_box {
+                                    font-size: 12px;
+                                    padding: 9px 0;
+                                }
+
+                                .contents_box {
+                                    padding: 15px;
+
+                                    &::after {
+                                        width: 25px;
+                                        height: 26px;
+                                        top: 15px;
+                                        right: 15px;
+                                    }
+
+                                    .contents_text {
+                                        font-size: 10px;
+                                        padding-bottom: 7px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 1000px) {
@@ -836,6 +874,32 @@
                         .map_text_box {
                             .text_box {
                                 width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .board_wrap {
+        .board_back {
+            .board_container {
+                .list_area {
+                    .list_box {
+                        .company_table {
+                            .company_row {
+                                width: calc((100% - 14px) / 2);
+                                margin-right: 7px;
+
+                                &:nth-child(3n) {
+                                    margin-right: 7px;
+                                }
+
+                                &:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+
                             }
                         }
                     }
