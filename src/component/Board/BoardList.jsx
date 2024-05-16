@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -8,6 +9,19 @@ const BoardList = () => {
   const [page, setPage] = useState(1);
   const [select, setSelect] = useState(0);
   const [tab, setTab] = useState(1);
+  const [menuData, setMenuData] = useState([]); //
+
+  console.log("menuData", menuData, cate);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/get/board_list?cate=${cate}`)
+      .then((response) => {
+        setMenuData(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [cate]);
 
   const handleSelect = (num) => {
     if (select === num) {
@@ -16,6 +30,7 @@ const BoardList = () => {
       setSelect(num);
     }
   };
+
   useEffect(() => {
     if (cate !== "") {
       switch (cate) {
@@ -37,6 +52,14 @@ const BoardList = () => {
 
   const handleTab = (num) => {
     setTab(num);
+  };
+
+  const handleRowClick = (idx) => {
+    window.location.href = `/board/${cate}/${idx}`;
+  };
+
+  const handleWrite = () => {
+    window.location.href = `/board/${cate}/write`;
   };
 
   return (
@@ -91,7 +114,9 @@ const BoardList = () => {
             )}
           </div>
           <div className="write_box">
-            <div className="write_btn">공지사항 등록</div>
+            <div className="write_btn" onClick={handleWrite}>
+              {title} 등록
+            </div>
           </div>
           <div className="list_area">
             <div className="search_box">
@@ -114,24 +139,26 @@ const BoardList = () => {
                   </tr>
                 </thead>
                 <tbody className="table_body">
-                  {[...Array(parseInt(10))].map((data, index) => {
+                  {menuData.map((item, index) => {
                     return (
-                      <tr className="body_row">
+                      <tr
+                        className="body_row"
+                        key={item.idx}
+                        onClick={() => handleRowClick(item.idx)}
+                      >
                         <td className="body_section num">{index + 1}</td>
-                        <td className="body_section visiable">학생</td>
+                        <td className="body_section visiable">{item.target}</td>
                         <td className="body_section title">
-                          AI 기술 도입 빅데이터 분석 전문인력 양성교육
+                          {item.education_name}
                         </td>
+                        <td className="body_section date">{item.date}</td>
                         <td className="body_section date">
-                          2024.01.10~2024.10.10
-                        </td>
-                        <td className="body_section date">
-                          2024.01.10~2024.10.10
+                          {item.educationDate}
                         </td>
                         <td className="body_section state">
-                          <div className="state_icon">접수중</div>
-
-                          {/* 접수마감 */}
+                          <div className="state_icon">
+                            {item.status === 1 ? "접수중" : "접수마감"}
+                          </div>
                         </td>
                       </tr>
                     );
