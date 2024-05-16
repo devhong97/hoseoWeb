@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const EducationList = () => {
+const OrganizationList = () => {
   const { category } = useParams();
   const [boardData, setBoardData] = useState([]);
   const [tab, setTab] = useState("management");
@@ -11,7 +11,7 @@ const EducationList = () => {
   //교육 상세데이터
   const categoryDataSet = (category) => {
     axios
-      .get(`http://101.101.216.95:3001/api/education/${category}`)
+      .get(`http://localhost:3001/api/organization/${category}`)
       .then((response) => {
         setBoardData(response.data);
       })
@@ -25,7 +25,7 @@ const EducationList = () => {
   }, [category]);
 
   const infoWrite = () => {
-    window.location.href = `/education/${category}/editor`;
+    window.location.href = `/organization/${category}/write`;
   };
 
   const handleTab = (num) => {
@@ -36,6 +36,21 @@ const EducationList = () => {
   };
   const handlePage = (cate) => {
     setPage(cate);
+  };
+
+  const getCategoryName = (category) => {
+    switch (category) {
+      case "management":
+        return "경영혁신실";
+      case "enterprise":
+        return "기업지원실";
+      case "resources":
+        return "인재개발실";
+      case "founded":
+        return "창업지원실";
+      default:
+        return "";
+    }
   };
 
   // 각 카테고리별 테이블 내용
@@ -112,7 +127,7 @@ const EducationList = () => {
             </div>
             <div className="write_box">
               <div className="write_btn" onClick={infoWrite}>
-                직원정보 등록
+                {getCategoryName(category)} 직원정보 등록
               </div>
             </div>
             <div className="pagination_box">
@@ -137,4 +152,4 @@ const EducationList = () => {
   );
 };
 
-export default EducationList;
+export default OrganizationList;

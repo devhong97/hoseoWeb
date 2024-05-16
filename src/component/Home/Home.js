@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import MainSwiper from "../swiper/MainSwiper";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -8,6 +9,9 @@ const Home = () => {
   const containerRef2 = useRef(null);
   const containerRef3 = useRef(null);
   const containerRef4 = useRef(null);
+  const [noticeList, setNoticeList] = useState([]);
+  const [businessList, setBusinessList] = useState([]);
+
   const mouseWheelHandler = (e, containerRef) => {
     const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail));
     containerRef.current.scrollLeft += delta * 100; // 휠 방향 반대로 수정
@@ -51,6 +55,50 @@ const Home = () => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const fetchNotice = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/api/get/home/notice"
+        );
+        setNoticeList(response.data);
+      } catch (err) {
+        console.log("공지사항 호출 오류:", err);
+      }
+    };
+
+    const fetchBusiness = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/api/get/home/business"
+        );
+        setBusinessList(response.data);
+      } catch (err) {
+        console.log("사업공고 호출 오류:", err);
+      }
+    };
+
+    fetchNotice();
+    fetchBusiness();
+  }, []);
+
+  const moveBoard = (cate) => {
+    navigate(`/board/${cate}`, { state: { cate: cate } });
+  };
+  const handleRowClick = (cate, index) => {
+    navigate(`/board/${cate}/${index}`, { state: { cate: cate } });
+  };
+
+  //날짜계산
+  const isNew = (dateString) => {
+    const today = new Date();
+    const date = new Date(dateString);
+    const diffTime = Math.abs(date - today);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays <= 7;
+  };
+
   return (
     <div className="main_wrap">
       <div className="main_back">
@@ -63,23 +111,40 @@ const Home = () => {
         <div className="home_menu_container">
           <div className="home_menu_box" ref={containerRef}>
             <div className="home_menu_row">
-              <div className="home_menu_icon first" onClick={() => navigate("/intro")}></div>
+              <div
+                className="home_menu_icon first"
+                onClick={() => navigate("/intro")}
+              ></div>
             </div>
             <div className="home_menu_row">
-              <div className="home_menu_icon second" onClick={() => navigate("/history")}></div>
+              <div
+                className="home_menu_icon second"
+                onClick={() => navigate("/history")}
+              ></div>
             </div>
             <div className="home_menu_row">
-              <div className="home_menu_icon third" onClick={() => navigate("/vision")}></div>
+              <div
+                className="home_menu_icon third"
+                onClick={() => navigate("/vision")}
+              ></div>
             </div>
             <div className="home_menu_row">
-              <div className="home_menu_icon fourth" onClick={() => navigate("/field")}></div>
+              <div
+                className="home_menu_icon fourth"
+                onClick={() => navigate("/field")}
+              ></div>
             </div>
             <div className="home_menu_row">
-              <div className="home_menu_icon fifth" onClick={() => navigate("/map")}></div>
+              <div
+                className="home_menu_icon fifth"
+                onClick={() => navigate("/map")}
+              ></div>
             </div>
+            {/* 
             <div className="home_menu_row">
               <div className="home_menu_icon sixth"></div>
             </div>
+            */}
           </div>
         </div>
         <div className="first_container">
@@ -88,17 +153,25 @@ const Home = () => {
               <div className="row_top_box">
                 <div className="row_title">공지사항</div>
                 <div className="row_btn_box">
-                  <div className="more_btn">더보기 {">"}</div>
+                  <div className="more_btn" onClick={() => moveBoard("notice")}>
+                    더보기 {">"}
+                  </div>
                 </div>
               </div>
-              {Array.from({ length: 3 }, (data, index) => (
-                <div className="contents_row" key={index}>
+              {noticeList.map((data, index) => (
+                <div
+                  className="contents_row"
+                  key={index}
+                  onClick={() => handleRowClick(data.category, data.idx)}
+                >
                   <div className="contents_title">
-                    2024년도 계약직 직원 채용 공고
-                    <p className="new_btn">NEW</p>
+                    {data.title}
+                    {isNew(data.date) && <p className="new_btn">NEW</p>}
                   </div>
-                  <div className="contents_text">사단법인 충남 산학 융합원 공고 제 2024-17호 (사)충남산학융합원 계약직 직원 채용 공고..</div>
-                  <div className="contents_date">2024.03.12</div>
+                  <div className="contents_text">
+                    {data.content.replace(/(<([^>]+)>)/gi, "")}
+                  </div>
+                  <div className="contents_date">{data.date}</div>
                 </div>
               ))}
             </div>
@@ -109,17 +182,20 @@ const Home = () => {
                   <div className="more_btn">더보기 {">"}</div>
                 </div>
               </div>
-              {Array.from({ length: 3 }, (data, index) => (
-                <div className="contents_row" key={index}>
+              {businessList.map((data, index) => (
+                <div
+                  className="contents_row"
+                  key={index}
+                  onClick={() => handleRowClick(data.category, data.idx)}
+                >
                   <div className="contents_title">
-                    2024년도 계약직 직원 채용 공고
-                    <p className="new_btn">NEW</p>
+                    {data.title}
+                    {isNew(data.date) && <p className="new_btn">NEW</p>}
                   </div>
                   <div className="contents_text">
-                    사단법인 충남 산학 융합원 공고 제 2024-17호 (사)충남산학융합원 계약직 직원 채용 공고
-                    사단법인 충남 산학 융합원 공고 제 2024-17호 (사)충남산학융합원 계약직 직원 채용 공고
+                    {data.content.replace(/(<([^>]+)>)/gi, "")}
                   </div>
-                  <div className="contents_date">2024.03.12</div>
+                  <div className="contents_date">{data.date}</div>
                 </div>
               ))}
             </div>
@@ -138,8 +214,13 @@ const Home = () => {
               <div className="second_row">
                 <div className="row_image"></div>
                 <div className="row_bottom_box">
-                  <div className="row_title">2024년도 “예비 CEO-100 양성” 교육</div>
-                  <div className="row_text">지역에 경쟁력 있는 아이템 기획과 아 이디어를 보유한 예비 청년 창업가..</div>
+                  <div className="row_title">
+                    2024년도 “예비 CEO-100 양성” 교육
+                  </div>
+                  <div className="row_text">
+                    지역에 경쟁력 있는 아이템 기획과 아 이디어를 보유한 예비
+                    청년 창업가..
+                  </div>
                   <div className="more_btn">더보기 {">"}</div>
                 </div>
               </div>
@@ -159,8 +240,13 @@ const Home = () => {
               <div className="second_row">
                 <div className="row_image"></div>
                 <div className="row_bottom_box">
-                  <div className="row_title">2024년도 “예비 CEO-100 양성” 교육</div>
-                  <div className="row_text">지역에 경쟁력 있는 아이템 기획과 아 이디어를 보유한 예비 청년 창업가..</div>
+                  <div className="row_title">
+                    2024년도 “예비 CEO-100 양성” 교육
+                  </div>
+                  <div className="row_text">
+                    지역에 경쟁력 있는 아이템 기획과 아 이디어를 보유한 예비
+                    청년 창업가..
+                  </div>
                   <div className="more_btn">더보기 {">"}</div>
                 </div>
               </div>
@@ -171,7 +257,9 @@ const Home = () => {
           <div className="third_back">
             <div className="third_top_box">
               <div className="third_title">기업연구동 입주현황</div>
-              <div className="more_btn" onClick={() => navigate("/company")}>더보기 {">"}</div>
+              <div className="more_btn" onClick={() => navigate("/company")}>
+                더보기 {">"}
+              </div>
             </div>
             <div className="third_contents_box" ref={containerRef4}>
               {Array.from({ length: 4 }, (data, index) => (
@@ -181,7 +269,9 @@ const Home = () => {
                     <div className="contents_text">대표 : 정남용</div>
                     <div className="contents_text">업종 : 제조업</div>
                     <div className="contents_text">호실 : 403-07호</div>
-                    <div className="contents_text">이메일 : asdfg@gmail.com</div>
+                    <div className="contents_text">
+                      이메일 : asdfg@gmail.com
+                    </div>
                   </div>
                 </div>
               ))}

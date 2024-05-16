@@ -8,7 +8,7 @@ const Header = () => {
 
   const handleMenu = (type) => {
     if (type === openMenu) {
-      setOpenMenu("")
+      setOpenMenu("");
     } else {
       setOpenMenu(type);
     }
@@ -67,20 +67,51 @@ const Header = () => {
               <div className="menu_row">
                 <div className="main_menu">알림 및 소식</div>
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => moveBoard("notice")}>공지사항</div>
-                  <div className="sub_menu">사업공고</div>
-                  <div className="sub_menu">교육공고</div>
-                  <div className="sub_menu">채용공고</div>
-                  <div className="sub_menu">입찰공고</div>
-                  <div className="sub_menu">유관기관 공고</div>
-                  <div className="sub_menu">융합원 뉴스</div>
+                  <div className="sub_menu" onClick={() => moveBoard("notice")}>
+                    공지사항
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("business")}
+                  >
+                    사업공고
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("education")}
+                  >
+                    교육공고
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("employment")}
+                  >
+                    채용공고
+                  </div>
+                  <div className="sub_menu" onClick={() => moveBoard("bid")}>
+                    입찰공고
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("related")}
+                  >
+                    유관기관 공고
+                  </div>
+                  <div className="sub_menu" onClick={() => moveBoard("news")}>
+                    융합원 뉴스
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => moveBoard("reference")}
                   >
                     자료실
                   </div>
-                  <div className="sub_menu">융합원 아카이브</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("archive")}
+                  >
+                    융합원 아카이브
+                  </div>
                 </div>
               </div>
 
@@ -93,10 +124,18 @@ const Header = () => {
                   <div className="sub_menu" onClick={() => movePage("/vision")}>
                     비전 및 목표
                   </div>
-                  <div className="sub_menu" onClick={() => movePage("/history")}>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/history")}
+                  >
                     연혁
                   </div>
-                  <div className="sub_menu" onClick={() => movePage("/education")}>조직도</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/organization")}
+                  >
+                    조직도
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => movePage("/introduce")}
@@ -113,9 +152,16 @@ const Header = () => {
               <div className="menu_row">
                 <div className="main_menu">기업연구동</div>
                 <div className="sub_menu_box">
-
                   <div className="sub_menu">연구관 소개</div>
-                  <div className="sub_menu" onClick={() => movePage("/company")}>입주기업 현황</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/company")}
+                  >
+                    입주기업 현황
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/floor")}>
+                    층별안내
+                  </div>
                   <div className="sub_menu">입주안내</div>
                   <div className="sub_menu">입주문의</div>
                 </div>
@@ -150,27 +196,65 @@ const Header = () => {
             <div className="menu_container">
               <div className="menu_row">
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => moveBoard("notice")}>공지사항</div>
-                  <div className="sub_menu">사업공고</div>
-                  <div className="sub_menu">교육공고</div>
-                  <div className="sub_menu">채용공고</div>
-                  <div className="sub_menu">입찰공고</div>
-                  <div className="sub_menu">유관기관 공고</div>
-                  <div className="sub_menu">융합원 뉴스</div>
+                  <div className="sub_menu" onClick={() => moveBoard("notice")}>
+                    공지사항
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("business")}
+                  >
+                    사업공고
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("education")}
+                  >
+                    교육공고
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("employment")}
+                  >
+                    채용공고
+                  </div>
+                  <div className="sub_menu" onClick={() => moveBoard("bid")}>
+                    입찰공고
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("related")}
+                  >
+                    유관기관 공고
+                  </div>
+                  <div className="sub_menu" onClick={() => moveBoard("news")}>
+                    융합원 뉴스
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => moveBoard("reference")}
                   >
                     자료실
                   </div>
-                  <div className="sub_menu">융합원 아카이브</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("archive")}
+                  >
+                    융합원 아카이브
+                  </div>
                 </div>
               </div>
               <div className="menu_row">
                 <div className="sub_menu_box">
-
                   <div className="sub_menu">연구관 소개</div>
-                  <div className="sub_menu" onClick={() => movePage("/company")}>입주기업 현황</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/company")}
+                  >
+                    입주기업 현황
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/floor")}>
+                    층별안내
+                  </div>
                   <div className="sub_menu">입주안내</div>
                   <div className="sub_menu">입주문의</div>
                 </div>
@@ -184,10 +268,18 @@ const Header = () => {
                   <div className="sub_menu" onClick={() => movePage("/vision")}>
                     비전 및 목표
                   </div>
-                  <div className="sub_menu" onClick={() => movePage("/history")}>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/history")}
+                  >
                     연혁
                   </div>
-                  <div className="sub_menu" onClick={() => movePage("/education")}>조직도</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/organization")}
+                  >
+                    조직도
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => movePage("/introduce")}

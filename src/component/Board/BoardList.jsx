@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BoardList = () => {
   const location = useLocation();
@@ -9,19 +9,24 @@ const BoardList = () => {
   const [page, setPage] = useState(1);
   const [select, setSelect] = useState(0);
   const [tab, setTab] = useState(1);
-  const [menuData, setMenuData] = useState([]); //
+  const [menuData, setMenuData] = useState([]);
+  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+  const navigate = useNavigate();
+  const pageSize = 10; // 페이지당 항목 수
 
-  console.log("menuData", menuData, cate);
   useEffect(() => {
     axios
-      .get(`http://101.101.216.95:3001/api/get/board_list?cate=${cate}`)
+      .get(
+        `http://localhost:3001/api/get/board_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+      )
       .then((response) => {
-        setMenuData(response.data);
+        setMenuData(response.data.data);
+        setTotalPages(response.data.totalPages);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [cate]);
+  }, [cate, page]);
 
   const handleSelect = (num) => {
     if (select === num) {
@@ -37,8 +42,29 @@ const BoardList = () => {
         case "notice":
           setTitle("공지사항");
           break;
+        case "business":
+          setTitle("사업공고");
+          break;
+        case "education":
+          setTitle("교육공고");
+          break;
+        case "employment":
+          setTitle("채용공고");
+          break;
+        case "bid":
+          setTitle("입찰공고");
+          break;
+        case "related":
+          setTitle("유관기관 공고");
+          break;
+        case "news":
+          setTitle("융합원 뉴스");
+          break;
         case "reference":
           setTitle("자료실");
+          break;
+        case "archive":
+          setTitle("융합원 아카이브");
           break;
         default:
           return;
@@ -54,12 +80,67 @@ const BoardList = () => {
     setTab(num);
   };
 
+  const hitCount = async (idx) => {
+    try {
+      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleRowClick = (idx) => {
-    window.location.href = `/board/${cate}/${idx}`;
+    const selectedItem = menuData.find((item) => item.idx === idx);
+    if (selectedItem) {
+      hitCount(idx);
+      navigate(`/board/${cate}/${idx}`, { state: { menuData: selectedItem } });
+    }
   };
 
   const handleWrite = () => {
-    window.location.href = `/board/${cate}/write`;
+    navigate(`/board/${cate}/write`);
+  };
+
+  //페이징처리
+  const renderPagination = () => {
+    const pages = [];
+    // 이전버튼
+    pages.push(
+      <div key="prev" className="arrow_btn">
+        <button
+          className="page_button"
+          onClick={() => handlePage(page > 1 ? page - 1 : 1)}
+          disabled={page === 1}
+        >
+          {"<"}
+        </button>
+      </div>
+    );
+    // 페이지수
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(
+        <button
+          key={i}
+          className={`page_number ${page === i ? "active" : ""}`}
+          onClick={() => handlePage(i)}
+        >
+          {i}
+        </button>
+      );
+    }
+    // 다음버튼
+    pages.push(
+      <div key="next" className="arrow_btn">
+        <button
+          className="page_button"
+          onClick={() => handlePage(page < totalPages ? page + 1 : totalPages)}
+          disabled={page === totalPages}
+        >
+          {">"}
+        </button>
+      </div>
+    );
+
+    return pages;
   };
 
   return (
@@ -78,7 +159,7 @@ const BoardList = () => {
               <div className="navi_main_text">{title}</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
-                <div className="select_row">{title}</div>
+                <div className="select_row">사업공고</div>
               </div>
             </div>
           </div>
@@ -86,7 +167,7 @@ const BoardList = () => {
         <div className="board_container">
           <div className="title_box">
             <div className="navi_text">
-              홈{">"}알림 및 소식{">"}
+              &nbsp;홈&nbsp;{">"}&nbsp;알림 및 소식&nbsp;{">"}&nbsp;
               {title}
             </div>
             <div className="title_text">{title}</div>
@@ -126,35 +207,31 @@ const BoardList = () => {
                 <thead className="table_head">
                   <tr className="head_row">
                     <th className="head_section num">번호</th>
-                    <th className="head_section visiable">대상</th>
-                    <th className="head_section title">교육명</th>
-                    <th className="head_section date">접수일자</th>
-                    <th className="head_section date">교육일자</th>
-                    <th className="head_section state">상태</th>
+                    <th className="head_section visiable">제목</th>
+                    <th className="head_section title">내용</th>
+                    <th className="head_section date">작성자</th>
+                    <th className="head_section date">등록일</th>
+                    <th className="head_section state">조회수</th>
                   </tr>
                 </thead>
                 <tbody className="table_body">
                   {menuData.map((item, index) => {
+                    const itemNumber = (page - 1) * pageSize + index + 1; // 실제 항목 번호 계산
                     return (
                       <tr
                         className="body_row"
-                        key={item.idx}
+                        key={index}
                         onClick={() => handleRowClick(item.idx)}
                       >
-                        <td className="body_section num">{index + 1}</td>
-                        <td className="body_section visiable">{item.target}</td>
+                        <td className="body_section num">{itemNumber}</td>
+                        <td className="body_section visiable">{item.title}</td>
                         <td className="body_section title">
-                          {item.education_name}
+                          {/* 내용 표시 */}
+                          {item.content.replace(/(<([^>]+)>)/gi, "")}
                         </td>
+                        <td className="body_section date">{item.writer}</td>
                         <td className="body_section date">{item.date}</td>
-                        <td className="body_section date">
-                          {item.educationDate}
-                        </td>
-                        <td className="body_section state">
-                          <div className="state_icon">
-                            {item.status === 1 ? "접수중" : "접수마감"}
-                          </div>
-                        </td>
+                        <td className="body_section date">{item.hit}</td>
                       </tr>
                     );
                   })}
@@ -166,21 +243,7 @@ const BoardList = () => {
                 {title} 등록
               </div>
             </div>
-            <div className="pagination_box">
-              <div className="arrow_btn">{"<"}</div>
-              {[...Array(parseInt(5))].map((data, index) => {
-                return (
-                  <div
-                    className={`page_number ${page === index + 1 && "active"}`}
-                    onClick={() => handlePage(index + 1)}
-                  >
-                    {index + 1}
-                  </div>
-                );
-              })}
-
-              <div className="arrow_btn">{">"}</div>
-            </div>
+            <div className="pagination_box">{renderPagination()}</div>
           </div>
         </div>
       </div>
