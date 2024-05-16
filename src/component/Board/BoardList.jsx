@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const BoardList = () => {
     const location = useLocation();
@@ -10,16 +10,16 @@ const BoardList = () => {
 
     const handleSelect = (num) => {
         if (select === num) {
-            setSelect(0)
+            setSelect(0);
         } else {
-            setSelect(num)
+            setSelect(num);
         }
-    }
+    };
     useEffect(() => {
         if (cate !== "") {
             switch (cate) {
                 case "notice":
-                    setTitle("공지사항")
+                    setTitle("공지사항");
                     break;
                 default:
                     return;
@@ -28,9 +28,8 @@ const BoardList = () => {
     }, [cate]);
 
     const handlePage = (num) => {
-        setPage(num)
-    }
-
+        setPage(num);
+    };
 
     return (
         <div className='board_wrap'>
@@ -118,6 +117,7 @@ const BoardList = () => {
                 </div>
             </div>
         </div>
+
     );
 };
 

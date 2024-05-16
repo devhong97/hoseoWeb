@@ -22,12 +22,16 @@ const EducationDetail = () => {
     categoryDataSet(category);
   }, [category]);
 
+  const infoWrite = () => {
+
+  }
+  
   // 각 카테고리별 테이블 내용
   const renderTable = () => {
     return (
       <div>
         <div>
-          <div >직원정보 등록</div>
+          <div onClick={infoWrite}>직원정보 등록</div>
         </div>
         <div>
           <input type="text" placeholder="검색..." />
