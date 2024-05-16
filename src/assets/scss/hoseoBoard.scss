@@ -26,6 +26,10 @@
                     position: relative;
                     margin-right: 9px;
 
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
                     .navi_select_box {
                         display: none;
                         position: absolute;
@@ -80,7 +84,55 @@
                 .title_text {
                     font-size: 30px;
                 }
+
+                .tab_area {
+                    border-radius: 24px;
+                    background-color: #F0F0F0;
+                    padding: 14px 0;
+                    width: 30%;
+                    margin: 0 auto;
+                    min-width: 250px;
+                    margin-top: 17px;
+
+                    &.third {
+
+                        .tab_box {
+                            width: calc(100% / 3);
+                        }
+                    }
+
+                    .tab_box {
+                        color: #5A5A5A;
+                        font-size: 15px;
+                        text-align: center;
+                        border-right: 1px solid #E3E3E3;
+                        display: inline-block;
+                        vertical-align: middle;
+                        cursor: pointer;
+                        position: relative;
+
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            width: 100%;
+                            height: 47px;
+                            top: -15px;
+                            left: 0;
+                        }
+
+                        &:last-child {
+                            border-right: none;
+                        }
+
+                        &.active {
+                            color: $sub-color;
+                            font-family: "Pretendard_b";
+                        }
+                    }
+                }
             }
+
+
 
             .list_area {
                 width: 100%;
@@ -119,6 +171,11 @@
                     background-color: #fff;
                     border-radius: 5px;
                     width: 100%;
+                    overflow-x: auto;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
 
                     .board_table {
                         width: 100%;
@@ -167,7 +224,7 @@
                                         overflow: hidden;
                                         text-overflow: ellipsis;
                                         vertical-align: middle;
-                                        max-width: 150px;
+                                        max-width: 170px;
                                     }
 
                                     &.date {
@@ -176,7 +233,7 @@
                                         overflow: hidden;
                                         text-overflow: ellipsis;
                                         vertical-align: middle;
-                                        max-width: 100px;
+                                        max-width: 150px;
                                     }
 
                                     &.state {

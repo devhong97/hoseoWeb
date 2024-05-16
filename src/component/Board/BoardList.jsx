@@ -7,6 +7,7 @@ const BoardList = () => {
     const [title, setTitle] = useState("");
     const [page, setPage] = useState(1);
     const [select, setSelect] = useState(0);
+    const [tab, setTab] = useState(1);
 
     const handleSelect = (num) => {
         if (select === num) {
@@ -21,6 +22,9 @@ const BoardList = () => {
                 case "notice":
                     setTitle("공지사항");
                     break;
+                case "reference":
+                    setTitle("자료실");
+                    break;
                 default:
                     return;
             }
@@ -30,6 +34,10 @@ const BoardList = () => {
     const handlePage = (num) => {
         setPage(num);
     };
+
+    const handleTab = (num) => {
+        setTab(num)
+    }
 
     return (
         <div className='board_wrap'>
@@ -44,10 +52,10 @@ const BoardList = () => {
                             </div>
                         </div>
                         <div className='navi_box' onClick={() => handleSelect(2)}>
-                            <div className='navi_main_text'>공지사항</div>
+                            <div className='navi_main_text'>{title}</div>
                             <div className='navi_arrow'></div>
                             <div className={`navi_select_box ${select === 2 && "active"}`}>
-                                <div className='select_row'>공지사항</div>
+                                <div className='select_row'>{title}</div>
                             </div>
                         </div>
                     </div>
@@ -55,10 +63,19 @@ const BoardList = () => {
                 <div className='board_container'>
                     <div className='title_box'>
                         <div className='navi_text'>
-                            홈{">"}알림 및 소식{">"}공지사항
+                            홈{">"}알림 및 소식{">"}{title}
                         </div>
                         <div className='title_text'>{title}</div>
+                        {title === "자료실" && (
+                            <div className="tab_area third">
+                                <div className={`tab_box ${tab === 1 && "active"}`} onClick={() => handleTab(1)}>홍보자료</div>
+                                <div className={`tab_box ${tab === 2 && "active"}`} onClick={() => handleTab(2)}>보도자료</div>
+                                <div className={`tab_box ${tab === 3 && "active"}`} onClick={() => handleTab(3)}>기타</div>
+                            </div>
+                        )}
+
                     </div>
+
                     <div className='list_area'>
                         <div className='search_box'>
                             <input className='search_input' placeholder='검색어를 입력해주세요'></input>

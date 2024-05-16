@@ -7,7 +7,7 @@ import Intro from "../component/Intro/Intro";
 import History from "../component/Intro/History";
 import Vision from "../component/Intro/Vision";
 import Education from "../component/Board/Education";
-import EducationDetail from "../component/Board/EducationDetail";
+import EducationList from "../component/Board/EducationList";
 import Field from "../component/Intro/Field";
 import Map from "../component/Intro/Map";
 import BoardList from "../component/Board/BoardList";
@@ -32,7 +32,7 @@ const Router = () => {
       <Route path="/board/:cate" element={<BoardList />}></Route>
       {/* 교육 */}
       <Route path="/education" element={<Education />} />
-      <Route path="/education/:category" element={<EducationDetail />} />
+      <Route path="/education/:category" element={<EducationList />} />
     </Routes>
   );
 };

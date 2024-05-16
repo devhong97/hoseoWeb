@@ -58,7 +58,7 @@ const Header = () => {
               <div className="main_menu">융합원 아카이브</div>
               <div className="sub_menu_box">
                 <div className="sub_menu">이미지 게시판</div>
-                <div className="sub_menu">자료실</div>
+                <div className="sub_menu" onClick={() => moveBoard("reference")}>자료실</div>
               </div>
             </div>
             <div className="menu_row">
