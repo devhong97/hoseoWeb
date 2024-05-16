@@ -24,69 +24,8 @@ const EducationList = () => {
     categoryDataSet(category);
   }, [category]);
 
-<<<<<<< HEAD
-  // 직원정보 등록 페이지로 이동
-  const moveEditor = () => {
-    window.location.href = `/education/${category}/editor`;
-  };
-
-  // 각 카테고리별 테이블 내용
-  const renderTable = () => {
-    return (
-      <div>
-        <div>
-          <div onClick={moveEditor}>직원정보 등록</div>
-        </div>
-        <div>
-          <input type="text" placeholder="검색..." />
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>이름</th>
-              <th>직위</th>
-              <th>업무</th>
-              <th>전화번호</th>
-              <th>이메일</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((employee, index) => (
-              <tr key={index}>
-                <td>{employee.name}</td>
-                <td>{employee.spot}</td>
-                <td>{employee.work}</td>
-                <td>{employee.tel}</td>
-                <td>{employee.email}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
-
-  let content = null;
-
-  switch (category) {
-    case "management":
-      content = renderTable();
-      break;
-    case "enterprise":
-      content = renderTable();
-      break;
-    case "resources":
-      content = renderTable();
-      break;
-    case "founded":
-      content = renderTable();
-      break;
-    default:
-      content = <p>잘못된 카테고리입니다.</p>;
-=======
   const infoWrite = () => {
 
->>>>>>> e793564cd547e99a764211ffa8d0b2cb271c0010
   }
 
   const handleTab = (num) => {
