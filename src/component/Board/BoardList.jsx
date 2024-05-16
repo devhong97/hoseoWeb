@@ -113,11 +113,6 @@ const BoardList = () => {
               </div>
             )}
           </div>
-          <div className="write_box">
-            <div className="write_btn" onClick={handleWrite}>
-              {title} 등록
-            </div>
-          </div>
           <div className="list_area">
             <div className="search_box">
               <input
@@ -165,6 +160,11 @@ const BoardList = () => {
                   })}
                 </tbody>
               </table>
+            </div>
+            <div className="write_box">
+              <div className="write_btn" onClick={handleWrite}>
+                {title} 등록
+              </div>
             </div>
             <div className="pagination_box">
               <div className="arrow_btn">{"<"}</div>
