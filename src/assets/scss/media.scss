@@ -365,6 +365,47 @@
                 .sub_main_back {
                     .vision_container {
                         .vision_contents_box {
+                            .second_box {
+                                .vision_row {
+                                    &.first {
+                                        &.three {
+                                            &::after {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .middle_box {
+                                    &.education {
+                                        .vision_row_box {
+                                            width: 100%;
+
+                                            .vision_row {
+                                                &.second {
+                                                    &.one {
+
+                                                        &::before {
+                                                            display: none;
+                                                        }
+                                                    }
+                                                }
+
+                                                &.bottom {
+                                                    .bottom_title {
+                                                        font-size: 12px;
+                                                    }
+
+                                                    .bottom_text_row {
+                                                        font-size: 12px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             &.top {
                                 .first_box {
                                     display: block;
@@ -375,6 +416,8 @@
                                     }
                                 }
                             }
+
+
 
                             &.center {
                                 .first_box {
@@ -388,10 +431,16 @@
                                         &::after {
                                             display: none;
                                         }
+
+                                        &::before {
+                                            display: none;
+                                        }
                                     }
                                 }
 
                                 .vision_row_box {
+
+
                                     display: block;
                                     text-align: center;
                                     width: 100%;
