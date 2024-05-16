@@ -44,6 +44,15 @@
                             &.list {
                                 margin-left: 10px !important;
                             }
+
+                            &.web {
+                                display: none;
+
+                            }
+
+                            &.mobile {
+                                display: inline-block;
+                            }
                         }
                     }
                 }

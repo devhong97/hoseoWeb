@@ -73,7 +73,7 @@
             vertical-align: middle;
             color: #707070;
             font-size: 20px;
-            width: calc(100% / 7);
+            width: calc(100% / 5);
             text-align: center;
             cursor: pointer;
           }
@@ -96,8 +96,20 @@
               background-image: url("../image/header_icon_list.png");
               margin-left: 23px;
             }
+
+            &.mobile {
+              display: none;
+            }
           }
         }
+      }
+    }
+
+    .menu_show_area {
+      display: none;
+
+      &.active {
+        display: block;
       }
     }
 
@@ -112,6 +124,17 @@
         position: absolute;
         z-index: 9;
         height: 100vh;
+        width: 100%;
+        overflow-y: scroll;
+        padding-bottom: 50px;
+      }
+
+      &.web {
+        display: block;
+        background-color: $main-color;
+        position: absolute;
+        z-index: 9;
+        height: 360px;
         width: 100%;
       }
 
@@ -146,6 +169,44 @@
                 }
               }
             }
+          }
+        }
+
+        &.web {
+          width: 80%;
+          text-align: right;
+          margin: 0 auto;
+
+          .menu_container {
+            width: calc(100% - 300px);
+            display: inline-block;
+            padding-right: 30px;
+            padding-top: 26px;
+
+            .menu_row {
+              display: inline-block;
+              vertical-align: top;
+              text-align: center;
+              color: #fff;
+              width: calc(100% / 6);
+
+              .sub_menu_box {
+                .sub_menu {
+                  cursor: pointer;
+                  font-size: 15px;
+                  padding-bottom: 15px;
+
+                  &:last-child {
+                    padding-bottom: 0;
+                  }
+                }
+              }
+            }
+          }
+
+          .blank_box {
+            width: 144px;
+            display: inline-block;
           }
         }
       }
