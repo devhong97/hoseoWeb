@@ -22,16 +22,17 @@ const EducationList = () => {
     categoryDataSet(category);
   }, [category]);
 
-  const infoWrite = () => {
-
-  }
+  // 직원정보 등록 페이지로 이동
+  const handleNavigateToEditor = () => {
+    window.location.href = `/education/editor/${category}`;
+  };
 
   // 각 카테고리별 테이블 내용
   const renderTable = () => {
     return (
       <div>
         <div>
-          <div onClick={infoWrite}>직원정보 등록</div>
+          <div onClick={handleNavigateToEditor}>직원정보 등록</div>
         </div>
         <div>
           <input type="text" placeholder="검색..." />
