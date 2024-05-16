@@ -748,6 +748,10 @@
         padding: 170px 0;
       }
 
+      &.education {
+        padding: 20px 0;
+      }
+
 
       .sub_main_back {
         width: 70%;
@@ -1060,20 +1064,45 @@
           }
 
           .second_box {
+
+
             .top_box {
               text-align: center;
-              padding-bottom: 33px;
+              padding-bottom: 17px;
               position: relative;
-              border-bottom: 2px dotted #C6C6C6;
               width: 70%;
               margin: 0 auto;
+
+              &.short {
+                width: 52%;
+              }
+
+              &.long {
+                width: 78%;
+                padding-top: 17px;
+
+                &::before {
+                  position: absolute;
+                  content: "";
+                  border-top: 2px dotted #C6C6C6;
+                  width: 68%;
+                  height: 2px;
+                  top: 0;
+                  left: 50%;
+                  transform: translate(-50%, 0);
+                }
+              }
+
+              &.two {
+                border-bottom: 2px dotted #C6C6C6;
+              }
 
               &::after {
                 position: absolute;
                 content: "";
                 border-left: 2px dotted #C6C6C6;
                 width: 1px;
-                height: 33px;
+                height: 17px;
                 bottom: 0;
                 left: 50%;
                 transform: translate(-50%, 0);
@@ -1082,6 +1111,54 @@
 
             .middle_box {
               padding-top: 33px;
+
+              &.education {
+                &.short {
+                  padding-bottom: 33px;
+
+                  .vision_row_box {
+                    .vision_row {
+                      &.second {
+                        position: relative;
+
+                        &::before {
+                          position: absolute;
+                          content: "";
+                          border-left: 2px dotted #C6C6C6;
+                          width: 1px;
+                          height: 28px;
+                          bottom: -28px;
+                          left: 50%;
+                          transform: translate(-50%, 0);
+                        }
+                      }
+                    }
+                  }
+                }
+
+                .vision_row_box {
+                  width: calc((100% - 150px) / 4);
+
+                  .vision_row {
+                    &.second {
+                      background-color: #fff;
+                      color: $sub-color;
+                      border: 1px solid $sub-color;
+
+                      &.one {
+                        border: 1px solid #03D68D;
+                        color: #03D68D;
+                      }
+                    }
+
+                    &.bottom {
+                      border: 1px solid $sub-color;
+                      min-height: 345px;
+                      height: auto;
+                    }
+                  }
+                }
+              }
             }
 
             .vision_row_box {
@@ -1109,6 +1186,33 @@
                 color: #fff;
                 background-color: #00D68D;
                 width: 200px;
+
+                &.one {
+                  background-color: #5ADBAF;
+
+
+                }
+
+                &.two {
+                  background-color: #88E6C6;
+
+                }
+
+                &.three {
+                  position: relative;
+                  background-color: #7CB9A5;
+
+                  &::after {
+                    position: absolute;
+                    content: "";
+                    border-left: 2px dotted #C6C6C6;
+                    width: 1px;
+                    height: 33px;
+                    top: -33px;
+                    left: 50%;
+                    transform: translate(-50%, 0);
+                  }
+                }
               }
 
               &.second {
@@ -1135,6 +1239,7 @@
                 height: 345px;
                 margin-top: 28px;
                 position: relative;
+                padding: 30px 15px 15px;
 
                 &::after {
                   position: absolute;
@@ -1145,6 +1250,40 @@
                   top: -28px;
                   left: 50%;
                   transform: translate(-50%, 0);
+                }
+
+                .bottom_title {
+                  font-family: "Pretendard_b";
+                  color: $sub-color;
+                  font-size: 15px;
+                  padding-bottom: 34px;
+                }
+
+                .bottom_text_row {
+                  padding-bottom: 34px;
+                  font-size: 15px;
+                  color: $sub-color;
+                }
+
+                .detail_btn {
+                  border: 1px solid $sub-color;
+                  border-radius: 20px;
+                  padding: 8px 0;
+                  cursor: pointer;
+
+                  .detail_text {
+                    display: inline-block;
+                    vertical-align: middle;
+                    padding-right: 10px;
+                  }
+
+                  .detail_arrow {
+                    display: inline-block;
+                    vertical-align: middle;
+                    border-radius: 50%;
+                    border: 1px solid $sub-color;
+                    padding: 0 5px;
+                  }
                 }
               }
 
