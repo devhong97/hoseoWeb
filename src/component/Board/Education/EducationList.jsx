@@ -11,7 +11,7 @@ const EducationList = () => {
   //교육 상세데이터
   const categoryDataSet = (category) => {
     axios
-      .get(`http://localhost:3001/api/education/${category}`)
+      .get(`http://101.101.216.95:3001/api/education/${category}`)
       .then((response) => {
         setBoardData(response.data);
       })

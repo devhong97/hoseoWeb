@@ -14,7 +14,7 @@ const BoardList = () => {
   console.log("menuData", menuData, cate);
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/get/board_list?cate=${cate}`)
+      .get(`http://101.101.216.95:3001/api/get/board_list?cate=${cate}`)
       .then((response) => {
         setMenuData(response.data);
       })
