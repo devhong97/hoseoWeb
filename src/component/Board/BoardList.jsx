@@ -90,7 +90,9 @@ const BoardList = () => {
               </div>
             )}
           </div>
-
+          <div className="write_box">
+            <div className="write_btn">공지사항 등록</div>
+          </div>
           <div className="list_area">
             <div className="search_box">
               <input
