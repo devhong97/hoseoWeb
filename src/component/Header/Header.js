@@ -103,7 +103,7 @@ const Header = () => {
                 <div className="sub_menu" onClick={() => movePage("/history")}>
                   연혁
                 </div>
-                <div className="sub_menu">조직도</div>
+                <div className="sub_menu" onClick={() => movePage("/education")}>조직도</div>
                 <div
                   className="sub_menu"
                   onClick={() => movePage("/introduce")}

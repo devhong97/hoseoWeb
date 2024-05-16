@@ -21,29 +21,6 @@ const Education = () => {
     }
   }
   return (
-    // <div>
-    //   <div>
-    //     <div>
-    //       <p>경영혁신실</p>
-    //       <button onClick={() => movePage("management")}>직원 정보1</button>
-    //     </div>
-    //     <br />
-    //     <div>
-    //       <p>기업지원실</p>
-    //       <button onClick={() => movePage("enterprise")}>직원 정보2</button>
-    //     </div>
-    //     <br />
-    //     <div>
-    //       <p>인재개발실</p>
-    //       <button onClick={() => movePage("resources")}>직원 정보3</button>
-    //     </div>
-    //     <br />
-    //     <div>
-    //       <p>창업지원실</p>
-    //       <button onClick={() => movePage("founded")}>직원 정보4</button>
-    //     </div>
-    //   </div>
-    // </div>
     <div className='sub_wrap'>
       <div className='sub_back'>
         <div className='sub_banner_area'>
