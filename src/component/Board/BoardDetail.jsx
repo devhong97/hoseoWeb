@@ -129,8 +129,8 @@ const BoardDetail = () => {
           </div>
         </div>
         <div className="detail_btn_box">
-          <div className="detail_btn color">교육신청하기</div>
-          <div className="detail_btn" onClick={() => navigate(-1)}>
+          {/* <div className="detail_btn color">교육신청하기</div> */}
+          <div className="detail_btn color" onClick={() => navigate(-1)}>
             목록으로
           </div>
         </div>
