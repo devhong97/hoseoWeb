@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FloorList = () => {
   const [page, setPage] = useState(1);
   const [select, setSelect] = useState(0);
   const [tab, setTab] = useState(1);
+  const navigate = useNavigate();
 
   const handleSelect = (num) => {
     if (select === num) {
@@ -19,23 +21,36 @@ const FloorList = () => {
   const handleTab = (num) => {
     setTab(num);
   };
+  const moveBoard = (cate) => {
+    navigate(`/board/${cate}`, { state: { cate: cate } });
+  };
+  const movePage = (path) => {
+    navigate(path);
+  };
   return (
     <div className="board_wrap">
       <div className="board_back">
         <div className="navi_area">
           <div className="navi_back">
             <div className="navi_box" onClick={() => handleSelect(1)}>
-              <div className="navi_main_text">알림 및 소식</div>
+              <div className="navi_main_text">기업연구동</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 1 && "active"}`}>
-                <div className="select_row">알림 및 소식</div>
+                <div className="select_row" onClick={() => moveBoard("notice")}>알림 및 소식</div>
+                <div className="select_row" onClick={() => movePage("/company")}>기업연구동</div>
+                <div className="select_row" onClick={() => movePage("/intro")}>융합원소개</div>
+                <div className="select_row">사업분야</div>
+                <div className="select_row">인프라</div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
               <div className="navi_main_text">층별안내</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
-                <div className="select_row">층별안내</div>
+                <div className="select_row" onClick={() => movePage("/company")}>입주기업현황</div>
+                <div className="select_row" onClick={() => movePage("/floor")}>층별안내</div>
+                <div className="select_row" >입주안내</div>
+                <div className="select_row" >입주문의</div>
               </div>
             </div>
           </div>

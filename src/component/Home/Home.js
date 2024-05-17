@@ -210,6 +210,7 @@ const Home = () => {
                   <div className="contents_date">{data.date}</div>
                 </div>
               ))}
+
             </div>
             <div className="first_row">
               <div className="row_top_box">
