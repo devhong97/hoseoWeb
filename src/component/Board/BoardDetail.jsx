@@ -105,9 +105,7 @@ const BoardDetail = () => {
           <div className="detail_contents_box">{getContent()}</div>
         )}
         <div className="detail_file_box">
-          <div className="file_title">
-            첨부파일 <span>1</span>
-          </div>
+          <div className="file_title">첨부파일 {/* <span>1</span> */}</div>
           <div className="file_contents_box" onClick={() => handleDownload()}>
             {getImg().map((img, index) => (
               <div className="file_row" key={index}>
