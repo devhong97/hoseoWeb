@@ -202,7 +202,8 @@ const ImageList = () => {
                             <div className="img_table">
                                 {menuData.map((item, index) => {
                                     return (
-                                        <div className="img_row">
+                                        <div className="img_row"
+                                            onClick={() => handleRowClick(item.idx)}>
                                             <div className="img_box"
                                                 style={{
                                                     backgroundImage: `url(http://localhost:3001/uploads/${item.img1})`,
