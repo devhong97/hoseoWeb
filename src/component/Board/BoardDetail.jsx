@@ -5,6 +5,15 @@ const BoardDetail = () => {
   const { menuData, data } = location.state || {};
   const navigate = useNavigate();
 
+  const handleDownload = (fileName) => {
+    const link = document.createElement("a");
+    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
+    link.setAttribute("download", fileName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const getTitle = () => {
     if (menuData && menuData.title) {
       return menuData.title;
@@ -99,7 +108,7 @@ const BoardDetail = () => {
           <div className="file_title">
             첨부파일 <span>1</span>
           </div>
-          <div className="file_contents_box">
+          <div className="file_contents_box" onClick={() => handleDownload()}>
             {getImg().map((img, index) => (
               <div className="file_row" key={index}>
                 <div className="file_icon"></div>

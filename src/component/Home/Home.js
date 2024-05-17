@@ -215,7 +215,12 @@ const Home = () => {
               <div className="row_top_box">
                 <div className="row_title">사업공고</div>
                 <div className="row_btn_box">
-                  <div className="more_btn">더보기 {">"}</div>
+                  <div
+                    className="more_btn"
+                    onClick={() => moveBoard("business")}
+                  >
+                    더보기 {">"}
+                  </div>
                 </div>
               </div>
               {businessList.map((data, index) => (
