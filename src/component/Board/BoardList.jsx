@@ -207,11 +207,10 @@ const BoardList = () => {
                 <thead className="table_head">
                   <tr className="head_row">
                     <th className="head_section num">번호</th>
-                    <th className="head_section visiable">제목</th>
-                    <th className="head_section title">내용</th>
+                    <th className="head_section title">제목</th>
                     <th className="head_section date">작성자</th>
                     <th className="head_section date">등록일</th>
-                    <th className="head_section state">조회수</th>
+                    <th className="head_section ">조회수</th>
                   </tr>
                 </thead>
                 <tbody className="table_body">
@@ -224,14 +223,10 @@ const BoardList = () => {
                         onClick={() => handleRowClick(item.idx)}
                       >
                         <td className="body_section num">{itemNumber}</td>
-                        <td className="body_section visiable">{item.title}</td>
-                        <td className="body_section title">
-                          {/* 내용 표시 */}
-                          {item.content.replace(/(<([^>]+)>)/gi, "")}
-                        </td>
+                        <td className="body_section title">{item.title}</td>
                         <td className="body_section date">{item.writer}</td>
                         <td className="body_section date">{item.date}</td>
-                        <td className="body_section date">{item.hit}</td>
+                        <td className="body_section ">{item.hit}</td>
                       </tr>
                     );
                   })}
