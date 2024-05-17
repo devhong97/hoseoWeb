@@ -210,6 +210,11 @@ const BoardList = () => {
             )}
           </div>
           <div className="list_area">
+            <div className="write_box">
+              <div className="write_btn" onClick={handleWrite}>
+                {title} 등록
+              </div>
+            </div>
             <div className="search_box">
               <input
                 className="search_input"
@@ -248,11 +253,7 @@ const BoardList = () => {
                 </tbody>
               </table>
             </div>
-            <div className="write_box">
-              <div className="write_btn" onClick={handleWrite}>
-                {title} 등록
-              </div>
-            </div>
+
             <div className="pagination_box">{renderPagination()}</div>
           </div>
         </div>

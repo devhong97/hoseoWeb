@@ -92,6 +92,11 @@ const OrganizationList = () => {
           </div>
 
           <div className="list_area">
+            <div className="write_box">
+              <div className="write_btn" onClick={infoWrite}>
+                {getCategoryName(category)} 직원정보 등록
+              </div>
+            </div>
             <div className="search_box">
               <input
                 className="search_input"
@@ -125,11 +130,7 @@ const OrganizationList = () => {
                 </tbody>
               </table>
             </div>
-            <div className="write_box">
-              <div className="write_btn" onClick={infoWrite}>
-                {getCategoryName(category)} 직원정보 등록
-              </div>
-            </div>
+
             <div className="pagination_box">
               <div className="arrow_btn">{"<"}</div>
               {[...Array(parseInt(5))].map((data, index) => {
