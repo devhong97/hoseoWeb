@@ -107,7 +107,12 @@ const BoardWrite = () => {
       setTitle("");
       setContent("");
       setSelectedFiles([]);
-      navigate(`/board/${cate}`, { state: { cate: cate } });
+      if (cate === "archive") {
+        navigate("/archive")
+      } else {
+        navigate(`/board/${cate}`, { state: { cate: cate } });
+      }
+
     } catch (error) {
       console.error(error);
     }

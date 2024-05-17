@@ -781,6 +781,20 @@
                                 }
                             }
                         }
+
+                        .img_table {
+                            .img_row {
+                                width: calc((100% - 35px) / 2);
+
+                                &:nth-child(3n) {
+                                    margin-right: 35px;
+                                }
+
+                                &:nth-child(2n) {
+                                    margin-right: 0;
+                                }
+                            }
+                        }
                     }
 
                     .pagination_box {
@@ -964,6 +978,14 @@
                                 &:nth-child(2n) {
                                     margin-right: 0;
                                 }
+
+                            }
+                        }
+
+                        .img_table {
+                            .img_row {
+                                width: 100%;
+                                margin-right: 0 !important;
 
                             }
                         }
