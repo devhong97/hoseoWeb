@@ -246,7 +246,9 @@ const Home = () => {
           <div className="banner_text_box">
             <div className="banner_title">교육공고</div>
             <div className="banner_sub_text">교육생을 모집합니다.</div>
-            <div className="more_btn">더보기 {">"}</div>
+            <div className="more_btn" onClick={() => moveBoard("education")}>
+              더보기 {">"}
+            </div>
           </div>
         </div>
         <div className="second_container">
@@ -269,7 +271,9 @@ const Home = () => {
           <div className="banner_text_box">
             <div className="banner_title">채용공고</div>
             <div className="banner_sub_text">함께 일할 직원을 채용합니다.</div>
-            <div className="more_btn">더보기 {">"}</div>
+            <div className="more_btn" onClick={() => moveBoard("employment")}>
+              더보기 {">"}
+            </div>
           </div>
         </div>
         <div className="second_container">

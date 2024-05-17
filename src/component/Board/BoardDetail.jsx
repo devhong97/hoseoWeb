@@ -105,19 +105,29 @@ const BoardDetail = () => {
           <div className="detail_contents_box">{getContent()}</div>
         )}
         <div className="detail_file_box">
-          <div className="file_title">첨부파일 {/* <span>1</span> */}</div>
+          <div className="file_title">
+            첨부파일 <span>1</span>
+          </div>
           <div className="file_contents_box" onClick={() => handleDownload()}>
-            {getImg().map((img, index) => (
-              <div className="file_row" key={index}>
-                <div className="file_icon"></div>
-                <div className="file_text">{img}</div>
+            {getImg().length > 0 ? (
+              getImg().map((img, index) => (
+                <div className="file_row" key={index}>
+                  <div className="file_icon"></div>
+                  <div className="file_text">{img}</div>
+                </div>
+              ))
+            ) : (
+              <div className="file_row">
+                <div className="file_text" style={{ paddingRight: "10px" }}>
+                  첨부파일이 존재하지 않습니다.
+                </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
         <div className="detail_btn_box">
-          {/* <div className="detail_btn color">교육신청하기</div> */}
-          <div className="detail_btn color" onClick={() => navigate(-1)}>
+          <div className="detail_btn color">교육신청하기</div>
+          <div className="detail_btn" onClick={() => navigate(-1)}>
             목록으로
           </div>
         </div>
