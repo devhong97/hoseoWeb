@@ -109,12 +109,20 @@ const Home = () => {
     fetchEmployment();
   }, []);
 
+  const hitCount = async (idx) => {
+    try {
+      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const moveBoard = (cate) => {
     navigate(`/board/${cate}`, { state: { cate: cate } });
   };
 
   const handleRowClick = (data) => {
-    console.log("data", data);
+    hitCount(data.idx);
     navigate(`/board/${data.category}/${data.idx}`, { state: { data } });
   };
 
