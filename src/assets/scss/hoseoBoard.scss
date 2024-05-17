@@ -675,6 +675,17 @@
                     border: none;
                     margin-bottom: 10px;
                 }
+
+                &.short {
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: calc((100% - 10px) / 2);
+                    margin-right: 10px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
             }
         }
     }
