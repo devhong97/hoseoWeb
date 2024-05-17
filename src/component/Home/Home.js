@@ -255,7 +255,10 @@ const Home = () => {
           <div className="second_back" ref={containerRef2}>
             {educationList.map((data, index) => (
               <div className="second_row">
-                <div className="row_image"></div>
+                <div className="row_image"
+                  style={{
+                    backgroundImage: `url(http://localhost:3001/uploads/${data.img1})`,
+                  }}></div>
                 <div className="row_bottom_box">
                   <div className="row_title">{data.title}</div>
                   <div className="row_text">
@@ -280,7 +283,10 @@ const Home = () => {
           <div className="second_back" ref={containerRef2}>
             {employmentList.map((data, index) => (
               <div className="second_row">
-                <div className="row_image"></div>
+                <div className="row_image"
+                  style={{
+                    backgroundImage: `url(http://localhost:3001/uploads/${data.img1})`,
+                  }}></div>
                 <div className="row_bottom_box">
                   <div className="row_title">{data.title}</div>
                   <div className="row_text">
