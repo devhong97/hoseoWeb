@@ -4,11 +4,13 @@ import Header from "./component/Header/Header";
 import Router from "./router/Router";
 import React, { Fragment, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import Scroll from "./component/Home/Scroll";
 
 function App() {
 
   return (
     <Fragment>
+      <Scroll />
       <div className="screen">
         <div className="header_area">
           <Header />
