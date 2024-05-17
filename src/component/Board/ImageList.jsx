@@ -170,35 +170,7 @@ const ImageList = () => {
                             <div className="search_btn"></div>
                         </div>
                         <div className="list_box image">
-                            {/* <table className="board_table">
-                                <thead className="table_head">
-                                    <tr className="head_row">
-                                        <th className="head_section num">번호</th>
-                                        <th className="head_section title">제목</th>
-                                        <th className="head_section date">작성자</th>
-                                        <th className="head_section date">등록일</th>
-                                        <th className="head_section ">조회수</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="table_body">
-                                    {menuData.map((item, index) => {
-                                        const itemNumber = (page - 1) * pageSize + index + 1; // 실제 항목 번호 계산
-                                        return (
-                                            <tr
-                                                className="body_row"
-                                                key={index}
-                                                onClick={() => handleRowClick(item.idx)}
-                                            >
-                                                <td className="body_section num">{itemNumber}</td>
-                                                <td className="body_section title">{item.title}</td>
-                                                <td className="body_section date">{item.writer}</td>
-                                                <td className="body_section date">{item.date}</td>
-                                                <td className="body_section ">{item.hit}</td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table> */}
+
                             <div className="img_table">
                                 {menuData.map((item, index) => {
                                     return (
