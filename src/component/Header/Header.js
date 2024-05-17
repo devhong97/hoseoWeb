@@ -39,7 +39,7 @@ const Header = () => {
             <div className="logo_img"></div>
           </div>
           <div className="right_box">
-            <div className="menu_box">
+            <div className="menu_box" onMouseEnter={() => handleMenu("web")}>
               <div className="main_menu">알림 및 소식</div>
               <div className="main_menu">기업연구동</div>
               <div className="main_menu">융합원 소개</div>
@@ -190,7 +190,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className={`menu_show_area ${openMenu === "web" && "active"}`}>
+      <div className={`menu_show_area ${openMenu === "web" && "active"}`} onMouseLeave={() => handleMenu("")}>
         <div className={`menu_show_box web`}>
           <div className="show_menu_back web">
             <div className="menu_container">
