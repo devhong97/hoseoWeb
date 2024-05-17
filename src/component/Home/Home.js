@@ -127,6 +127,11 @@ const Home = () => {
     navigate(`/board/${data.category}/${data.idx}`, { state: { data } });
   };
 
+  const handleImageBbsClick = (data) => {
+    hitCount(data.idx);
+    navigate(`/board/${data.category}/${data.idx}`, { state: { data } });
+  };
+
   //날짜계산
   const isNew = (dateString) => {
     const today = new Date();
@@ -138,9 +143,9 @@ const Home = () => {
 
   const scrollTop = () => {
     if (topRef.current) {
-      topRef.current.scrollIntoView({ behavior: 'smooth' });
+      topRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <div className="main_wrap">
@@ -262,16 +267,23 @@ const Home = () => {
           <div className="second_back" ref={containerRef2}>
             {educationList.map((data, index) => (
               <div className="second_row">
-                <div className="row_image"
+                <div
+                  className="row_image"
                   style={{
                     backgroundImage: `url(http://localhost:3001/uploads/${data.img1})`,
-                  }}></div>
+                  }}
+                ></div>
                 <div className="row_bottom_box">
                   <div className="row_title">{data.title}</div>
                   <div className="row_text">
                     {data.content.replace(/(<([^>]+)>)/gi, "")}
                   </div>
-                  <div className="more_btn">더보기 {">"}</div>
+                  <div
+                    className="more_btn"
+                    onClick={() => handleImageBbsClick(data)}
+                  >
+                    더보기 {">"}
+                  </div>
                 </div>
               </div>
             ))}
@@ -290,16 +302,23 @@ const Home = () => {
           <div className="second_back" ref={containerRef2}>
             {employmentList.map((data, index) => (
               <div className="second_row">
-                <div className="row_image"
+                <div
+                  className="row_image"
                   style={{
                     backgroundImage: `url(http://localhost:3001/uploads/${data.img1})`,
-                  }}></div>
+                  }}
+                ></div>
                 <div className="row_bottom_box">
                   <div className="row_title">{data.title}</div>
                   <div className="row_text">
                     {data.content.replace(/(<([^>]+)>)/gi, "")}
                   </div>
-                  <div className="more_btn">더보기 {">"}</div>
+                  <div
+                    className="more_btn"
+                    onClick={() => handleImageBbsClick(data)}
+                  >
+                    더보기 {">"}
+                  </div>
                 </div>
               </div>
             ))}
