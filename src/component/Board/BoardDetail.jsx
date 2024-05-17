@@ -5,6 +5,15 @@ const BoardDetail = () => {
   const { menuData, data } = location.state || {};
   const navigate = useNavigate();
 
+  const handleDownload = (fileName) => {
+    const link = document.createElement("a");
+    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
+    link.setAttribute("download", fileName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const getTitle = () => {
     if (menuData && menuData.title) {
       return menuData.title;
@@ -99,18 +108,26 @@ const BoardDetail = () => {
           <div className="file_title">
             첨부파일 <span>1</span>
           </div>
-          <div className="file_contents_box">
-            {getImg().map((img, index) => (
-              <div className="file_row" key={index}>
-                <div className="file_icon"></div>
-                <div className="file_text">{img}</div>
+          <div className="file_contents_box" onClick={() => handleDownload()}>
+            {getImg().length > 0 ? (
+              getImg().map((img, index) => (
+                <div className="file_row" key={index}>
+                  <div className="file_icon"></div>
+                  <div className="file_text">{img}</div>
+                </div>
+              ))
+            ) : (
+              <div className="file_row">
+                <div className="file_text" style={{ paddingRight: "10px" }}>
+                  첨부파일이 존재하지 않습니다.
+                </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
         <div className="detail_btn_box">
-          {/* <div className="detail_btn color">교육신청하기</div> */}
-          <div className="detail_btn color" onClick={() => navigate(-1)}>
+          <div className="detail_btn color">교육신청하기</div>
+          <div className="detail_btn" onClick={() => navigate(-1)}>
             목록으로
           </div>
         </div>

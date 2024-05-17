@@ -210,13 +210,17 @@ const Home = () => {
                   <div className="contents_date">{data.date}</div>
                 </div>
               ))}
-
             </div>
             <div className="first_row">
               <div className="row_top_box">
                 <div className="row_title">사업공고</div>
                 <div className="row_btn_box">
-                  <div className="more_btn">더보기 {">"}</div>
+                  <div
+                    className="more_btn"
+                    onClick={() => moveBoard("business")}
+                  >
+                    더보기 {">"}
+                  </div>
                 </div>
               </div>
               {businessList.map((data, index) => (
@@ -242,21 +246,20 @@ const Home = () => {
           <div className="banner_text_box">
             <div className="banner_title">교육공고</div>
             <div className="banner_sub_text">교육생을 모집합니다.</div>
-            <div className="more_btn">더보기 {">"}</div>
+            <div className="more_btn" onClick={() => moveBoard("education")}>
+              더보기 {">"}
+            </div>
           </div>
         </div>
         <div className="second_container">
           <div className="second_back" ref={containerRef2}>
-            {Array.from({ length: 4 }, (data, index) => (
+            {educationList.map((data, index) => (
               <div className="second_row">
                 <div className="row_image"></div>
                 <div className="row_bottom_box">
-                  <div className="row_title">
-                    2024년도 “예비 CEO-100 양성” 교육
-                  </div>
+                  <div className="row_title">{data.title}</div>
                   <div className="row_text">
-                    지역에 경쟁력 있는 아이템 기획과 아 이디어를 보유한 예비
-                    청년 창업가..
+                    {data.content.replace(/(<([^>]+)>)/gi, "")}
                   </div>
                   <div className="more_btn">더보기 {">"}</div>
                 </div>
@@ -268,21 +271,20 @@ const Home = () => {
           <div className="banner_text_box">
             <div className="banner_title">채용공고</div>
             <div className="banner_sub_text">함께 일할 직원을 채용합니다.</div>
-            <div className="more_btn">더보기 {">"}</div>
+            <div className="more_btn" onClick={() => moveBoard("employment")}>
+              더보기 {">"}
+            </div>
           </div>
         </div>
         <div className="second_container">
-          <div className="second_back" ref={containerRef3}>
-            {Array.from({ length: 4 }, (data, index) => (
+          <div className="second_back" ref={containerRef2}>
+            {employmentList.map((data, index) => (
               <div className="second_row">
                 <div className="row_image"></div>
                 <div className="row_bottom_box">
-                  <div className="row_title">
-                    2024년도 “예비 CEO-100 양성” 교육
-                  </div>
+                  <div className="row_title">{data.title}</div>
                   <div className="row_text">
-                    지역에 경쟁력 있는 아이템 기획과 아 이디어를 보유한 예비
-                    청년 창업가..
+                    {data.content.replace(/(<([^>]+)>)/gi, "")}
                   </div>
                   <div className="more_btn">더보기 {">"}</div>
                 </div>
