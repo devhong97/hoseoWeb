@@ -457,7 +457,23 @@
 
                         .page_button {
                             background-color: inherit;
-                            font-size: 15px;
+                            @include background-set(6px, 10px, contain);
+                            background-image: url("../image/page_arrow.png");
+                            position: relative;
+                            vertical-align: middle;
+
+                            &::after {
+                                position: absolute;
+                                content: "";
+                                width: 36px;
+                                height: 38px;
+                                top: -13px;
+                                left: -15px;
+                            }
+
+                            &.prev {
+                                transform: rotate(180deg);
+                            }
                         }
                     }
 

@@ -112,11 +112,10 @@ const BoardList = () => {
     pages.push(
       <div key="prev" className="arrow_btn">
         <button
-          className="page_button"
+          className="page_button prev"
           onClick={() => handlePage(page > 1 ? page - 1 : 1)}
           disabled={page === 1}
         >
-          {"<"}
         </button>
       </div>
     );
@@ -140,7 +139,6 @@ const BoardList = () => {
           onClick={() => handlePage(page < totalPages ? page + 1 : totalPages)}
           disabled={page === totalPages}
         >
-          {">"}
         </button>
       </div>
     );
