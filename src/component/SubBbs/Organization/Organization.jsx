@@ -8,7 +8,7 @@ const Organization = () => {
   const s1 = decodeS1();
   const [select, setSelect] = useState(0);
 
-  const movePage = (category) => {
+  const moveOrganizationPage = (category) => {
     navigate(`/organization/${category}`, { state: { category: s1 } });
   };
 
@@ -18,6 +18,12 @@ const Organization = () => {
     } else {
       setSelect(num);
     }
+  };
+  const moveBoard = (cate) => {
+    navigate(`/board/${cate}`, { state: { cate: cate } });
+  };
+  const movePage = (path) => {
+    navigate(path);
   };
   return (
     <div className="sub_wrap">
@@ -36,14 +42,23 @@ const Organization = () => {
               <div className="navi_main_text">융합원 소개</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 1 && "active"}`}>
-                <div className="select_row">융합원 소개</div>
+                <div className="select_row" onClick={() => moveBoard("notice")}>알림 및 소식</div>
+                <div className="select_row" onClick={() => movePage("/company")}>기업연구동</div>
+                <div className="select_row" onClick={() => movePage("/intro")}>융합원소개</div>
+                <div className="select_row">사업분야</div>
+                <div className="select_row">인프라</div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
               <div className="navi_main_text">조직도</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
-                <div className="select_row">조직도</div>
+                <div className='select_row' onClick={() => movePage("/intro")}>인사말</div>
+                <div className='select_row' onClick={() => movePage("/vision")}>비전 및 목표</div>
+                <div className='select_row' onClick={() => movePage("/history")}>연혁</div>
+                <div className='select_row' onClick={() => movePage("/organization")}>조직도</div>
+                <div className='select_row' onClick={() => movePage("/introduce")}>소개자료</div>
+                <div className='select_row' onClick={() => movePage("/map")}>오시는길</div>
               </div>
             </div>
           </div>
@@ -93,7 +108,7 @@ const Organization = () => {
                         <div className="bottom_text_row">사업실 업무 지원</div>
                         <div
                           className="detail_btn"
-                          onClick={() => movePage("management")}
+                          onClick={() => moveOrganizationPage("management")}
                         >
                           <div className="detail_text">직원 정보</div>
                           <div className="detail_arrow">{">"}</div>
@@ -120,7 +135,7 @@ const Organization = () => {
                         </div>
                         <div
                           className="detail_btn"
-                          onClick={() => movePage("enterprise")}
+                          onClick={() => moveOrganizationPage("enterprise")}
                         >
                           <div className="detail_text">직원 정보</div>
                           <div className="detail_arrow">{">"}</div>
@@ -145,7 +160,7 @@ const Organization = () => {
                         </div>
                         <div
                           className="detail_btn"
-                          onClick={() => movePage("resources")}
+                          onClick={() => moveOrganizationPage("resources")}
                         >
                           <div className="detail_text">직원 정보</div>
                           <div className="detail_arrow">{">"}</div>
@@ -168,7 +183,7 @@ const Organization = () => {
                         <div className="bottom_text_row">엑셀러레이터</div>
                         <div
                           className="detail_btn"
-                          onClick={() => movePage("founded")}
+                          onClick={() => moveOrganizationPage("founded")}
                         >
                           <div className="detail_text">직원 정보</div>
                           <div className="detail_arrow">{">"}</div>
