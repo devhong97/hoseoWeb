@@ -769,9 +769,19 @@
             padding: 14px 20px;
             animation: growDown 500ms ease-in-out forwards;
             transform-origin: top center;
+            z-index: 2;
 
             &.active {
               display: block;
+            }
+
+            .select_row {
+              padding: 0 0 10px;
+              cursor: pointer;
+
+              &:last-child {
+                padding-bottom: 0;
+              }
             }
           }
 

@@ -95,7 +95,12 @@ const BoardList = () => {
       navigate(`/board/${cate}/${idx}`, { state: { menuData: selectedItem } });
     }
   };
-
+  const moveBoard = (cate) => {
+    navigate(`/board/${cate}`, { state: { cate: cate } });
+  };
+  const movePage = (path) => {
+    navigate(path);
+  };
   const handleWrite = () => {
     navigate(`/board/${cate}/write`);
   };
@@ -152,14 +157,26 @@ const BoardList = () => {
               <div className="navi_main_text">알림 및 소식</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 1 && "active"}`}>
-                <div className="select_row">알림 및 소식</div>
+                <div className="select_row" onClick={() => moveBoard("notice")}>알림 및 소식</div>
+                <div className="select_row" onClick={() => movePage("/company")}>기업연구동</div>
+                <div className="select_row" onClick={() => movePage("/intro")}>융합원소개</div>
+                <div className="select_row">사업분야</div>
+                <div className="select_row">인프라</div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
               <div className="navi_main_text">{title}</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
-                <div className="select_row">사업공고</div>
+                <div className="select_row" onClick={() => moveBoard("notice")}>공지사항</div>
+                <div className="select_row" onClick={() => moveBoard("business")}>사업공고</div>
+                <div className="select_row" onClick={() => moveBoard("education")}>교육공고</div>
+                <div className="select_row" onClick={() => moveBoard("employment")}>채용공고</div>
+                <div className="select_row" onClick={() => moveBoard("bid")}>입찰공고</div>
+                <div className="select_row" onClick={() => moveBoard("related")}>유관기관공고</div>
+                <div className="select_row" onClick={() => moveBoard("news")}>융합원뉴스</div>
+                <div className="select_row" onClick={() => moveBoard("reference")}>자료실</div>
+                <div className="select_row" onClick={() => moveBoard("archive")}>아카이브</div>
               </div>
             </div>
           </div>
