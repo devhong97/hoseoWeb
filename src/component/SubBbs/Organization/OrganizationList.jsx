@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const OrganizationList = () => {
@@ -7,6 +7,7 @@ const OrganizationList = () => {
   const [boardData, setBoardData] = useState([]);
   const [tab, setTab] = useState("management");
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   //교육 상세데이터
   const categoryDataSet = (category) => {
@@ -31,8 +32,9 @@ const OrganizationList = () => {
   const handleTab = (num) => {
     setTab(num);
     console.log("tab", tab);
-    categoryDataSet(category);
-    console.log("category", category);
+    // categoryDataSet(category);
+    // console.log("category", category);
+    navigate(`/organization/${num}`)
   };
   const handlePage = (cate) => {
     setPage(cate);
