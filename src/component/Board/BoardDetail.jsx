@@ -108,7 +108,10 @@ const BoardDetail = () => {
           <div className="file_title">
             첨부파일 <span>1</span>
           </div>
-          <div className="file_contents_box" onClick={() => handleDownload()}>
+          <div
+            className="file_contents_box"
+            onClick={(event) => handleDownload(event.target.textContent)}
+          >
             {getImg().length > 0 ? (
               getImg().map((img, index) => (
                 <div className="file_row" key={index}>
