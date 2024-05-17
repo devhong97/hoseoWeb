@@ -74,12 +74,10 @@ const ImageList = () => {
     pages.push(
       <div key="prev" className="arrow_btn">
         <button
-          className="page_button"
+          className="page_button prev"
           onClick={() => handlePage(page > 1 ? page - 1 : 1)}
           disabled={page === 1}
-        >
-          {"<"}
-        </button>
+        ></button>
       </div>
     );
     // 페이지수
@@ -101,9 +99,7 @@ const ImageList = () => {
           className="page_button"
           onClick={() => handlePage(page < totalPages ? page + 1 : totalPages)}
           disabled={page === totalPages}
-        >
-          {">"}
-        </button>
+        ></button>
       </div>
     );
 
@@ -232,9 +228,7 @@ const ImageList = () => {
                         )}
 
                         <div className="img_title">{item.title}</div>
-                        <div className="img_text">
-                          {item.content.replace(/(<([^>]+)>)/gi, "")}
-                        </div>
+                        <div className="img_text">{item.content}</div>
                         <div className="img_bottom_box">
                           <div className="bottom_row">작성자</div>
                           <div className="bottom_row">{item.writer}</div>

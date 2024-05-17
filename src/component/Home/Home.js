@@ -13,6 +13,7 @@ const Home = () => {
   const [businessList, setBusinessList] = useState([]);
   const [educationList, setEcucationList] = useState([]);
   const [employmentList, setEmploymentList] = useState([]);
+  const topRef = useRef(null);
 
   const mouseWheelHandler = (e, containerRef) => {
     const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail));
@@ -135,11 +136,17 @@ const Home = () => {
     return diffDays <= 7;
   };
 
+  const scrollTop = () => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   return (
     <div className="main_wrap">
-      <div className="main_back">
+      <div className="main_back" ref={topRef}>
         <div className="scroll_box">
-          <div className="scroll_icon"></div>
+          <div className="scroll_icon" onClick={() => scrollTop()}></div>
         </div>
         <div className="main_banner_box">
           <MainSwiper></MainSwiper>
