@@ -176,7 +176,7 @@ const BoardList = () => {
                 <div className="select_row" onClick={() => moveBoard("related")}>유관기관공고</div>
                 <div className="select_row" onClick={() => moveBoard("news")}>융합원뉴스</div>
                 <div className="select_row" onClick={() => moveBoard("reference")}>자료실</div>
-                <div className="select_row" onClick={() => moveBoard("archive")}>아카이브</div>
+                <div className="select_row" onClick={() => movePage("/archive")}>아카이브</div>
               </div>
             </div>
           </div>

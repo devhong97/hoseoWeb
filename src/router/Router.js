@@ -17,6 +17,7 @@ import IntroImage from "../component/Intro/IntroImage";
 import BoardDetail from "./../component/Board/BoardDetail";
 import BoardWrite from "./../component/Board/BoardWrite";
 import OrganizationWrite from "./../component/SubBbs/Organization/OrganizationWrite";
+import ImageList from "./../component/Board/ImageList";
 
 const Router = () => {
   return (
@@ -38,6 +39,8 @@ const Router = () => {
       <Route path="/board/:cate" element={<BoardList />}></Route>
       <Route path="/board/:cate/:idx" element={<BoardDetail />} />
       <Route path="/board/:cate/write" element={<BoardWrite />} />
+      {/* 아카이브 */}
+      <Route path="/archive" element={<ImageList />} />
       {/* 층별안내 */}
       <Route path="/floor" element={<FloorList />}></Route>
       {/* 입주기업현황 */}
