@@ -228,7 +228,9 @@ const ImageList = () => {
                         )}
 
                         <div className="img_title">{item.title}</div>
-                        <div className="img_text">{item.content}</div>
+                        <div className="img_text">
+                          {item.content.replace(/(<([^>]+)>)/gi, "")}
+                        </div>
                         <div className="img_bottom_box">
                           <div className="bottom_row">작성자</div>
                           <div className="bottom_row">{item.writer}</div>
