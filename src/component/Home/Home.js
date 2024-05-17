@@ -11,6 +11,8 @@ const Home = () => {
   const containerRef4 = useRef(null);
   const [noticeList, setNoticeList] = useState([]);
   const [businessList, setBusinessList] = useState([]);
+  const [educationList, setEcucationList] = useState([]);
+  const [employmentList, setEmploymentList] = useState([]);
 
   const mouseWheelHandler = (e, containerRef) => {
     const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail));
@@ -79,15 +81,41 @@ const Home = () => {
       }
     };
 
+    const fetchEducation = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/api/get/home/education"
+        );
+        setEcucationList(response.data);
+      } catch (err) {
+        console.log("교육공고 호출 오류:", err);
+      }
+    };
+
+    const fetchEmployment = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/api/get/home/employment"
+        );
+        setEmploymentList(response.data);
+      } catch (err) {
+        console.log("채용공고 호출 오류:", err);
+      }
+    };
+
     fetchNotice();
     fetchBusiness();
+    fetchEducation();
+    fetchEmployment();
   }, []);
 
   const moveBoard = (cate) => {
     navigate(`/board/${cate}`, { state: { cate: cate } });
   };
-  const handleRowClick = (cate, index) => {
-    navigate(`/board/${cate}/${index}`, { state: { cate: cate } });
+
+  const handleRowClick = (data) => {
+    console.log("data", data);
+    navigate(`/board/${data.category}/${data.idx}`, { state: { data } });
   };
 
   //날짜계산
@@ -162,7 +190,7 @@ const Home = () => {
                 <div
                   className="contents_row"
                   key={index}
-                  onClick={() => handleRowClick(data.category, data.idx)}
+                  onClick={() => handleRowClick(data)}
                 >
                   <div className="contents_title">
                     {data.title}
@@ -186,7 +214,7 @@ const Home = () => {
                 <div
                   className="contents_row"
                   key={index}
-                  onClick={() => handleRowClick(data.category, data.idx)}
+                  onClick={() => handleRowClick(data)}
                 >
                   <div className="contents_title">
                     {data.title}
