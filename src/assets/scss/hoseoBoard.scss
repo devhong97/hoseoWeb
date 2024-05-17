@@ -205,6 +205,12 @@
                         padding-top: 35px;
                     }
 
+                    &.image {
+                        box-shadow: none;
+                        padding-top: 35px;
+                        background-color: inherit;
+                    }
+
                     &::-webkit-scrollbar {
                         display: none;
                     }
@@ -280,6 +286,85 @@
                                         text-align: center;
                                         display: inline-block;
                                         vertical-align: middle;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .img_table {
+                        .img_row {
+                            width: calc((100% - 70px) / 3);
+                            margin-right: 35px;
+                            margin-bottom: 30px;
+                            display: inline-block;
+                            vertical-align: top;
+                            box-shadow: 0px 5px 20px #00000029;
+                            border-radius: 5px;
+                            cursor: pointer;
+
+                            &:nth-child(3n) {
+                                margin-right: 0;
+                            }
+
+                            .img_box {
+                                @include background-set(100%, 172px, contain);
+                                background-image: url("../image/hoseo_banner.png");
+                            }
+
+                            .img_text_box {
+                                padding: 23px;
+
+                                .new_icon {
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    padding: 3px 6px;
+                                    border: 1px solid $sub-color;
+                                    color: $sub-color;
+                                    font-size: 10px;
+                                    border-radius: 20px;
+                                    margin-right: 6px;
+                                }
+
+                                .img_title {
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    width: calc(100% - 42px);
+                                    font-size: 20px;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+
+
+                                }
+
+                                .img_text {
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    width: 100%;
+                                    color: #777777;
+                                    font-size: 15px;
+                                    padding-top: 7px;
+                                }
+
+                                .img_bottom_box {
+                                    padding-top: 34px;
+
+                                    .bottom_row {
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                        color: #777777;
+                                        border-right: 1px solid #777777;
+                                        padding: 0 5px;
+
+                                        &:last-child {
+                                            border-right: none;
+                                        }
+
+                                        &:first-child {
+                                            padding-left: 0;
+                                        }
                                     }
                                 }
                             }
