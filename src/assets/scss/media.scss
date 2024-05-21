@@ -1,6 +1,14 @@
 @import "hoseoUtil.scss";
 
 @media (max-width: 1500px) {
+    .login_wrap {
+        height: calc(100vh - 307px);
+    }
+
+    .empty_wrap {
+        height: calc(100vh - 307px);
+    }
+
     .header_area {
         .header_wrap {
             .header_back {
@@ -103,7 +111,7 @@
     }
 
     .main_area {
-        padding-top: 97px;
+        padding-top: 78px;
         background-color: #F8FAFA;
 
         .main_back {

@@ -27,6 +27,7 @@ import InquiryDetail from "../component/SubBbs/Inquiry/InquiryDetail";
 import FacilityDetail from "../component/SubBbs/Facility/FacilityDetail";
 import InquiryModify from "../component/SubBbs/Inquiry/InquiryModify";
 import FacilityModify from "../component/SubBbs/Facility/FacilityModify";
+import Empty from "../component/Empty/Empty";
 
 const Router = () => {
   return (
@@ -76,6 +77,8 @@ const Router = () => {
       <Route path="/board/facility/:idx" element={<FacilityDetail />} />
       <Route path="/board/facility/write" element={<FacilityWrite />} />
       <Route path="/board/facility/modify" element={<FacilityModify />} />
+      {/* empty */}
+      <Route path="/empty" element={<Empty />} />
     </Routes>
   );
 };
