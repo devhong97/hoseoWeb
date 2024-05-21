@@ -153,9 +153,10 @@ const FacilityDetail = () => {
             </div>
           </div>
         )}
-        {getContent() && (
-          <div className="detail_contents_box">{getContent()}</div>
-        )}
+        <div
+          className="detail_contents_box"
+          dangerouslySetInnerHTML={{ __html: menuData.content }}
+        ></div>
         <div className="detail_file_box">
           <div className="file_title">
             첨부파일 <span>{getAttachmentCount()}</span>
