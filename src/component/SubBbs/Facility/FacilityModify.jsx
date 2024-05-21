@@ -1,19 +1,27 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const BoardWrite = () => {
-  const { cate } = useParams();
-  const [title, setTitle] = useState(""); // 제목
-  const [content, setContent] = useState(""); // 내용
+const FacilityModify = () => {
+  const location = useLocation();
+  const { facilityList, img1, img2, img3, img4, img5 } = location.state || {};
+  const [title, setTitle] = useState(facilityList.title || ""); // 제목
+  const [content, setContent] = useState(facilityList.content || ""); // 내용
   const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부
   const [fileUrls, setFileUrls] = useState([]); // 파일 URL
   const editorRef = useRef(null);
   const navigate = useNavigate();
+  const cate = "facility";
+
+  // 메뉴 데이터가 변경될 때마다 초기값 설정
+  useEffect(() => {
+    setTitle(facilityList.title || "");
+    setContent(facilityList.content || "");
+  }, [facilityList]);
 
   // 파일 첨부 삭제
   const handleFileDelete = (index) => {
@@ -22,9 +30,33 @@ const BoardWrite = () => {
     setSelectedFiles(updatedFiles);
 
     const updatedUrls = [...fileUrls];
+    const deletedFileName = updatedUrls[index]; // 삭제된 파일 이름 가져오기
     updatedUrls.splice(index, 1);
     setFileUrls(updatedUrls);
+
+    // 파일을 삭제한 후에는 이미지 URL 배열의 순서를 조정
+    const newFileUrls = updatedUrls.map((url) => {
+      if (url === deletedFileName) {
+        return ""; // 삭제된 파일은 빈 문자열로 대체
+      }
+      return url;
+    });
+    console.log("Updated Selected Files:", updatedFiles);
+    console.log("Updated File URLs:", updatedUrls);
   };
+
+  // 파일 URL 설정
+  useEffect(() => {
+    const images = [];
+    for (let i = 1; i <= 5; i++) {
+      if (facilityList && facilityList[`img${i}`]) {
+        images.push(facilityList[`img${i}`]);
+      } else if (eval(`img${i}`)) {
+        images.push(eval(`img${i}`));
+      }
+    }
+    setFileUrls(images);
+  }, [facilityList, img1, img2, img3, img4, img5]);
 
   // Editor 파일 업로드 관련 함수
   const onUploadImage = async (blob, callback) => {
@@ -65,12 +97,25 @@ const BoardWrite = () => {
       return;
     }
 
-    const urls = files.map((file) => URL.createObjectURL(file));
+    const newSelectedFiles = [...selectedFiles];
+    const newFileUrls = [...fileUrls];
 
-    setSelectedFiles([...selectedFiles, ...files]);
-    setFileUrls([...fileUrls, ...urls]);
+    const existingFileCount = fileUrls.filter((url) =>
+      url.startsWith("img")
+    ).length;
+
+    files.forEach((file, index) => {
+      newSelectedFiles.push(file);
+      const newFileIndex = existingFileCount + index + 1;
+      const fileName = file.name; // 원본 이미지 파일 이름 가져오기
+      newFileUrls.push(fileName); // 파일 이름으로 추가
+    });
+
+    setSelectedFiles(newSelectedFiles);
+    setFileUrls(newFileUrls);
+
+    console.log("새로운 파일 선택 시 상태:", newFileUrls);
   };
-
   // 글 등록 핸들러
   const handleSubmit = async () => {
     if (title === "") {
@@ -81,19 +126,43 @@ const BoardWrite = () => {
       return;
     }
 
-    // 첨부 파일
     const formData = new FormData();
+    formData.append("idx", facilityList.idx);
+    formData.append("category", cate);
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("cate", cate);
 
-    selectedFiles.forEach((file, index) => {
-      formData.append(`files`, file);
-    });
+    // 이미지 URL을 FormData에 추가
+    for (let i = 0; i < fileUrls.length; i++) {
+      formData.append(`img${i + 1}`, fileUrls[i]);
+    }
 
     try {
+      // 이미지를 업로드하고 저장
+      await Promise.all(
+        selectedFiles.map(async (file) => {
+          if (!file.name.startsWith("blob")) {
+            formData.append(`files`, file);
+            return;
+          }
+          const imageFormData = new FormData();
+          imageFormData.append("image", file);
+          const response = await axios.post(
+            "http://localhost:3001/api/post/upload",
+            imageFormData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          formData.append(`files`, response.data.imageUrl);
+        })
+      );
+
+      // 게시글 수정 요청
       const response = await axios.post(
-        "http://localhost:3001/api/post/board_write",
+        "http://localhost:3001/api/post/facility_modify",
         formData,
         {
           headers: {
@@ -102,16 +171,14 @@ const BoardWrite = () => {
         }
       );
       console.log(response.data);
-      alert(`글 등록이 완료되었습니다.`);
+      alert(`글 수정이 완료되었습니다.`);
 
       setTitle("");
       setContent("");
       setSelectedFiles([]);
-      if (cate === "archive") {
-        navigate("/archive");
-      } else {
-        navigate(`/board/${cate}`, { state: { cate: cate } });
-      }
+      navigate(`/board/${cate}`, {
+        state: { cate: cate },
+      });
     } catch (error) {
       console.error(error);
     }
@@ -138,7 +205,7 @@ const BoardWrite = () => {
         </div>
         <div className="detail_contents_box">
           <Editor
-            initialValue=" " // content를 Editor의 초기값으로 사용
+            initialValue={content} // content를 Editor의 초기값으로 사용
             height="300px"
             initialEditType="wysiwyg"
             plugins={[colorSyntax]}
@@ -166,10 +233,10 @@ const BoardWrite = () => {
                 multiple
               />
             </div>
-            {selectedFiles.map((file, index) => (
+            {fileUrls.map((url, index) => (
               <div className="file_row ellipsis" key={index}>
                 <div className="file_icon"></div>
-                <div className="file_text ellipsis">{file.name}</div>
+                <div className="file_text ellipsis">{url}</div>
                 <div
                   className="delete_btn"
                   onClick={() => handleFileDelete(index)}
@@ -185,9 +252,14 @@ const BoardWrite = () => {
             작성완료
           </div>
         </div>
+        <div className="detail_btn_box">
+          <div className="detail_btn" onClick={() => navigate(-1)}>
+            취소
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default BoardWrite;
+export default FacilityModify;

@@ -4,16 +4,16 @@ import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const BoardWrite = () => {
-  const { cate } = useParams();
+const FacilityWrite = () => {
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
   const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부
   const [fileUrls, setFileUrls] = useState([]); // 파일 URL
   const editorRef = useRef(null);
   const navigate = useNavigate();
+  const cate = "facility";
 
   // 파일 첨부 삭제
   const handleFileDelete = (index) => {
@@ -88,12 +88,14 @@ const BoardWrite = () => {
     formData.append("cate", cate);
 
     selectedFiles.forEach((file, index) => {
-      formData.append(`files`, file);
+      // 파일 이름 URL 인코딩
+      const encodedFileName = encodeURIComponent(file.name);
+      formData.append(`files`, file, encodedFileName);
     });
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/board_write",
+        "http://localhost:3001/api/post/facility_write",
         formData,
         {
           headers: {
@@ -110,6 +112,7 @@ const BoardWrite = () => {
       if (cate === "archive") {
         navigate("/archive");
       } else {
+        console.log("catecatecate", cate);
         navigate(`/board/${cate}`, { state: { cate: cate } });
       }
     } catch (error) {
@@ -190,4 +193,4 @@ const BoardWrite = () => {
   );
 };
 
-export default BoardWrite;
+export default FacilityWrite;

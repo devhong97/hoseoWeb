@@ -163,7 +163,12 @@ const Header = () => {
                     층별안내
                   </div>
                   <div className="sub_menu">입주안내</div>
-                  <div className="sub_menu">입주문의</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("inquiry")}
+                  >
+                    입주문의
+                  </div>
                 </div>
               </div>
               <div className="menu_row">
@@ -183,14 +188,22 @@ const Header = () => {
                   <div className="sub_menu">3D프린트</div>
                   <div className="sub_menu">AR/VR</div>
                   <div className="sub_menu">CNC</div>
-                  <div className="sub_menu">시설예약</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("facility")}
+                  >
+                    시설예약
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className={`menu_show_area ${openMenu === "web" && "active"}`} onMouseLeave={() => handleMenu("")}>
+      <div
+        className={`menu_show_area ${openMenu === "web" && "active"}`}
+        onMouseLeave={() => handleMenu("")}
+      >
         <div className={`menu_show_box web`}>
           <div className="show_menu_back web">
             <div className="menu_container">
@@ -256,7 +269,12 @@ const Header = () => {
                     층별안내
                   </div>
                   <div className="sub_menu">입주안내</div>
-                  <div className="sub_menu">입주문의</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("inquiry")}
+                  >
+                    입주문의
+                  </div>
                 </div>
               </div>
 
@@ -306,7 +324,12 @@ const Header = () => {
                   <div className="sub_menu">3D프린트</div>
                   <div className="sub_menu">AR/VR</div>
                   <div className="sub_menu">CNC</div>
-                  <div className="sub_menu">시설예약</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => moveBoard("facility")}
+                  >
+                    시설예약
+                  </div>
                 </div>
               </div>
             </div>

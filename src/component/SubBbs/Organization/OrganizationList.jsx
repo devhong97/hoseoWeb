@@ -34,7 +34,7 @@ const OrganizationList = () => {
     console.log("tab", tab);
     // categoryDataSet(category);
     // console.log("category", category);
-    navigate(`/organization/${num}`)
+    navigate(`/organization/${num}`);
   };
   const handlePage = (cate) => {
     setPage(cate);
