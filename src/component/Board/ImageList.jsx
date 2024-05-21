@@ -15,7 +15,7 @@ const ImageList = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:3001/api/get/board_list?cate=archive&page=${page}&pageSize=${pageSize}`
+        `http://101.101.216.95:3001/api/get/board_list?cate=archive&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setMenuData(response.data.data);
@@ -44,7 +44,9 @@ const ImageList = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+      await axios.post(
+        `http://101.101.216.95:3001/api/post/board/hit_count/${idx}`
+      );
     } catch (err) {
       console.log(err);
     }
@@ -224,7 +226,7 @@ const ImageList = () => {
                       <div
                         className="img_box"
                         style={{
-                          backgroundImage: `url(http://localhost:3001/uploads/${item.img1})`,
+                          backgroundImage: `url(http://101.101.216.95:3001/uploads/${item.img1})`,
                         }}
                       ></div>
                       <div className="img_text_box">
