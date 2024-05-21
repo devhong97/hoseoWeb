@@ -31,7 +31,7 @@ const Organization = () => {
         <div className="sub_banner_area">
           <div className="sub_banner_back">
             <div className="navi_text">
-              홈{">"}융합원 소개{">"}조직도
+              <div className="home_icon"></div>{"> "}융합원 소개{" > "}조직도
             </div>
             <div className="banner_main_text">조직도</div>
           </div>
@@ -45,8 +45,8 @@ const Organization = () => {
                 <div className="select_row" onClick={() => moveBoard("notice")}>알림 및 소식</div>
                 <div className="select_row" onClick={() => movePage("/company")}>기업연구동</div>
                 <div className="select_row" onClick={() => movePage("/intro")}>융합원소개</div>
-                <div className="select_row">사업분야</div>
-                <div className="select_row">인프라</div>
+                <div className="select_row" onClick={() => movePage("/empty")}>사업분야</div>
+                <div className="select_row" onClick={() => movePage("/empty")}>인프라</div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>

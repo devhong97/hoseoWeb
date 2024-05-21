@@ -64,7 +64,7 @@ const OrganizationList = () => {
         <div className="board_container">
           <div className="title_box">
             <div className="navi_text">
-              홈{">"}알림 및 소식{">"}직원정보
+              <div className="home_icon"></div>{"> "}알림 및 소식{" > "}직원정보
             </div>
             <div className="title_text">직원정보</div>
             <div className="tab_area fourth">

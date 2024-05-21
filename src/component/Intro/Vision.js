@@ -22,7 +22,7 @@ const Vision = () => {
                 <div className='sub_banner_area'>
                     <div className='sub_banner_back'>
                         <div className='navi_text'>
-                            홈{">"}교육{">"}교육일정안내
+                            <div className="home_icon"></div>{"> "}융합원 소개{" > "}비전 및 목표
                         </div>
                         <div className='banner_main_text'>비전 및 목표</div>
                     </div>
@@ -37,8 +37,8 @@ const Vision = () => {
                                 <div className="select_row" onClick={() => moveBoard("notice")}>알림 및 소식</div>
                                 <div className="select_row" onClick={() => movePage("/company")}>기업연구동</div>
                                 <div className="select_row" onClick={() => movePage("/intro")}>융합원소개</div>
-                                <div className="select_row">사업분야</div>
-                                <div className="select_row">인프라</div>
+                                <div className="select_row" onClick={() => movePage("/empty")}>사업분야</div>
+                                <div className="select_row" onClick={() => movePage("/empty")}>인프라</div>
                             </div>
                         </div>
                         <div className='navi_box' onClick={() => handleSelect(2)}>
@@ -64,7 +64,7 @@ const Vision = () => {
                                 </div>
                                 <div className='title_text'>충남산학융합원 비전/자세/경영방침</div>
                             </div>
-                            <div className='vision_contents_box top'>
+                            {/* <div className='vision_contents_box top'>
                                 <div className='first_box left'>
                                     <div className='left_box'>
                                         <div className='vision_row first'>
@@ -119,6 +119,9 @@ const Vision = () => {
                                         </div>
                                     </div>
                                 </div>
+                            </div> */}
+                            <div className='founded_img_box vision'>
+                                <div className='founded_img seventh'></div>
                             </div>
                         </div>
                         <div className='vision_container'>
@@ -128,7 +131,7 @@ const Vision = () => {
                                 </div>
                                 <div className='title_text'>산학협력 발전계획 비전과 목표</div>
                             </div>
-                            <div className='vision_contents_box center'>
+                            {/* <div className='vision_contents_box center'>
                                 <div className='first_box w100'>
                                     <div className='left_box'>
                                         <div className='vision_row first'>
@@ -186,9 +189,22 @@ const Vision = () => {
                                     </div>
 
                                 </div>
+                            </div> */}
+                            <div className='founded_img_box vision'>
+                                <div className='founded_img eighth'></div>
                             </div>
                         </div>
-
+                        <div className='vision_container'>
+                            <div className='vision_title_box'>
+                                <div className='logo_box'>
+                                    <div className='logo_img'></div>
+                                </div>
+                                <div className='title_text'>중장기 추진 계획</div>
+                            </div>
+                            <div className='founded_img_box vision'>
+                                <div className='founded_img nineth'></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div >

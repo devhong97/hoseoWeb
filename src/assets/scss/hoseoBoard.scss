@@ -81,6 +81,31 @@
             width: 80%;
             margin: 0 auto;
 
+            .vision_title_box {
+                border-bottom: 1px solid $sub-color;
+                color: $sub-color;
+                padding-bottom: 10px;
+
+                .logo_box {
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 18px;
+
+                    .logo_img {
+                        @include background-set(100%, 18px, contain);
+                        background-image: url("../image/color_logo_2.png");
+                    }
+                }
+
+                .title_text {
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 15px;
+                    padding-left: 10px;
+                    width: calc(100% - 18px);
+                }
+            }
+
             .title_box {
                 padding: 50px 0;
                 text-align: center;
@@ -89,6 +114,15 @@
                     color: #5A5A5A;
                     font-size: 15px;
                     padding-bottom: 12px;
+
+
+                    .home_icon {
+                        @include background-set(16px, 14px, contain);
+                        background-image: url("../image/home_icon.png");
+                        display: inline-block;
+                        vertical-align: text-top;
+                        margin-right: 7px;
+                    }
                 }
 
                 .title_text {
@@ -160,6 +194,113 @@
             }
 
 
+            .inquiry_area {
+                .inquiry_img_box {
+                    padding-bottom: 70px;
+                    background-color: #D5DFE2;
+
+                    &.bottom {
+                        padding: 100px 0;
+                    }
+                }
+
+                .inquiry_top_box {
+                    .top_title_box {
+                        padding: 60px 0 50px;
+
+                        .top_main_title {
+                            color: #707070;
+                            font-size: 30px;
+
+                            span {
+                                color: $main-color;
+                                font-family: "Pretendard_b";
+                            }
+                        }
+
+                        .top_main_text {
+                            padding-top: 20px;
+                            font-size: 20px;
+                            color: #707070;
+                            line-height: 30px;
+                        }
+                    }
+
+                    .top_contents_box {
+                        .contents_text_box {
+                            padding-bottom: 18px;
+
+                            .contents_text_row {
+                                padding-bottom: 10px;
+                                font-size: 20px;
+                                color: #707070;
+                            }
+                        }
+
+                        .inquiry_table_box {
+                            padding: 28px 0 97px;
+                            background-color: #6c6c6c;
+
+                            &.bottom {
+                                padding: 28px 0 80px;
+                            }
+                        }
+                    }
+
+                    .top_info_box {
+                        display: inline-block;
+                        width: 50%;
+                        vertical-align: top;
+
+                        .info_title {
+                            font-size: 25px;
+                            color: #707070;
+                            padding-bottom: 30px;
+                        }
+
+                        .info_text_box {
+                            .info_row {
+                                .info_title {
+                                    font-size: 15px;
+                                    color: #707070;
+                                    font-family: "Pretendard_b";
+                                    padding: 30px 0 10px;
+
+                                    &.bottom_padding_none {
+                                        padding-bottom: 0;
+                                    }
+
+                                    &.top_padding_none {
+                                        padding-top: 0;
+                                    }
+
+                                    &.all_padding_none {
+                                        padding: 0;
+                                    }
+                                }
+
+                                .info_text {
+                                    font-size: 15px;
+                                    color: #707070;
+                                    line-height: 30px;
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+
+                .inquiry_bottom_box {
+                    padding: 26px 0 100px;
+
+                    .bottom_row {
+                        font-size: 15px;
+                        color: #707070;
+                        padding-bottom: 15px;
+                    }
+                }
+            }
 
             .list_area {
                 width: 100%;
@@ -505,15 +646,42 @@
         margin: 0 auto;
         padding: 65px 0;
 
+        .detail_title_box {
+            padding-bottom: 30px;
+            font-family: "Pretendard_b";
+            font-size: 25px;
+            color: #555555;
+        }
 
         .detail_top_box {
             padding: 0 0 10px;
             border-bottom: 1px solid #C9C9C9;
 
+            &.member {
+                padding-bottom: 50px;
+            }
+
             .detail_title {
                 font-size: 30px;
                 font-family: "Pretendard_b";
                 color: #030303;
+
+                &.member {
+                    padding: 10px 0;
+                    border-bottom: 1px solid #C9C9C9;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+
+                .input_label {
+                    font-size: 20px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 100px;
+                    color: #555555;
+                }
 
                 .detail_input {
                     font-size: 30px;
@@ -522,6 +690,12 @@
                     &::placeholder {
                         color: #D6D6D6;
 
+                    }
+
+                    &.member {
+                        font-size: 20px;
+                        display: inline-block;
+                        vertical-align: middle;
                     }
                 }
             }
@@ -562,6 +736,9 @@
             padding: 35px 0;
             border-bottom: 1px solid #BCBCBC;
 
+            .toastui-editor-defaultUI {
+                z-index: 1;
+            }
         }
 
         .detail_file_box {

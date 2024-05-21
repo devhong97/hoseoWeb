@@ -1,6 +1,14 @@
 @import "hoseoUtil.scss";
 
 @media (max-width: 1500px) {
+    .login_wrap {
+        height: calc(100vh - 307px);
+    }
+
+    .empty_wrap {
+        height: calc(100vh - 307px);
+    }
+
     .header_area {
         .header_wrap {
             .header_back {
@@ -103,7 +111,7 @@
     }
 
     .main_area {
-        padding-top: 97px;
+        padding-top: 78px;
         background-color: #F8FAFA;
 
         .main_back {
@@ -695,6 +703,109 @@
                     }
 
                     .vision_container {
+                        .founded_img_box {
+                            &.vision {
+                                padding: 50px 0 100px;
+                            }
+
+                            &.enterprise_one {
+                                padding: 50px 0 20px;
+                            }
+
+                            &.formation_one {
+                                padding: 20px 0;
+                            }
+
+                            &.formation_two {
+                                padding: 0 0 50px
+                            }
+
+
+                            .founded_img {
+                                height: 31vw;
+
+                                &.second {
+                                    height: 27vw;
+                                }
+
+                                &.third {
+                                    height: 39vw;
+                                }
+
+                                &.fourth {
+                                    height: 34vw;
+                                }
+
+                                &.fifth {
+                                    height: 64vw;
+                                }
+
+                                &.sixth {
+                                    height: 97vw;
+                                }
+
+                                &.seventh {
+                                    height: 47vw;
+                                }
+
+                                &.eighth {
+                                    height: 55vw;
+                                }
+
+                                &.nineth {
+                                    height: 67vw;
+                                }
+
+                                &.enterprise_one {
+                                    height: 63vw;
+                                }
+
+                                &.enterprise_two {
+                                    height: 39vw;
+                                }
+
+                                &.human {
+                                    height: 70vw;
+                                }
+
+                                &.formation_one {
+                                    height: 14vw;
+                                }
+
+                                &.formation_two {
+                                    height: 51vw;
+                                }
+
+                                &.formation_three {
+                                    height: 52vw;
+                                }
+                            }
+                        }
+
+                        .founded_text_box {
+                            padding: 0 0 40px;
+
+                            &.formation {
+                                padding: 50px 0;
+                            }
+
+                            .founded_text_row {
+                                font-size: 15px;
+                                line-height: 30px;
+                                padding-bottom: 20px;
+
+
+                                .text_title {}
+
+                                .text_box {
+                                    &.small {
+                                        font-size: 12px;
+                                        line-height: 20px;
+                                    }
+                                }
+                            }
+                        }
+
                         .vision_contents_box {
                             &.top {
                                 .vision_row {
@@ -755,6 +866,92 @@
                     .tab_area {
                         .tab_box {
                             font-size: 12px;
+                        }
+                    }
+                }
+
+                .inquiry_area {
+                    .inquiry_img_box {
+                        padding-bottom: 70px;
+
+                        &.bottom {
+                            padding: 100px 0;
+                        }
+                    }
+
+                    .inquiry_top_box {
+                        .top_title_box {
+                            padding: 30px 0;
+
+                            .top_main_title {
+                                color: #707070;
+                                font-size: 20px;
+
+                            }
+
+                            .top_main_text {
+                                padding-top: 15px;
+                                font-size: 15px;
+                                line-height: 20px;
+                            }
+                        }
+
+                        .top_contents_box {
+                            .contents_text_box {
+                                padding-bottom: 18px;
+
+                                .contents_text_row {
+                                    padding-bottom: 10px;
+                                    font-size: 15px;
+                                }
+                            }
+
+                            .inquiry_table_box {
+                                padding: 28px 0 97px;
+
+                                &.bottom {
+                                    padding: 28px 0 80px;
+                                }
+                            }
+                        }
+
+                        .top_info_box {
+                            width: 100%;
+                            text-align: center;
+
+                            &.right {
+                                padding-top: 50px;
+                            }
+
+                            .info_title {
+                                font-size: 20px;
+                                padding-bottom: 30px;
+                            }
+
+                            .info_text_box {
+                                .info_row {
+                                    .info_title {
+                                        font-size: 12px;
+                                        padding: 30px 0 10px;
+
+                                    }
+
+                                    .info_text {
+                                        font-size: 12px;
+                                        line-height: 20px;
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
+
+                    .inquiry_bottom_box {
+
+                        .bottom_row {
+                            font-size: 15px;
+                            padding-bottom: 15px;
                         }
                     }
                 }

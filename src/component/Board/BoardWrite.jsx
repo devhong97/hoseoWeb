@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
@@ -8,12 +8,49 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const BoardWrite = () => {
   const { cate } = useParams();
+  const [cateTitle, setCateTitle] = useState("")//게시판제목
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
   const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부
   const [fileUrls, setFileUrls] = useState([]); // 파일 URL
   const editorRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (cate !== "") {
+      switch (cate) {
+        case "notice":
+          setCateTitle("공지사항");
+          break;
+        case "business":
+          setCateTitle("사업공고");
+          break;
+        case "education":
+          setCateTitle("교육공고");
+          break;
+        case "employment":
+          setCateTitle("채용공고");
+          break;
+        case "bid":
+          setCateTitle("입찰공고");
+          break;
+        case "related":
+          setCateTitle("유관기관 공고");
+          break;
+        case "news":
+          setCateTitle("융합원 뉴스");
+          break;
+        case "reference":
+          setCateTitle("자료실");
+          break;
+        case "archive":
+          setCateTitle("융합원 아카이브");
+          break;
+        default:
+          return;
+      }
+    }
+  }, [cate]);
 
   // 파일 첨부 삭제
   const handleFileDelete = (index) => {
@@ -124,6 +161,9 @@ const BoardWrite = () => {
   return (
     <div className="detail_wrap">
       <div className="detail_back">
+        <div className="detail_title_box">
+          {cateTitle} 글쓰기
+        </div>
         <div className="detail_top_box">
           <div className="detail_title">
             <input

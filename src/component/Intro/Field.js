@@ -16,7 +16,7 @@ const Field = () => {
                 <div className='sub_banner_area'>
                     <div className='sub_banner_back'>
                         <div className='navi_text'>
-                            홈{">"}알림 및 소식{">"}공지사항
+                            <div className="home_icon"></div>{"> "}알림 및 소식{" > "}공지사항
                         </div>
                         <div className='banner_main_text'>충남산학융합지구조성사업</div>
                     </div>

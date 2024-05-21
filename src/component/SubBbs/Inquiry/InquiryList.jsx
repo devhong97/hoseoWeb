@@ -134,14 +134,15 @@ const InquiryList = () => {
                 <div className="select_row" onClick={() => movePage("/intro")}>
                   융합원소개
                 </div>
-                <div className="select_row">사업분야</div>
-                <div className="select_row">인프라</div>
+                <div className="select_row" onClick={() => movePage("/empty")}>사업분야</div>
+                <div className="select_row" onClick={() => movePage("/empty")}>인프라</div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
               <div className="navi_main_text">입주문의</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
+                <div className="select_row" onClick={() => movePage("/empty")}>연구관 소개</div>
                 <div
                   className="select_row"
                   onClick={() => movePage("/company")}
@@ -151,7 +152,7 @@ const InquiryList = () => {
                 <div className="select_row" onClick={() => movePage("/floor")}>
                   층별안내
                 </div>
-                <div className="select_row">입주안내</div>
+                <div className="select_row" onClick={() => movePage("/inquiryinfo")}>입주안내</div>
                 <div
                   className="select_row"
                   onClick={() => moveBoard("inquiry")}
@@ -165,7 +166,8 @@ const InquiryList = () => {
         <div className="board_container">
           <div className="title_box">
             <div className="navi_text">
-              홈{">"}알림 및 소식{">"}
+              <div className="home_icon"></div>
+              {"> "}기업연구동{" > "}
               입주문의
             </div>
             <div className="title_text">입주문의</div>

@@ -35,32 +35,38 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <h2>관리자 로그인</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          아이디:
-          <input
-            type="text"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
-        </div>
-        <div>
-          비밀번호:
-          <input
-            type="password"
-            value={pw}
-            onChange={(e) => setPw(e.target.value)}
-          />
-        </div>
-        <button type="submit">로그인</button>
-      </form>
-      {error && (
-        <div style={{ color: "red" }}>
-          아이디 또는 비밀번호가 일치하지 않습니다.
-        </div>
-      )}
+    <div className="login_wrap">
+      <div className="login_back">
+        <div className="login_title">관리자 로그인</div>
+        <form onSubmit={handleSubmit}>
+          <div className="login_row">
+            <div className="input_title">아이디</div>
+            <input
+              className="login_input"
+              placeholder="ID"
+              type="text"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            />
+          </div>
+          <div className="login_row">
+            <div className="input_title">비밀번호</div>
+            <input
+              placeholder="PASSWORD"
+              className="login_input"
+              type="password"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="submit_btn">로그인</button>
+        </form>
+        {error && (
+          <div className="error_text">
+            아이디 또는 비밀번호가 일치하지 않습니다.
+          </div>
+        )}
+      </div>
     </div>
   );
 };
