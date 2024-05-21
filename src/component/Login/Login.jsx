@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await Axios.post(
-        "http://101.101.216.95:3001/api/post/login",
+        "http://localhost:3001/api/post/login",
         {
           id: id,
           password: pw,
@@ -59,7 +59,9 @@ const Login = () => {
               onChange={(e) => setPw(e.target.value)}
             />
           </div>
-          <button type="submit" className="submit_btn">로그인</button>
+          <button type="submit" className="submit_btn">
+            로그인
+          </button>
         </form>
         {error && (
           <div className="error_text">

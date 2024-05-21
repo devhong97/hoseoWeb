@@ -56,7 +56,7 @@ const Router = () => {
       <Route path="/board/:cate/write" element={<BoardWrite />} />
       <Route path="/board/:cate/modify" element={<BoardModify />} />
       {/* 아카이브 */}
-      <Route path="/archive" element={<ImageList />} />
+      <Route path="/board/archive" element={<ImageList />} />
       {/* 입주기업현황 */}
       <Route path="/company" element={<CompanyList />}></Route>
       {/* 소개자료 */}

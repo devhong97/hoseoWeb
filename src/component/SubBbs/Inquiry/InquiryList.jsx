@@ -18,7 +18,7 @@ const InquiryList = () => {
   useEffect(() => {
     axios
       .get(
-        `http://101.101.216.95:3001/api/get/inquiry_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+        `http://localhost:3001/api/get/inquiry_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setInquiryList(response.data.data);
@@ -32,7 +32,7 @@ const InquiryList = () => {
   const hitCount = async (idx) => {
     try {
       await axios.post(
-        `http://101.101.216.95:3001/api/post/board/inquiry/hit_count/${idx}`
+        `http://localhost:3001/api/post/board/inquiry/hit_count/${idx}`
       );
     } catch (err) {
       console.log(err);
@@ -88,7 +88,8 @@ const InquiryList = () => {
       </div>
     );
     // 페이지수
-    for (let i = 1; i <= totalPages; i++) {
+    const totalPagesToShow = totalPages === 0 ? 1 : totalPages;
+    for (let i = 1; i <= totalPagesToShow; i++) {
       pages.push(
         <button
           key={i}
@@ -134,15 +135,21 @@ const InquiryList = () => {
                 <div className="select_row" onClick={() => movePage("/intro")}>
                   융합원소개
                 </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>사업분야</div>
-                <div className="select_row" onClick={() => movePage("/empty")}>인프라</div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  사업분야
+                </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  인프라
+                </div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
               <div className="navi_main_text">입주문의</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
-                <div className="select_row" onClick={() => movePage("/empty")}>연구관 소개</div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  연구관 소개
+                </div>
                 <div
                   className="select_row"
                   onClick={() => movePage("/company")}
@@ -152,7 +159,12 @@ const InquiryList = () => {
                 <div className="select_row" onClick={() => movePage("/floor")}>
                   층별안내
                 </div>
-                <div className="select_row" onClick={() => movePage("/inquiryinfo")}>입주안내</div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/inquiryinfo")}
+                >
+                  입주안내
+                </div>
                 <div
                   className="select_row"
                   onClick={() => moveBoard("inquiry")}
@@ -200,22 +212,38 @@ const InquiryList = () => {
                   </tr>
                 </thead>
                 <tbody className="table_body">
-                  {inquiryList.map((item, index) => {
-                    const itemNumber = (page - 1) * pageSize + index + 1; // 실제 항목 번호 계산
-                    return (
-                      <tr
-                        className="body_row"
-                        key={index}
-                        onClick={() => handleRowClick(item.idx)}
+                  {inquiryList.length === 0 ? (
+                    <tr className="body_row">
+                      <td
+                        className="no_data"
+                        colSpan="5"
+                        style={{
+                          height: "200px",
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                        }}
                       >
-                        <td className="body_section num">{itemNumber}</td>
-                        <td className="body_section title">{item.title}</td>
-                        <td className="body_section date">{item.writer}</td>
-                        <td className="body_section date">{item.date}</td>
-                        <td className="body_section ">{item.hit}</td>
-                      </tr>
-                    );
-                  })}
+                        데이터가 존재하지 않습니다.
+                      </td>
+                    </tr>
+                  ) : (
+                    inquiryList.map((item, index) => {
+                      const itemNumber = (page - 1) * pageSize + index + 1; // 실제 항목 번호 계산
+                      return (
+                        <tr
+                          className="body_row"
+                          key={index}
+                          onClick={() => handleRowClick(item.idx)}
+                        >
+                          <td className="body_section num">{itemNumber}</td>
+                          <td className="body_section title">{item.title}</td>
+                          <td className="body_section date">{item.writer}</td>
+                          <td className="body_section date">{item.date}</td>
+                          <td className="body_section">{item.hit}</td>
+                        </tr>
+                      );
+                    })
+                  )}
                 </tbody>
               </table>
             </div>

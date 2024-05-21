@@ -10,11 +10,16 @@ const OrganizationList = () => {
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const { decodeS1 } = useAuth();
+  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+  const pageSize = 10; // 페이지당 항목 수
 
   //교육 상세데이터
   const categoryDataSet = (category) => {
     axios
-      .get(`http://101.101.216.95:3001/api/organization/${category}`)
+      .get(
+        `http://localhost:3001/api/get/organization_list?category=${category}&page=${page}&pageSize=${pageSize}`
+      )
+
       .then((response) => {
         setBoardData(response.data);
       })
@@ -57,6 +62,46 @@ const OrganizationList = () => {
     }
   };
 
+  //페이징처리
+  const renderPagination = () => {
+    const pages = [];
+    // 이전버튼
+    pages.push(
+      <div key="prev" className="arrow_btn">
+        <button
+          className="page_button prev"
+          onClick={() => handlePage(page > 1 ? page - 1 : 1)}
+          disabled={page === 1}
+        ></button>
+      </div>
+    );
+    // 페이지수
+    const totalPagesToShow = totalPages === 0 ? 1 : totalPages;
+    for (let i = 1; i <= totalPagesToShow; i++) {
+      pages.push(
+        <button
+          key={i}
+          className={`page_number ${page === i ? "active" : ""}`}
+          onClick={() => handlePage(i)}
+        >
+          {i}
+        </button>
+      );
+    }
+    // 다음버튼
+    pages.push(
+      <div key="next" className="arrow_btn">
+        <button
+          className="page_button"
+          onClick={() => handlePage(page < totalPages ? page + 1 : totalPages)}
+          disabled={page === totalPages}
+        ></button>
+      </div>
+    );
+
+    return pages;
+  };
+
   // 각 카테고리별 테이블 내용
   return (
     <div className="board_wrap">
@@ -64,7 +109,8 @@ const OrganizationList = () => {
         <div className="board_container">
           <div className="title_box">
             <div className="navi_text">
-              <div className="home_icon"></div>{"> "}알림 및 소식{" > "}직원정보
+              <div className="home_icon"></div>
+              {"> "}알림 및 소식{" > "}직원정보
             </div>
             <div className="title_text">직원정보</div>
             <div className="tab_area fourth">
@@ -122,36 +168,36 @@ const OrganizationList = () => {
                   </tr>
                 </thead>
                 <tbody className="table_body">
-                  {boardData.map((data, index) => {
-                    return (
+                  {boardData.length === 0 ? (
+                    <tr className="body_row">
+                      <td
+                        className="no_data"
+                        colSpan="5"
+                        style={{
+                          height: "200px",
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                        }}
+                      >
+                        데이터가 존재하지 않습니다.
+                      </td>
+                    </tr>
+                  ) : (
+                    boardData.map((data, index) => (
                       <tr className="body_row" key={index}>
                         <td className="body_section">{data.name}</td>
                         <td className="body_section date">{data.spot}</td>
                         <td className="body_section title">{data.work}</td>
                         <td className="body_section date">{data.tel}</td>
-                        <td className="body_section ">{data.email}</td>
+                        <td className="body_section">{data.email}</td>
                       </tr>
-                    );
-                  })}
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
 
-            <div className="pagination_box">
-              <div className="arrow_btn">{"<"}</div>
-              {[...Array(parseInt(5))].map((data, index) => {
-                return (
-                  <div
-                    className={`page_number ${page === index + 1 && "active"}`}
-                    onClick={() => handlePage(index + 1)}
-                  >
-                    {index + 1}
-                  </div>
-                );
-              })}
-
-              <div className="arrow_btn">{">"}</div>
-            </div>
+            <div className="pagination_box">{renderPagination()}</div>
           </div>
         </div>
       </div>
