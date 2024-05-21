@@ -152,7 +152,7 @@ const InquiryList = () => {
                 <div className="select_row" onClick={() => movePage("/floor")}>
                   층별안내
                 </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>입주안내</div>
+                <div className="select_row" onClick={() => movePage("/inquiryinfo")}>입주안내</div>
                 <div
                   className="select_row"
                   onClick={() => moveBoard("inquiry")}

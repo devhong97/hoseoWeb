@@ -161,7 +161,7 @@ const Header = () => {
                   <div className="sub_menu" onClick={() => movePage("/floor")}>
                     층별안내
                   </div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>입주안내</div>
+                  <div className="sub_menu" onClick={() => movePage("/inquiryinfo")}>입주안내</div>
                   <div
                     className="sub_menu"
                     onClick={() => moveBoard("inquiry")}
@@ -173,10 +173,10 @@ const Header = () => {
               <div className="menu_row">
                 <div className="main_menu">사업분야</div>
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>산학융합지구조성사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>기업지원사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>인재양성사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>창업육성사업</div>
+                  <div className="sub_menu" onClick={() => movePage("/formation")}>산학융합지구조성사업</div>
+                  <div className="sub_menu" onClick={() => movePage("/enterprise")}>기업지원사업</div>
+                  <div className="sub_menu" onClick={() => movePage("/human")}>인재양성사업</div>
+                  <div className="sub_menu" onClick={() => movePage("/founded")}>창업육성사업</div>
                 </div>
               </div>
               <div className="menu_row">
@@ -267,7 +267,7 @@ const Header = () => {
                   <div className="sub_menu" onClick={() => movePage("/floor")}>
                     층별안내
                   </div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>입주안내</div>
+                  <div className="sub_menu" onClick={() => movePage("/inquiryinfo")}>입주안내</div>
                   <div
                     className="sub_menu"
                     onClick={() => moveBoard("inquiry")}
@@ -310,10 +310,10 @@ const Header = () => {
               </div>
               <div className="menu_row">
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>산학융합지구조성사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>기업지원사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>인재양성사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>창업육성사업</div>
+                  <div className="sub_menu" onClick={() => movePage("/formation")}>산학융합지구조성사업</div>
+                  <div className="sub_menu" onClick={() => movePage("/enterprise")}>기업지원사업</div>
+                  <div className="sub_menu" onClick={() => movePage("/human")}>인재양성사업</div>
+                  <div className="sub_menu" onClick={() => movePage("/founded")}>창업육성사업</div>
                 </div>
               </div>
               <div className="menu_row">
