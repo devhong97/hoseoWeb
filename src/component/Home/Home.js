@@ -63,7 +63,7 @@ const Home = () => {
     const fetchNotice = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/notice"
+          "http://101.101.216.95:3001/api/get/home/notice"
         );
         setNoticeList(response.data);
       } catch (err) {
@@ -74,7 +74,7 @@ const Home = () => {
     const fetchBusiness = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/business"
+          "http://101.101.216.95:3001/api/get/home/business"
         );
         setBusinessList(response.data);
       } catch (err) {
@@ -85,7 +85,7 @@ const Home = () => {
     const fetchEducation = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/education"
+          "http://101.101.216.95:3001/api/get/home/education"
         );
         setEcucationList(response.data);
       } catch (err) {
@@ -96,7 +96,7 @@ const Home = () => {
     const fetchEmployment = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/employment"
+          "http://101.101.216.95:3001/api/get/home/employment"
         );
         setEmploymentList(response.data);
       } catch (err) {
@@ -112,7 +112,9 @@ const Home = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+      await axios.post(
+        `http://101.101.216.95:3001/api/post/board/hit_count/${idx}`
+      );
     } catch (err) {
       console.log(err);
     }
@@ -271,7 +273,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://localhost:3001/uploads/${data.img1})`,
+                    backgroundImage: `url(http://101.101.216.95:3001/uploads/${data.img1})`,
                   }}
                 ></div>
                 <div className="row_bottom_box">
@@ -306,7 +308,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://localhost:3001/uploads/${data.img1})`,
+                    backgroundImage: `url(http://101.101.216.95:3001/uploads/${data.img1})`,
                   }}
                 ></div>
                 <div className="row_bottom_box">
