@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../Context/AuthContext";
+import { Fragment } from "react";
 
 const FacilityDetail = () => {
   const location = useLocation();
   const { facilityList, data } = location.state || {};
   const navigate = useNavigate();
   const cate = "facility";
+  const { decodeS1 } = useAuth();
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
@@ -183,12 +186,16 @@ const FacilityDetail = () => {
           <div className="detail_btn color" onClick={() => navigate(-1)}>
             목록으로
           </div>
-          <div className="detail_btn short" onClick={() => boardEdit()}>
-            수정
-          </div>
-          <div className="detail_btn short" onClick={() => boardDel()}>
-            삭제
-          </div>
+          {decodeS1() === "admin" && (
+            <Fragment>
+              <div className="detail_btn short" onClick={() => boardEdit()}>
+                수정
+              </div>
+              <div className="detail_btn short" onClick={() => boardDel()}>
+                삭제
+              </div>
+            </Fragment>
+          )}
         </div>
       </div>
     </div>

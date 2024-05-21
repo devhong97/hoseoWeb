@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const BoardModify = () => {
   const location = useLocation();
-  const { menuData, img1, img2, img3, img4, img5, cate } = location.state || {};
+  const { menuData, img1, img2, img3, img4, img5 } = location.state || {};
   const [title, setTitle] = useState(menuData.title || ""); // 제목
   const [content, setContent] = useState(menuData.content || ""); // 내용
   const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부

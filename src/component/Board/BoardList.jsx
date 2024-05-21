@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 
 const BoardList = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ const BoardList = () => {
   const [menuData, setMenuData] = useState([]);
   const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
   const navigate = useNavigate();
+  const { decodeS1 } = useAuth();
   const pageSize = 10; // 페이지당 항목 수
 
   useEffect(() => {
@@ -92,9 +94,12 @@ const BoardList = () => {
     const selectedItem = menuData.find((item) => item.idx === idx);
     if (selectedItem) {
       hitCount(idx);
-      navigate(`/board/${cate}/${idx}`, { state: { menuData: selectedItem } });
+      navigate(`/board/${cate}/${idx}`, {
+        state: { menuData: selectedItem, cate: cate },
+      });
     }
   };
+
   const moveBoard = (cate) => {
     navigate(`/board/${cate}`, { state: { cate: cate } });
   };
@@ -254,9 +259,11 @@ const BoardList = () => {
           </div>
           <div className="list_area">
             <div className="write_box">
-              <div className="write_btn" onClick={handleWrite}>
-                {title} 등록
-              </div>
+              {decodeS1() === "admin" && (
+                <div className="write_btn" onClick={handleWrite}>
+                  {title} 등록
+                </div>
+              )}
             </div>
             <div className="search_box">
               <input

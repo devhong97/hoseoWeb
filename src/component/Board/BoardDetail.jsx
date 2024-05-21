@@ -1,11 +1,13 @@
 import axios from "axios";
+import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 
 const BoardDetail = () => {
   const location = useLocation();
-  const { menuData, data } = location.state || {};
+  const { menuData, data, cate } = location.state || {};
   const navigate = useNavigate();
-  const cate = menuData.category;
+  const { decodeS1 } = useAuth();
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
@@ -94,6 +96,7 @@ const BoardDetail = () => {
   // console.log("HOME 데이터:", data);
 
   const boardEdit = () => {
+    console.log(cate);
     navigate(`/board/${cate}/modify`, {
       state: {
         menuData: menuData,
@@ -157,13 +160,14 @@ const BoardDetail = () => {
           <div className="file_title">
             첨부파일 <span>{getAttachmentCount()}</span>
           </div>
-          <div
-            className="file_contents_box"
-            onClick={(event) => handleDownload(event.target.textContent)}
-          >
+          <div className="file_contents_box">
             {getImg().length > 0 ? (
               getImg().map((img, index) => (
-                <div className="file_row" key={index}>
+                <div
+                  className="file_row"
+                  key={index}
+                  onClick={(event) => handleDownload(event.target.textContent)}
+                >
                   <div className="file_icon"></div>
                   <div className="file_text">{img}</div>
                 </div>
@@ -183,12 +187,16 @@ const BoardDetail = () => {
           <div className="detail_btn color" onClick={() => navigate(-1)}>
             목록으로
           </div>
-          <div className="detail_btn short" onClick={() => boardEdit()}>
-            수정
-          </div>
-          <div className="detail_btn short" onClick={() => boardDel()}>
-            삭제
-          </div>
+          {decodeS1() === "admin" && (
+            <Fragment>
+              <div className="detail_btn short" onClick={() => boardEdit()}>
+                수정
+              </div>
+              <div className="detail_btn short" onClick={() => boardDel()}>
+                삭제
+              </div>
+            </Fragment>
+          )}
         </div>
       </div>
     </div>

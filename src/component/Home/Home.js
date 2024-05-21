@@ -118,8 +118,9 @@ const Home = () => {
     }
   };
 
-  const moveBoard = (cate) => {
-    navigate(`/board/${cate}`, { state: { cate: cate } });
+  const moveBoard = (cate, idx) => {
+    console.log("Move to:", cate, "with index:", idx); // 수정된 부분
+    navigate(`/board/${cate}/${idx}`, { state: { cate: cate } });
   };
 
   const handleRowClick = (data) => {

@@ -1,11 +1,14 @@
 import axios from "axios";
+import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../Context/AuthContext";
 
 const InquiryDetail = () => {
   const location = useLocation();
   const { inquiryList, data } = location.state || {};
   const navigate = useNavigate();
   const cate = "inquiry";
+  const { decodeS1 } = useAuth();
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
@@ -183,12 +186,16 @@ const InquiryDetail = () => {
           <div className="detail_btn color" onClick={() => navigate(-1)}>
             목록으로
           </div>
-          <div className="detail_btn short" onClick={() => boardEdit()}>
-            수정
-          </div>
-          <div className="detail_btn short" onClick={() => boardDel()}>
-            삭제
-          </div>
+          {decodeS1() === "admin" && (
+            <Fragment>
+              <div className="detail_btn short" onClick={() => boardEdit()}>
+                수정
+              </div>
+              <div className="detail_btn short" onClick={() => boardDel()}>
+                삭제
+              </div>
+            </Fragment>
+          )}
         </div>
       </div>
     </div>

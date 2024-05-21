@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../../Context/AuthContext";
 
 const OrganizationList = () => {
   const { category } = useParams();
@@ -8,6 +9,7 @@ const OrganizationList = () => {
   const [tab, setTab] = useState("management");
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
+  const { decodeS1 } = useAuth();
 
   //교육 상세데이터
   const categoryDataSet = (category) => {
@@ -95,9 +97,11 @@ const OrganizationList = () => {
 
           <div className="list_area">
             <div className="write_box">
-              <div className="write_btn" onClick={infoWrite}>
-                {getCategoryName(category)} 직원정보 등록
-              </div>
+              {decodeS1() === "admin" && (
+                <div className="write_btn" onClick={infoWrite}>
+                  {getCategoryName(category)} 직원정보 등록
+                </div>
+              )}
             </div>
             <div className="search_box">
               <input
