@@ -64,7 +64,7 @@ const BoardModify = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://localhost:3001/api/post/upload",
+        "http://101.101.216.95:3001/api/post/upload",
         formData,
         {
           headers: {
@@ -147,7 +147,7 @@ const BoardModify = () => {
           const imageFormData = new FormData();
           imageFormData.append("image", file);
           const response = await axios.post(
-            "http://localhost:3001/api/post/upload",
+            "http://101.101.216.95:3001/api/post/upload",
             imageFormData,
             {
               headers: {
@@ -161,7 +161,7 @@ const BoardModify = () => {
 
       // 게시글 수정 요청
       const response = await axios.post(
-        "http://localhost:3001/api/post/board_modify",
+        "http://101.101.216.95:3001/api/post/board_modify",
         formData,
         {
           headers: {
