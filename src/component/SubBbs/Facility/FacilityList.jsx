@@ -88,7 +88,8 @@ const FacilityList = () => {
       </div>
     );
     // 페이지수
-    for (let i = 1; i <= totalPages; i++) {
+    const totalPagesToShow = totalPages === 0 ? 1 : totalPages;
+    for (let i = 1; i <= totalPagesToShow; i++) {
       pages.push(
         <button
           key={i}
@@ -134,8 +135,12 @@ const FacilityList = () => {
                 <div className="select_row" onClick={() => movePage("/intro")}>
                   융합원소개
                 </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>사업분야</div>
-                <div className="select_row" onClick={() => movePage("/empty")}>인프라</div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  사업분야
+                </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  인프라
+                </div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
@@ -167,7 +172,8 @@ const FacilityList = () => {
         <div className="board_container">
           <div className="title_box">
             <div className="navi_text">
-              <div className="home_icon"></div>{"> "}알림 및 소식{" > "}
+              <div className="home_icon"></div>
+              {"> "}알림 및 소식{" > "}
               시설예약
             </div>
             <div className="title_text">시설예약</div>
@@ -200,22 +206,38 @@ const FacilityList = () => {
                   </tr>
                 </thead>
                 <tbody className="table_body">
-                  {facilityList.map((item, index) => {
-                    const itemNumber = (page - 1) * pageSize + index + 1; // 실제 항목 번호 계산
-                    return (
-                      <tr
-                        className="body_row"
-                        key={index}
-                        onClick={() => handleRowClick(item.idx)}
+                  {facilityList.length === 0 ? (
+                    <tr className="body_row">
+                      <td
+                        className="no_data"
+                        colSpan="5"
+                        style={{
+                          height: "200px",
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                        }}
                       >
-                        <td className="body_section num">{itemNumber}</td>
-                        <td className="body_section title">{item.title}</td>
-                        <td className="body_section date">{item.writer}</td>
-                        <td className="body_section date">{item.date}</td>
-                        <td className="body_section ">{item.hit}</td>
-                      </tr>
-                    );
-                  })}
+                        데이터가 존재하지 않습니다.
+                      </td>
+                    </tr>
+                  ) : (
+                    facilityList.map((item, index) => {
+                      const itemNumber = (page - 1) * pageSize + index + 1; // 실제 항목 번호 계산
+                      return (
+                        <tr
+                          className="body_row"
+                          key={index}
+                          onClick={() => handleRowClick(item.idx)}
+                        >
+                          <td className="body_section num">{itemNumber}</td>
+                          <td className="body_section title">{item.title}</td>
+                          <td className="body_section date">{item.writer}</td>
+                          <td className="body_section date">{item.date}</td>
+                          <td className="body_section">{item.hit}</td>
+                        </tr>
+                      );
+                    })
+                  )}
                 </tbody>
               </table>
             </div>
