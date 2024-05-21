@@ -107,7 +107,7 @@ const Header = () => {
                   </div>
                   <div
                     className="sub_menu"
-                    onClick={() => movePage("/archive")}
+                    onClick={() => moveBoard("archive")}
                   >
                     융합원 아카이브
                   </div>
@@ -151,7 +151,9 @@ const Header = () => {
               <div className="menu_row">
                 <div className="main_menu">기업연구동</div>
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>연구관 소개</div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    연구관 소개
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => movePage("/company")}
@@ -161,7 +163,12 @@ const Header = () => {
                   <div className="sub_menu" onClick={() => movePage("/floor")}>
                     층별안내
                   </div>
-                  <div className="sub_menu" onClick={() => movePage("/inquiryinfo")}>입주안내</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/inquiryinfo")}
+                  >
+                    입주안내
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => moveBoard("inquiry")}
@@ -173,20 +180,47 @@ const Header = () => {
               <div className="menu_row">
                 <div className="main_menu">사업분야</div>
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => movePage("/formation")}>산학융합지구조성사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/enterprise")}>기업지원사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/human")}>인재양성사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/founded")}>창업육성사업</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/formation")}
+                  >
+                    산학융합지구조성사업
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/enterprise")}
+                  >
+                    기업지원사업
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/human")}>
+                    인재양성사업
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/founded")}
+                  >
+                    창업육성사업
+                  </div>
                 </div>
               </div>
               <div className="menu_row">
                 <div className="main_menu">인프라</div>
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>회의실</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>컴퓨터</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>3D프린트</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>AR/VR</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>CNC</div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    회의실
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    컴퓨터
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    3D프린트
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    AR/VR
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    CNC
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => moveBoard("facility")}
@@ -249,7 +283,7 @@ const Header = () => {
                   </div>
                   <div
                     className="sub_menu"
-                    onClick={() => movePage("/archive")}
+                    onClick={() => moveBoard("archive")}
                   >
                     융합원 아카이브
                   </div>
@@ -257,7 +291,9 @@ const Header = () => {
               </div>
               <div className="menu_row">
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>연구관 소개</div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    연구관 소개
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => movePage("/company")}
@@ -267,7 +303,12 @@ const Header = () => {
                   <div className="sub_menu" onClick={() => movePage("/floor")}>
                     층별안내
                   </div>
-                  <div className="sub_menu" onClick={() => movePage("/inquiryinfo")}>입주안내</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/inquiryinfo")}
+                  >
+                    입주안내
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => moveBoard("inquiry")}
@@ -310,19 +351,46 @@ const Header = () => {
               </div>
               <div className="menu_row">
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => movePage("/formation")}>산학융합지구조성사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/enterprise")}>기업지원사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/human")}>인재양성사업</div>
-                  <div className="sub_menu" onClick={() => movePage("/founded")}>창업육성사업</div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/formation")}
+                  >
+                    산학융합지구조성사업
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/enterprise")}
+                  >
+                    기업지원사업
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/human")}>
+                    인재양성사업
+                  </div>
+                  <div
+                    className="sub_menu"
+                    onClick={() => movePage("/founded")}
+                  >
+                    창업육성사업
+                  </div>
                 </div>
               </div>
               <div className="menu_row">
                 <div className="sub_menu_box">
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>회의실</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>컴퓨터</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>3D프린트</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>AR/VR</div>
-                  <div className="sub_menu" onClick={() => movePage("/empty")}>CNC</div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    회의실
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    컴퓨터
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    3D프린트
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    AR/VR
+                  </div>
+                  <div className="sub_menu" onClick={() => movePage("/empty")}>
+                    CNC
+                  </div>
                   <div
                     className="sub_menu"
                     onClick={() => moveBoard("facility")}
