@@ -47,54 +47,76 @@ const OrganizationWrite = () => {
   };
 
   return (
-    <div>
-      <h2>직원등록</h2>
-      <div>
-        <label htmlFor="name">이름</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+
+    <div className="detail_wrap">
+      <div className="detail_back">
+        <div className="detail_title_box">
+          직원정보 등록
+        </div>
+        <div className="detail_top_box member">
+          <div className="detail_title member">
+            <div className="input_label">이름</div>
+            <input
+              className="detail_input member"
+              placeholder="이름을 입력하세요."
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></input>
+          </div>
+          <div className="detail_title member">
+            <div className="input_label">직위</div>
+            <input
+              className="detail_input member"
+              placeholder="직위를 입력하세요."
+              type="text"
+              id="spot"
+              value={spot}
+              onChange={(e) => setSpot(e.target.value)}
+            ></input>
+          </div>
+          <div className="detail_title member">
+            <div className="input_label">업무</div>
+            <input
+              className="detail_input member"
+              placeholder="업무를 입력하세요."
+              type="text"
+              id="work"
+              value={work}
+              onChange={(e) => setWork(e.target.value)}
+            ></input>
+          </div>
+          <div className="detail_title member">
+            <div className="input_label">전화번호</div>
+            <input
+              className="detail_input member"
+              placeholder="전화번호를 입력하세요."
+              type="number"
+              id="tel"
+              value={tel}
+              onChange={(e) => setTel(e.target.value)}
+            ></input>
+          </div>
+          <div className="detail_title member">
+            <div className="input_label">이메일</div>
+            <input
+              className="detail_input member"
+              placeholder="이메일을 입력하세요."
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+          </div>
+        </div>
+
+        <div className="detail_btn_box">
+          <div className="detail_btn color" onClick={handleSubmit}>
+            작성완료
+          </div>
+        </div>
       </div>
-      <div>
-        <label htmlFor="spot">직위</label>
-        <input
-          type="text"
-          id="spot"
-          value={spot}
-          onChange={(e) => setSpot(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="work">업무</label>
-        <input
-          type="text"
-          id="work"
-          value={work}
-          onChange={(e) => setWork(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="tel">전화번호</label>
-        <input
-          type="text"
-          id="tel"
-          value={tel}
-          onChange={(e) => setTel(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">이메일</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <button onClick={handleSubmit}>등록</button>
     </div>
   );
 };

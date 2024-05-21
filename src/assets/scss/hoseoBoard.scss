@@ -89,6 +89,15 @@
                     color: #5A5A5A;
                     font-size: 15px;
                     padding-bottom: 12px;
+
+
+                    .home_icon {
+                        @include background-set(16px, 14px, contain);
+                        background-image: url("../image/home_icon.png");
+                        display: inline-block;
+                        vertical-align: text-top;
+                        margin-right: 7px;
+                    }
                 }
 
                 .title_text {
@@ -505,15 +514,42 @@
         margin: 0 auto;
         padding: 65px 0;
 
+        .detail_title_box {
+            padding-bottom: 30px;
+            font-family: "Pretendard_b";
+            font-size: 25px;
+            color: #555555;
+        }
 
         .detail_top_box {
             padding: 0 0 10px;
             border-bottom: 1px solid #C9C9C9;
 
+            &.member {
+                padding-bottom: 50px;
+            }
+
             .detail_title {
                 font-size: 30px;
                 font-family: "Pretendard_b";
                 color: #030303;
+
+                &.member {
+                    padding: 10px 0;
+                    border-bottom: 1px solid #C9C9C9;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+
+                .input_label {
+                    font-size: 20px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 100px;
+                    color: #555555;
+                }
 
                 .detail_input {
                     font-size: 30px;
@@ -522,6 +558,12 @@
                     &::placeholder {
                         color: #D6D6D6;
 
+                    }
+
+                    &.member {
+                        font-size: 20px;
+                        display: inline-block;
+                        vertical-align: middle;
                     }
                 }
             }
@@ -562,6 +604,9 @@
             padding: 35px 0;
             border-bottom: 1px solid #BCBCBC;
 
+            .toastui-editor-defaultUI {
+                z-index: 1;
+            }
         }
 
         .detail_file_box {
