@@ -32,9 +32,18 @@ const CompanyList = () => {
               <div className="navi_main_text">기업연구동</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 1 && "active"}`}>
-                <div className="select_row" onClick={() => moveBoard("notice")}>알림 및 소식</div>
-                <div className="select_row" onClick={() => movePage("/company")}>기업연구동</div>
-                <div className="select_row" onClick={() => movePage("/intro")}>융합원소개</div>
+                <div className="select_row" onClick={() => moveBoard("notice")}>
+                  알림 및 소식
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/company")}
+                >
+                  기업연구동
+                </div>
+                <div className="select_row" onClick={() => movePage("/intro")}>
+                  융합원소개
+                </div>
                 <div className="select_row">사업분야</div>
                 <div className="select_row">인프라</div>
               </div>
@@ -43,10 +52,22 @@ const CompanyList = () => {
               <div className="navi_main_text">입주기업현황</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
-                <div className="select_row" onClick={() => movePage("/company")}>입주기업현황</div>
-                <div className="select_row" onClick={() => movePage("/floor")}>층별안내</div>
-                <div className="select_row" >입주안내</div>
-                <div className="select_row" >입주문의</div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/company")}
+                >
+                  입주기업현황
+                </div>
+                <div className="select_row" onClick={() => movePage("/floor")}>
+                  층별안내
+                </div>
+                <div className="select_row">입주안내</div>
+                <div
+                  className="select_row"
+                  onClick={() => moveBoard("inquiry")}
+                >
+                  입주문의
+                </div>
               </div>
             </div>
           </div>

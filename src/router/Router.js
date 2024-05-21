@@ -18,6 +18,15 @@ import BoardDetail from "./../component/Board/BoardDetail";
 import BoardWrite from "./../component/Board/BoardWrite";
 import OrganizationWrite from "./../component/SubBbs/Organization/OrganizationWrite";
 import ImageList from "./../component/Board/ImageList";
+import FacilityList from "../component/SubBbs/Facility/FacilityList";
+import InquiryList from "../component/SubBbs/Inquiry/InquiryList";
+import InquiryWrite from "../component/SubBbs/Inquiry/InquiryWrite";
+import FacilityWrite from "../component/SubBbs/Facility/FacilityWrite";
+import BoardModify from "../component/Board/BoardModify";
+import InquiryDetail from "../component/SubBbs/Inquiry/InquiryDetail";
+import FacilityDetail from "../component/SubBbs/Facility/FacilityDetail";
+import InquiryModify from "../component/SubBbs/Inquiry/InquiryModify";
+import FacilityModify from "../component/SubBbs/Facility/FacilityModify";
 
 const Router = () => {
   return (
@@ -39,10 +48,9 @@ const Router = () => {
       <Route path="/board/:cate" element={<BoardList />}></Route>
       <Route path="/board/:cate/:idx" element={<BoardDetail />} />
       <Route path="/board/:cate/write" element={<BoardWrite />} />
+      <Route path="/board/:cate/modify" element={<BoardModify />} />
       {/* 아카이브 */}
       <Route path="/archive" element={<ImageList />} />
-      {/* 층별안내 */}
-      <Route path="/floor" element={<FloorList />}></Route>
       {/* 입주기업현황 */}
       <Route path="/company" element={<CompanyList />}></Route>
       {/* 소개자료 */}
@@ -56,6 +64,18 @@ const Router = () => {
         path="/organization/:category/write"
         element={<OrganizationWrite />}
       />
+      {/* 층별안내 */}
+      <Route path="/floor" element={<FloorList />}></Route>
+      {/* 입주문의 */}
+      <Route path="/board/inquiry" element={<InquiryList />} />
+      <Route path="/board/inquiry/:idx" element={<InquiryDetail />} />
+      <Route path="/board/inquiry/write" element={<InquiryWrite />} />
+      <Route path="/board/inquiry/modify" element={<InquiryModify />} />
+      {/* 시설예약 */}
+      <Route path="/board/facility" element={<FacilityList />} />
+      <Route path="/board/facility/:idx" element={<FacilityDetail />} />
+      <Route path="/board/facility/write" element={<FacilityWrite />} />
+      <Route path="/board/facility/modify" element={<FacilityModify />} />
     </Routes>
   );
 };

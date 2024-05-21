@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const BoardDetail = () => {
+const InquiryDetail = () => {
   const location = useLocation();
-  const { menuData, data } = location.state || {};
+  const { inquiryList, data } = location.state || {};
   const navigate = useNavigate();
-  const cate = menuData.category;
+  const cate = "inquiry";
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
@@ -17,8 +17,8 @@ const BoardDetail = () => {
   };
 
   const getTitle = () => {
-    if (menuData && menuData.title) {
-      return menuData.title;
+    if (inquiryList && inquiryList.title) {
+      return inquiryList.title;
     } else if (data && data.title) {
       return data.title;
     } else {
@@ -27,8 +27,8 @@ const BoardDetail = () => {
   };
 
   const getWriter = () => {
-    if (menuData && menuData.writer) {
-      return menuData.writer;
+    if (inquiryList && inquiryList.writer) {
+      return inquiryList.writer;
     } else if (data && data.writer) {
       return data.writer;
     } else {
@@ -37,8 +37,8 @@ const BoardDetail = () => {
   };
 
   const getDate = () => {
-    if (menuData && menuData.date) {
-      return menuData.date;
+    if (inquiryList && inquiryList.date) {
+      return inquiryList.date;
     } else if (data && data.date) {
       return data.date;
     } else {
@@ -47,8 +47,8 @@ const BoardDetail = () => {
   };
 
   const getHit = () => {
-    if (menuData && menuData.hit) {
-      return menuData.hit;
+    if (inquiryList && inquiryList.hit) {
+      return inquiryList.hit;
     } else if (data && data.hit) {
       return data.hit;
     } else {
@@ -57,8 +57,8 @@ const BoardDetail = () => {
   };
 
   const getContent = () => {
-    if (menuData && menuData.content) {
-      return menuData.content.replace(/(<([^>]+)>)/gi, "");
+    if (inquiryList && inquiryList.content) {
+      return inquiryList.content.replace(/(<([^>]+)>)/gi, "");
     } else if (data && data.content) {
       return data.content.replace(/(<([^>]+)>)/gi, "");
     } else {
@@ -69,7 +69,7 @@ const BoardDetail = () => {
   const getAttachmentCount = () => {
     let count = 0;
     for (let i = 1; i <= 5; i++) {
-      if (menuData && menuData[`img${i}`]) {
+      if (inquiryList && inquiryList[`img${i}`]) {
         count++;
       } else if (data && data[`img${i}`]) {
         count++;
@@ -81,8 +81,8 @@ const BoardDetail = () => {
   const getImg = () => {
     const images = [];
     for (let i = 1; i <= 5; i++) {
-      if (menuData && menuData[`img${i}`]) {
-        images.push(menuData[`img${i}`]);
+      if (inquiryList && inquiryList[`img${i}`]) {
+        images.push(inquiryList[`img${i}`]);
       } else if (data && data[`img${i}`]) {
         images.push(data[`img${i}`]);
       }
@@ -90,19 +90,19 @@ const BoardDetail = () => {
     return images;
   };
 
-  // console.log("LIST 데이터:", menuData);
+  // console.log("LIST 데이터:", inquiryList);
   // console.log("HOME 데이터:", data);
 
   const boardEdit = () => {
     navigate(`/board/${cate}/modify`, {
       state: {
-        menuData: menuData,
+        inquiryList: inquiryList,
         data: data,
-        img1: menuData.img1,
-        img2: menuData.img2,
-        img3: menuData.img3,
-        img4: menuData.img4,
-        img5: menuData.img5,
+        img1: inquiryList.img1,
+        img2: inquiryList.img2,
+        img3: inquiryList.img3,
+        img4: inquiryList.img4,
+        img5: inquiryList.img5,
       },
     });
   };
@@ -115,9 +115,9 @@ const BoardDetail = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/board_delete",
+        "http://localhost:3001/api/post/inquiry_delete",
         {
-          idx: menuData.idx,
+          idx: inquiryList.idx,
           cate: cate,
         }
       );
@@ -195,4 +195,4 @@ const BoardDetail = () => {
   );
 };
 
-export default BoardDetail;
+export default InquiryDetail;
