@@ -22,7 +22,7 @@ const Intro = () => {
                 <div className='sub_banner_area'>
                     <div className='sub_banner_back'>
                         <div className='navi_text'>
-                            홈{">"}교육{">"}교육일정안내
+                            <div className="home_icon"></div>{"> "}융합원 소개{" > "}인사말
                         </div>
                         <div className='banner_main_text'>인사말</div>
                     </div>

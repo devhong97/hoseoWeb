@@ -22,7 +22,7 @@ const IntroImage = () => {
                 <div className='sub_banner_area'>
                     <div className='sub_banner_back'>
                         <div className='navi_text'>
-                            홈{">"}융합원 소개{">"}소개자료
+                            <div className="home_icon"></div>{"> "}융합원 소개{" > "}소개자료
                         </div>
                         <div className='banner_main_text'>소개자료</div>
                     </div>

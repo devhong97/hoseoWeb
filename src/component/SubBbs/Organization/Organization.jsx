@@ -31,7 +31,7 @@ const Organization = () => {
         <div className="sub_banner_area">
           <div className="sub_banner_back">
             <div className="navi_text">
-              홈{">"}융합원 소개{">"}조직도
+              <div className="home_icon"></div>{"> "}융합원 소개{" > "}조직도
             </div>
             <div className="banner_main_text">조직도</div>
           </div>

@@ -28,6 +28,11 @@ import FacilityDetail from "../component/SubBbs/Facility/FacilityDetail";
 import InquiryModify from "../component/SubBbs/Inquiry/InquiryModify";
 import FacilityModify from "../component/SubBbs/Facility/FacilityModify";
 import Empty from "../component/Empty/Empty";
+import InquiryInfo from "../component/SubBbs/Inquiry/InquiryInfo";
+import Founded from "../component/SubBbs/Business/Founded";
+import Enterprise from "../component/SubBbs/Business/Enterprise";
+import Human from "../component/SubBbs/Business/Human";
+import Formation from "../component/SubBbs/Business/Formation";
 
 const Router = () => {
   return (
@@ -72,6 +77,8 @@ const Router = () => {
       <Route path="/board/inquiry/:idx" element={<InquiryDetail />} />
       <Route path="/board/inquiry/write" element={<InquiryWrite />} />
       <Route path="/board/inquiry/modify" element={<InquiryModify />} />
+      {/* 입주안내 */}
+      <Route path="/inquiryinfo" element={<InquiryInfo />} />
       {/* 시설예약 */}
       <Route path="/board/facility" element={<FacilityList />} />
       <Route path="/board/facility/:idx" element={<FacilityDetail />} />
@@ -79,6 +86,14 @@ const Router = () => {
       <Route path="/board/facility/modify" element={<FacilityModify />} />
       {/* empty */}
       <Route path="/empty" element={<Empty />} />
+      {/* 창업육성사업 */}
+      <Route path="/founded" element={<Founded />}></Route>
+      {/* 기업지원사업 */}
+      <Route path="/enterprise" element={<Enterprise />}></Route>
+      {/* 인재양성사업 */}
+      <Route path="/human" element={<Human />}></Route>
+      {/* 산학조성사업 */}
+      <Route path="/formation" element={<Formation />}></Route>
     </Routes>
   );
 };

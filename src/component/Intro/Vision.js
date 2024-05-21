@@ -64,7 +64,7 @@ const Vision = () => {
                                 </div>
                                 <div className='title_text'>충남산학융합원 비전/자세/경영방침</div>
                             </div>
-                            <div className='vision_contents_box top'>
+                            {/* <div className='vision_contents_box top'>
                                 <div className='first_box left'>
                                     <div className='left_box'>
                                         <div className='vision_row first'>
@@ -119,6 +119,9 @@ const Vision = () => {
                                         </div>
                                     </div>
                                 </div>
+                            </div> */}
+                            <div className='founded_img_box vision'>
+                                <div className='founded_img seventh'></div>
                             </div>
                         </div>
                         <div className='vision_container'>
@@ -128,7 +131,7 @@ const Vision = () => {
                                 </div>
                                 <div className='title_text'>산학협력 발전계획 비전과 목표</div>
                             </div>
-                            <div className='vision_contents_box center'>
+                            {/* <div className='vision_contents_box center'>
                                 <div className='first_box w100'>
                                     <div className='left_box'>
                                         <div className='vision_row first'>
@@ -186,9 +189,22 @@ const Vision = () => {
                                     </div>
 
                                 </div>
+                            </div> */}
+                            <div className='founded_img_box vision'>
+                                <div className='founded_img eighth'></div>
                             </div>
                         </div>
-
+                        <div className='vision_container'>
+                            <div className='vision_title_box'>
+                                <div className='logo_box'>
+                                    <div className='logo_img'></div>
+                                </div>
+                                <div className='title_text'>중장기 추진 계획</div>
+                            </div>
+                            <div className='founded_img_box vision'>
+                                <div className='founded_img nineth'></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div >
