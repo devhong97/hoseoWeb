@@ -15,7 +15,7 @@ const OrganizationWrite = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/organization_write",
+        "http://localhost:3001/api/post/organization_write",
         {
           category,
           name,
@@ -47,12 +47,9 @@ const OrganizationWrite = () => {
   };
 
   return (
-
     <div className="detail_wrap">
       <div className="detail_back">
-        <div className="detail_title_box">
-          직원정보 등록
-        </div>
+        <div className="detail_title_box">직원정보 등록</div>
         <div className="detail_top_box member">
           <div className="detail_title member">
             <div className="input_label">이름</div>

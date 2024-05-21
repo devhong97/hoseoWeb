@@ -11,10 +11,7 @@ const BoardDetail = () => {
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
-    window.open(
-      `http://101.101.216.95:3001/api/download/${fileName}`,
-      "_blank"
-    );
+    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -63,9 +60,9 @@ const BoardDetail = () => {
 
   const getContent = () => {
     if (menuData && menuData.content) {
-      return menuData.content.replace(/(<([^>]+)>)/gi, "");
+      return menuData.content;
     } else if (data && data.content) {
-      return data.content.replace(/(<([^>]+)>)/gi, "");
+      return data.content;
     } else {
       return "";
     }
@@ -121,7 +118,7 @@ const BoardDetail = () => {
 
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/board_delete",
+        "http://localhost:3001/api/post/board_delete",
         {
           idx: menuData.idx,
           cate: cate,

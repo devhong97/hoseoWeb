@@ -107,7 +107,7 @@ const Header = () => {
                   </div>
                   <div
                     className="sub_menu"
-                    onClick={() => movePage("/archive")}
+                    onClick={() => moveBoard("archive")}
                   >
                     융합원 아카이브
                   </div>
@@ -283,7 +283,7 @@ const Header = () => {
                   </div>
                   <div
                     className="sub_menu"
-                    onClick={() => movePage("/archive")}
+                    onClick={() => moveBoard("archive")}
                   >
                     융합원 아카이브
                   </div>

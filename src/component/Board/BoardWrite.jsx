@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const BoardWrite = () => {
   const { cate } = useParams();
-  const [cateTitle, setCateTitle] = useState("")//게시판제목
+  const [cateTitle, setCateTitle] = useState(""); //게시판제목
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
   const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부
@@ -70,7 +70,7 @@ const BoardWrite = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/upload",
+        "http://localhost:3001/api/post/upload",
         formData,
         {
           headers: {
@@ -130,7 +130,7 @@ const BoardWrite = () => {
 
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/board_write",
+        "http://localhost:3001/api/post/board_write",
         formData,
         {
           headers: {
@@ -144,11 +144,8 @@ const BoardWrite = () => {
       setTitle("");
       setContent("");
       setSelectedFiles([]);
-      if (cate === "archive") {
-        navigate("/archive");
-      } else {
-        navigate(`/board/${cate}`, { state: { cate: cate } });
-      }
+
+      navigate(`/board/${cate}`, { state: { cate: cate } });
     } catch (error) {
       console.error(error);
     }
@@ -161,9 +158,7 @@ const BoardWrite = () => {
   return (
     <div className="detail_wrap">
       <div className="detail_back">
-        <div className="detail_title_box">
-          {cateTitle} 글쓰기
-        </div>
+        <div className="detail_title_box">{cateTitle} 글쓰기</div>
         <div className="detail_top_box">
           <div className="detail_title">
             <input

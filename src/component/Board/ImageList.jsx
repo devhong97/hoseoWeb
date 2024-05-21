@@ -15,7 +15,7 @@ const ImageList = () => {
   useEffect(() => {
     axios
       .get(
-        `http://101.101.216.95:3001/api/get/board_list?cate=archive&page=${page}&pageSize=${pageSize}`
+        `http://localhost:3001/api/get/board_list?cate=archive&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setMenuData(response.data.data);
@@ -44,9 +44,7 @@ const ImageList = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(
-        `http://101.101.216.95:3001/api/post/board/hit_count/${idx}`
-      );
+      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
     } catch (err) {
       console.log(err);
     }
@@ -83,7 +81,8 @@ const ImageList = () => {
       </div>
     );
     // 페이지수
-    for (let i = 1; i <= totalPages; i++) {
+    const totalPagesToShow = totalPages === 0 ? 1 : totalPages;
+    for (let i = 1; i <= totalPagesToShow; i++) {
       pages.push(
         <button
           key={i}
@@ -107,6 +106,7 @@ const ImageList = () => {
 
     return pages;
   };
+
   //날짜계산
   const isNew = (dateString) => {
     const today = new Date();
@@ -137,8 +137,12 @@ const ImageList = () => {
                 <div className="select_row" onClick={() => movePage("/intro")}>
                   융합원소개
                 </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>사업분야</div>
-                <div className="select_row" onClick={() => movePage("/empty")}>인프라</div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  사업분야
+                </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  인프라
+                </div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
@@ -197,7 +201,8 @@ const ImageList = () => {
         <div className="board_container">
           <div className="title_box">
             <div className="navi_text">
-              <div className="home_icon"></div>{"> "}알림 및 소식{" > "}
+              <div className="home_icon"></div>
+              {"> "}알림 및 소식{" > "}
               융합원 아카이브
             </div>
             <div className="title_text">융합원 아카이브</div>
@@ -217,8 +222,24 @@ const ImageList = () => {
             </div>
             <div className="list_box image">
               <div className="img_table">
-                {menuData.map((item, index) => {
-                  return (
+                {menuData.length === 0 ? (
+                  <div
+                    className="no_data_message"
+                    style={{
+                      width: "100%",
+                      height: "200px",
+                      backgroundColor: "white",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    데이터가 존재하지 않습니다.
+                  </div>
+                ) : (
+                  menuData.map((item, index) => (
                     <div
                       className="img_row"
                       onClick={() => handleRowClick(item.idx)}
@@ -226,7 +247,7 @@ const ImageList = () => {
                       <div
                         className="img_box"
                         style={{
-                          backgroundImage: `url(http://101.101.216.95:3001/uploads/${item.img1})`,
+                          backgroundImage: `url(http://localhost:3001/uploads/${item.img1})`,
                         }}
                       ></div>
                       <div className="img_text_box">
@@ -245,8 +266,8 @@ const ImageList = () => {
                         </div>
                       </div>
                     </div>
-                  );
-                })}
+                  ))
+                )}
               </div>
             </div>
 

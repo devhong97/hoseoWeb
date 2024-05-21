@@ -12,10 +12,7 @@ const InquiryDetail = () => {
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
-    window.open(
-      `http://101.101.216.95:3001/api/download/${fileName}`,
-      "_blank"
-    );
+    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -121,7 +118,7 @@ const InquiryDetail = () => {
 
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/inquiry_delete",
+        "http://localhost:3001/api/post/inquiry_delete",
         {
           idx: inquiryList.idx,
           cate: cate,
