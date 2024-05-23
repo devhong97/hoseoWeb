@@ -17,7 +17,7 @@ const OrganizationList = () => {
   const categoryDataSet = (category) => {
     axios
       .get(
-        `http://localhost:3001/api/get/organization_list?category=${category}&page=${page}&pageSize=${pageSize}`
+        `http://101.101.216.95:3001/api/get/organization_list?category=${category}&page=${page}&pageSize=${pageSize}`
       )
 
       .then((response) => {

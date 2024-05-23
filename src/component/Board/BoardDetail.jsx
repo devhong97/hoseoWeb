@@ -11,7 +11,10 @@ const BoardDetail = () => {
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
-    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
+    window.open(
+      `http://101.101.216.95:3001/api/download/${fileName}`,
+      "_blank"
+    );
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -118,7 +121,7 @@ const BoardDetail = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/board_delete",
+        "http://101.101.216.95:3001/api/post/board_delete",
         {
           idx: menuData.idx,
           cate: cate,
@@ -155,9 +158,12 @@ const BoardDetail = () => {
         )}
 
         <div
-          className="detail_contents_box"
-          dangerouslySetInnerHTML={{ __html: menuData.content }}
+          className="contents_text"
+          dangerouslySetInnerHTML={{
+            __html: data.content ? data.content : "",
+          }}
         ></div>
+
         <div className="detail_file_box">
           <div className="file_title">
             첨부파일 <span>{getAttachmentCount()}</span>

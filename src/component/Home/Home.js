@@ -63,7 +63,7 @@ const Home = () => {
     const fetchNotice = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/notice"
+          "http://101.101.216.95:3001/api/get/home/notice"
         );
         setNoticeList(response.data);
       } catch (err) {
@@ -74,7 +74,7 @@ const Home = () => {
     const fetchBusiness = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/business"
+          "http://101.101.216.95:3001/api/get/home/business"
         );
         setBusinessList(response.data);
       } catch (err) {
@@ -85,7 +85,7 @@ const Home = () => {
     const fetchEducation = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/education"
+          "http://101.101.216.95:3001/api/get/home/education"
         );
         setEcucationList(response.data);
       } catch (err) {
@@ -96,7 +96,7 @@ const Home = () => {
     const fetchEmployment = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/employment"
+          "http://101.101.216.95:3001/api/get/home/employment"
         );
         setEmploymentList(response.data);
       } catch (err) {
@@ -112,20 +112,25 @@ const Home = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+      await axios.post(
+        `http://101.101.216.95:3001/api/post/board/hit_count/${idx}`
+      );
     } catch (err) {
       console.log(err);
     }
   };
 
-  const moveBoard = (cate, idx) => {
-    console.log("Move to:", cate, "with index:", idx); // 수정된 부분
-    navigate(`/board/${cate}/${idx}`, { state: { cate: cate } });
+  const moveBoard = (cate) => {
+    navigate(`/board/${cate}`, { state: { cate: cate } });
   };
 
   const handleRowClick = (data) => {
-    hitCount(data.idx);
-    navigate(`/board/${data.category}/${data.idx}`, { state: { data } });
+    if (data.idx) {
+      hitCount(data.idx);
+      navigate(`/board/${data.category}/${data.idx}`, { state: { data } });
+    } else {
+      console.error("idx is undefined!");
+    }
   };
 
   const handleImageBbsClick = (data) => {
@@ -217,9 +222,12 @@ const Home = () => {
                     {data.title}
                     {isNew(data.date) && <p className="new_btn">NEW</p>}
                   </div>
-                  <div className="contents_text">
-                    {data.content.replace(/(<([^>]+)>)/gi, "")}
-                  </div>
+                  <div
+                    className="contents_text"
+                    dangerouslySetInnerHTML={{
+                      __html: data.content ? data.content : "",
+                    }}
+                  ></div>
                   <div className="contents_date">{data.date}</div>
                 </div>
               ))}
@@ -247,7 +255,9 @@ const Home = () => {
                     {isNew(data.date) && <p className="new_btn">NEW</p>}
                   </div>
                   <div className="contents_text">
-                    {data.content.replace(/(<([^>]+)>)/gi, "")}
+                    {data.content
+                      ? data.content.replace(/(<([^>]+)>)/gi, "")
+                      : "No content available"}
                   </div>
                   <div className="contents_date">{data.date}</div>
                 </div>
@@ -271,7 +281,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://localhost:3001/uploads/${data.img1})`,
+                    backgroundImage: `url(http://101.101.216.95:3001/uploads/${data.img1})`,
                   }}
                 ></div>
                 <div className="row_bottom_box">
@@ -306,7 +316,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://localhost:3001/uploads/${data.img1})`,
+                    backgroundImage: `url(http://101.101.216.95:3001/uploads/${data.img1})`,
                   }}
                 ></div>
                 <div className="row_bottom_box">
