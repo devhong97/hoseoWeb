@@ -18,7 +18,7 @@ const InquiryList = () => {
   useEffect(() => {
     axios
       .get(
-        `http://101.101.216.95:3001/api/get/inquiry_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+        `http://localhost:3001/api/get/inquiry_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setInquiryList(response.data.data);
@@ -32,7 +32,7 @@ const InquiryList = () => {
   const hitCount = async (idx) => {
     try {
       await axios.post(
-        `http://101.101.216.95:3001/api/post/board/inquiry/hit_count/${idx}`
+        `http://localhost:3001/api/post/board/inquiry/hit_count/${idx}`
       );
     } catch (err) {
       console.log(err);

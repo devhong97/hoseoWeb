@@ -70,7 +70,7 @@ const BoardWrite = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/upload",
+        "http://localhost:3001/api/post/upload",
         formData,
         {
           headers: {
@@ -130,7 +130,7 @@ const BoardWrite = () => {
 
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/board_write",
+        "http://localhost:3001/api/post/board_write",
         formData,
         {
           headers: {
@@ -218,6 +218,9 @@ const BoardWrite = () => {
         <div className="detail_btn_box">
           <div className="detail_btn color" onClick={handleSubmit}>
             작성완료
+          </div>
+          <div className="detail_btn" onClick={() => navigate(-1)}>
+            취소
           </div>
         </div>
       </div>

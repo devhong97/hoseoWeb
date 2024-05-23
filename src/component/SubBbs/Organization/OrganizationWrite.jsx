@@ -15,7 +15,7 @@ const OrganizationWrite = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/organization_write",
+        "http://localhost:3001/api/post/organization_write",
         {
           category,
           name,
@@ -41,6 +41,7 @@ const OrganizationWrite = () => {
         }
       };
       alert(`${getCategoryName(category)} ${name} 직원등록이 완료되었습니다.`);
+      navigate(`/organization/${category}`, { state: { category: category } });
     } catch (error) {
       console.error("데이터 전송 중 오류 발생:", error);
     }
@@ -111,6 +112,9 @@ const OrganizationWrite = () => {
         <div className="detail_btn_box">
           <div className="detail_btn color" onClick={handleSubmit}>
             작성완료
+          </div>
+          <div className="detail_btn" onClick={() => navigate(-1)}>
+            취소
           </div>
         </div>
       </div>
