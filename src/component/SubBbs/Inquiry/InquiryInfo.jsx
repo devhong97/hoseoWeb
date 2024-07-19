@@ -34,20 +34,20 @@ const InquiryInfo = () => {
                 <div className="select_row" onClick={() => moveBoard("notice")}>
                   알림 및 소식
                 </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  사업분야
+                </div>
                 <div
                   className="select_row"
                   onClick={() => movePage("/company")}
                 >
                   기업연구동
                 </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  보유시설
+                </div>
                 <div className="select_row" onClick={() => movePage("/intro")}>
                   융합원소개
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  사업분야
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  인프라
                 </div>
               </div>
             </div>
@@ -56,19 +56,16 @@ const InquiryInfo = () => {
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
                 <div className="select_row" onClick={() => movePage("/empty")}>
-                  연구관 소개
+                  입주안내
+                </div>
+                <div className="select_row" onClick={() => movePage("/floor")}>
+                  층별안내
                 </div>
                 <div
                   className="select_row"
                   onClick={() => movePage("/company")}
                 >
                   입주기업현황
-                </div>
-                <div className="select_row" onClick={() => movePage("/floor")}>
-                  층별안내
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  입주안내
                 </div>
                 <div
                   className="select_row"
@@ -80,7 +77,7 @@ const InquiryInfo = () => {
             </div>
           </div>
         </div>
-        <div className="board_container">
+        <div className="board_container-sub">
           <div className="title_box">
             <div className="navi_text">
               <div className="home_icon"></div>
@@ -88,27 +85,11 @@ const InquiryInfo = () => {
               입주안내
             </div>
             <div className="title_text">입주안내</div>
-            <div className="tab_area sixth">
-              {[...Array(parseInt(6))].map((data, index) => {
-                return (
-                  <div
-                    className={`tab_box ${tab === index + 1 && "active"}`}
-                    onClick={() => handleTab(index + 1)}
-                  >
-                    {index + 1}F
-                  </div>
-                );
-              })}
-            </div>
           </div>
           <div className="inquiry_area">
-            <div className="inquiry_img_box">
-              <div className="inquiry_img"></div>
-            </div>
-
             <div className="vision_title_box">
               <div className="logo_box">
-                <div className="logo_img"></div>
+                <div className="logo_img_sub"></div>
               </div>
               <div className="title_text">충남산학융합원 입주안내</div>
             </div>
@@ -121,7 +102,7 @@ const InquiryInfo = () => {
                   충남산학융합지구 기업연구동이 중소벤처기업부로부터
                   신기술창업집적지역으로 지정(2017년 9월 1일)되어 다양한 기업의
                   지원시설 로써 연구역량 강화 및 기술경쟁력을 확보 및 공간과
-                  인력, 장비 등 다양한 인프라 지원 및 애로기술해결, 기술개발로
+                  인력, 장비 등 다양한 보유시설 지원 및 애로기술해결, 기술개발로
                   연구가 필요한 입 주할 기업을 신청 받습니다.
                 </div>
               </div>
@@ -233,7 +214,7 @@ const InquiryInfo = () => {
             </div>
             <div className="vision_title_box">
               <div className="logo_box">
-                <div className="logo_img"></div>
+                <div className="logo_img_sub"></div>
               </div>
               <div className="title_text">입주상담</div>
             </div>
@@ -243,8 +224,7 @@ const InquiryInfo = () => {
                 방문상담 : 사단법인 충남산학융합원
               </div>
               <div className="bottom_row">
-                충남 당진시 석문면 산단7로 201(구. 석문면 삼봉리 2241-1)
-                기업연구동 3층 302호 사무실
+                충남 당진시 석문면 산단7로 201 충남산학융합원 302호
               </div>
               <div className="bottom_row">문의처 : TEL . 041-354-8558</div>
             </div>

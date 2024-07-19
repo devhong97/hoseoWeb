@@ -65,7 +65,7 @@ const InquiryModify = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/upload",
+        "https://ciuc.or.kr:8443/api/post/upload",
         formData,
         {
           headers: {
@@ -148,7 +148,7 @@ const InquiryModify = () => {
           const imageFormData = new FormData();
           imageFormData.append("image", file);
           const response = await axios.post(
-            "http://101.101.216.95:3001/api/post/upload",
+            "https://ciuc.or.kr:8443/api/post/upload",
             imageFormData,
             {
               headers: {
@@ -162,7 +162,7 @@ const InquiryModify = () => {
 
       // 게시글 수정 요청
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/inquiry_modify",
+        "https://ciuc.or.kr:8443/api/post/inquiry_modify",
         formData,
         {
           headers: {

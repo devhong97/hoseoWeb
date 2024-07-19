@@ -12,7 +12,7 @@ const Home = () => {
   const [noticeList, setNoticeList] = useState([]);
   const [businessList, setBusinessList] = useState([]);
   const [educationList, setEcucationList] = useState([]);
-  const [employmentList, setEmploymentList] = useState([]);
+  const [newsList, setNewsList] = useState([]);
   const topRef = useRef(null);
 
   const mouseWheelHandler = (e, containerRef) => {
@@ -59,33 +59,46 @@ const Home = () => {
     };
   }, []);
 
+  function formatDate(isoString) {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 월은 0부터 시작하므로 +1 해준 후 두 자리로 맞춤
+    const day = date.getDate().toString().padStart(2, "0");
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
+
   useEffect(() => {
+    //공지사항
     const fetchNotice = async () => {
       try {
         const response = await axios.get(
-          "http://101.101.216.95:3001/api/get/home/notice"
+          "https://ciuc.or.kr:8443/api/get/home/notice"
         );
         setNoticeList(response.data);
       } catch (err) {
         console.log("공지사항 호출 오류:", err);
       }
     };
-
+    //사업공고
     const fetchBusiness = async () => {
       try {
         const response = await axios.get(
-          "http://101.101.216.95:3001/api/get/home/business"
+          "https://ciuc.or.kr:8443/api/get/home/business"
         );
         setBusinessList(response.data);
       } catch (err) {
         console.log("사업공고 호출 오류:", err);
       }
     };
-
+    //교육공고
     const fetchEducation = async () => {
       try {
         const response = await axios.get(
-          "http://101.101.216.95:3001/api/get/home/education"
+          "https://ciuc.or.kr:8443/api/get/home/education"
         );
         setEcucationList(response.data);
       } catch (err) {
@@ -93,12 +106,12 @@ const Home = () => {
       }
     };
 
-    const fetchEmployment = async () => {
+    const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "http://101.101.216.95:3001/api/get/home/employment"
+          "https://ciuc.or.kr:8443/api/get/home/news"
         );
-        setEmploymentList(response.data);
+        setNewsList(response.data);
       } catch (err) {
         console.log("채용공고 호출 오류:", err);
       }
@@ -107,13 +120,13 @@ const Home = () => {
     fetchNotice();
     fetchBusiness();
     fetchEducation();
-    fetchEmployment();
+    fetchNews();
   }, []);
 
   const hitCount = async (idx) => {
     try {
       await axios.post(
-        `http://101.101.216.95:3001/api/post/board/hit_count/${idx}`
+        `https://ciuc.or.kr:8443/api/post/board/hit_count/${idx}`
       );
     } catch (err) {
       console.log(err);
@@ -121,6 +134,7 @@ const Home = () => {
   };
 
   const moveBoard = (cate) => {
+    console.log("moveBoard 호출:", cate); // cate 값 확인
     navigate(`/board/${cate}`, { state: { cate: cate } });
   };
 
@@ -133,9 +147,17 @@ const Home = () => {
     }
   };
 
-  const handleImageBbsClick = (data) => {
-    hitCount(data.idx);
-    navigate(`/board/${data.category}/${data.idx}`, { state: { data } });
+  const handleImageBbsClick = async (data) => {
+    console.log("datadata", data);
+    console.log("idxidx", data.idx);
+    if (data.idx) {
+      await hitCount(data.idx); // hitCount 비동기 처리
+      const path = `/board/${data.category}/${data.idx}`;
+      console.log("Navigating to:", path);
+      navigate(path, { state: { data } });
+    } else {
+      console.error("data.idx is undefined or falsy");
+    }
   };
 
   //날짜계산
@@ -167,31 +189,37 @@ const Home = () => {
             <div className="home_menu_row">
               <div
                 className="home_menu_icon first"
-                onClick={() => navigate("/intro")}
+                onClick={() => moveBoard("notice")}
               ></div>
             </div>
             <div className="home_menu_row">
               <div
                 className="home_menu_icon second"
-                onClick={() => navigate("/history")}
+                onClick={() => moveBoard("business")}
               ></div>
             </div>
             <div className="home_menu_row">
               <div
                 className="home_menu_icon third"
-                onClick={() => navigate("/vision")}
+                onClick={() => moveBoard("education")}
               ></div>
             </div>
             <div className="home_menu_row">
               <div
                 className="home_menu_icon fourth"
-                onClick={() => navigate("/field")}
+                onClick={() => moveBoard("bid")}
               ></div>
             </div>
             <div className="home_menu_row">
               <div
                 className="home_menu_icon fifth"
-                onClick={() => navigate("/map")}
+                onClick={() => moveBoard("news")}
+              ></div>
+            </div>
+            <div className="home_menu_row">
+              <div
+                className="home_menu_icon sixth"
+                onClick={() => alert("준비중입니다.")}
               ></div>
             </div>
             {/* 
@@ -222,13 +250,17 @@ const Home = () => {
                     {data.title}
                     {isNew(data.date) && <p className="new_btn">NEW</p>}
                   </div>
-                  <div
-                    className="contents_text"
-                    dangerouslySetInnerHTML={{
-                      __html: data.content ? data.content : "",
-                    }}
-                  ></div>
-                  <div className="contents_date">{data.date}</div>
+                  <div className="contents_text">
+                    {data.content
+                      ? data.content
+                          .replace(/<\/?[^>]+(>|$)/g, "") // HTML 태그 제거
+                          .replace(/&nbsp;/g, " ") // &nbsp; 문자 대체
+                          .replace(/&lt;/g, "<") // &lt; 문자 대체
+                          .replace(/&gt;/g, ">") // &gt; 문자 대체
+                          .replace(/&amp;/g, "&") // &amp; 문자 대체
+                      : "No content available"}
+                  </div>
+                  <div className="contents_date">{formatDate(data.date)}</div>
                 </div>
               ))}
             </div>
@@ -256,10 +288,15 @@ const Home = () => {
                   </div>
                   <div className="contents_text">
                     {data.content
-                      ? data.content.replace(/(<([^>]+)>)/gi, "")
+                      ? data.content
+                          .replace(/<\/?[^>]+(>|$)/g, "") // HTML 태그 제거
+                          .replace(/&nbsp;/g, " ") // &nbsp; 문자 대체
+                          .replace(/&lt;/g, "<") // &lt; 문자 대체
+                          .replace(/&gt;/g, ">") // &gt; 문자 대체
+                          .replace(/&amp;/g, "&") // &amp; 문자 대체
                       : "No content available"}
                   </div>
-                  <div className="contents_date">{data.date}</div>
+                  <div className="contents_date">{formatDate(data.date)}</div>
                 </div>
               ))}
             </div>
@@ -277,17 +314,29 @@ const Home = () => {
         <div className="second_container">
           <div className="second_back" ref={containerRef2}>
             {educationList.map((data, index) => (
-              <div className="second_row">
+              <div className="second_row" key={index}>
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://101.101.216.95:3001/uploads/${data.img1})`,
+                    backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${
+                      data.img1 ? data.img1 : "src/assets/image/no_image.png"
+                    })`,
+                    backgroundSize: data.img1 ? "" : "35% auto",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
                   }}
                 ></div>
                 <div className="row_bottom_box">
                   <div className="row_title">{data.title}</div>
                   <div className="row_text">
-                    {data.content.replace(/(<([^>]+)>)/gi, "")}
+                    {data.content
+                      ? data.content
+                          .replace(/<\/?[^>]+(>|$)/g, "") // HTML 태그 제거
+                          .replace(/&nbsp;/g, " ") // &nbsp; 문자 대체
+                          .replace(/&lt;/g, "<") // &lt; 문자 대체
+                          .replace(/&gt;/g, ">") // &gt; 문자 대체
+                          .replace(/&amp;/g, "&") // &amp; 문자 대체
+                      : "No content available"}
                   </div>
                   <div
                     className="more_btn"
@@ -302,6 +351,55 @@ const Home = () => {
         </div>
         <div className="middle_banner_box second">
           <div className="banner_text_box">
+            <div className="banner_title">보도자료</div>
+            <div className="banner_sub_text">
+              충남산학융합원의 최근 소식을 알려드립니다.
+            </div>
+            <div className="more_btn" onClick={() => moveBoard("news")}>
+              더보기 {">"}
+            </div>
+          </div>
+        </div>
+        <div className="first_container">
+          <div className="first_back">
+            <div className="last_rows news">
+              <div className="row_top_box">
+                <div className="row_title">보도자료</div>
+                <div className="row_btn_box">
+                  <div className="more_btn" onClick={() => moveBoard("news")}>
+                    더보기 {">"}
+                  </div>
+                </div>
+              </div>
+              {newsList.map((data, index) => (
+                <div
+                  className="contents_row"
+                  key={index}
+                  onClick={() => handleRowClick(data)}
+                >
+                  <div className="contents_title">
+                    {data.title}
+                    {isNew(data.date) && <p className="new_btn">NEW</p>}
+                  </div>
+                  <div className="contents_text">
+                    {data.content
+                      ? data.content
+                          .replace(/<\/?[^>]+(>|$)/g, "") // HTML 태그 제거
+                          .replace(/&nbsp;/g, " ") // &nbsp; 문자 대체
+                          .replace(/&lt;/g, "<") // &lt; 문자 대체
+                          .replace(/&gt;/g, ">") // &gt; 문자 대체
+                          .replace(/&amp;/g, "&") // &amp; 문자 대체
+                      : "No content available"}
+                  </div>
+                  <div className="contents_date">{formatDate(data.date)}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/*
+        <div className="middle_banner_box second">
+          <div className="banner_text_box">
             <div className="banner_title">채용공고</div>
             <div className="banner_sub_text">함께 일할 직원을 채용합니다.</div>
             <div className="more_btn" onClick={() => moveBoard("employment")}>
@@ -312,17 +410,28 @@ const Home = () => {
         <div className="second_container">
           <div className="second_back" ref={containerRef2}>
             {employmentList.map((data, index) => (
-              <div className="second_row">
+              <div className="second_row" key={index}>
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://101.101.216.95:3001/uploads/${data.img1})`,
+                    backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${
+                      data.img1 || "src/assets/image/no_image.png"
+                    })`,
+                    backgroundSize: "35% auto",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
                   }}
                 ></div>
                 <div className="row_bottom_box">
                   <div className="row_title">{data.title}</div>
                   <div className="row_text">
-                    {data.content.replace(/(<([^>]+)>)/gi, "")}
+                    {data.content
+                      ? data.content
+                          .replace(/<\/?[^>]+(>|$)/g, "") // HTML 태그 제거
+                          .replace(/&nbsp;/g, " ") // &nbsp; 문자 대체
+                          .replace(/&lt;/g, "<") // &lt; 문자 대체
+                          .replace(/&gt;/g, ">") // &gt; 문자 대체
+                      : "No content available"}
                   </div>
                   <div
                     className="more_btn"
@@ -334,8 +443,8 @@ const Home = () => {
               </div>
             ))}
           </div>
-        </div>
-        <div className="third_container">
+          </div> */}
+        {/* <div className="third_container">
           <div className="third_back">
             <div className="third_top_box">
               <div className="third_title">기업연구동 입주현황</div>
@@ -359,7 +468,7 @@ const Home = () => {
               ))}
             </div>
           </div>
-        </div>
+          </div>*/}
       </div>
     </div>
   );

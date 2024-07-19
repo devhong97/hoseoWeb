@@ -27,12 +27,16 @@ import InquiryDetail from "../component/SubBbs/Inquiry/InquiryDetail";
 import FacilityDetail from "../component/SubBbs/Facility/FacilityDetail";
 import InquiryModify from "../component/SubBbs/Inquiry/InquiryModify";
 import FacilityModify from "../component/SubBbs/Facility/FacilityModify";
-import Empty from "../component/Empty/Empty";
 import InquiryInfo from "../component/SubBbs/Inquiry/InquiryInfo";
 import Founded from "../component/SubBbs/Business/Founded";
 import Enterprise from "../component/SubBbs/Business/Enterprise";
 import Human from "../component/SubBbs/Business/Human";
 import Formation from "../component/SubBbs/Business/Formation";
+import MeetingRoom from "../component/Empty/MeetingRoom";
+import Computer from "../component/Empty/Computer";
+import Printing from "../component/Empty/Printing";
+import ArVr from "../component/Empty/ArVr";
+import Cnc from "../component/Empty/Cnc";
 
 const Router = () => {
   return (
@@ -48,7 +52,7 @@ const Router = () => {
       <Route path="/vision" element={<Vision />}></Route>
       {/* 사업분야 */}
       <Route path="/field" element={<Field />}></Route>
-      {/* 오시는길 */}
+      {/* 오시는 길 */}
       <Route path="/map" element={<Map />}></Route>
       {/* 게시판 */}
       <Route path="/board/:cate" element={<BoardList />}></Route>
@@ -84,8 +88,12 @@ const Router = () => {
       <Route path="/board/facility/:idx" element={<FacilityDetail />} />
       <Route path="/board/facility/write" element={<FacilityWrite />} />
       <Route path="/board/facility/modify" element={<FacilityModify />} />
-      {/* empty */}
-      <Route path="/empty" element={<Empty />} />
+      {/* 보유시설 */}
+      <Route path="/meetingroom" element={<MeetingRoom />} />
+      <Route path="/computer" element={<Computer />} />
+      <Route path="/printing" element={<Printing />} />
+      <Route path="/arvr" element={<ArVr />} />
+      <Route path="/cnc" element={<Cnc />} />
       {/* 창업육성사업 */}
       <Route path="/founded" element={<Founded />}></Route>
       {/* 기업지원사업 */}

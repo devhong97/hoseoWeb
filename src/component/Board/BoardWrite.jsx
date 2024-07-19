@@ -34,11 +34,8 @@ const BoardWrite = () => {
         case "bid":
           setCateTitle("입찰공고");
           break;
-        case "related":
-          setCateTitle("유관기관 공고");
-          break;
         case "news":
-          setCateTitle("융합원 뉴스");
+          setCateTitle("보도자료");
           break;
         case "reference":
           setCateTitle("자료실");
@@ -70,7 +67,7 @@ const BoardWrite = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/upload",
+        "https://ciuc.or.kr:8443/api/post/upload",
         formData,
         {
           headers: {
@@ -130,7 +127,7 @@ const BoardWrite = () => {
 
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/board_write",
+        "https://ciuc.or.kr:8443/api/post/board_write",
         formData,
         {
           headers: {

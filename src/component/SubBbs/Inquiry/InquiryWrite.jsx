@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 const InquiryWrite = () => {
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
+  const [writer, setWriter] = useState(""); //작성자
+  const [tel, setTel] = useState(""); //연락처
   const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부
   const [fileUrls, setFileUrls] = useState([]); // 파일 URL
   const editorRef = useRef(null);
@@ -33,7 +35,7 @@ const InquiryWrite = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/upload",
+        "https://ciuc.or.kr:8443/api/post/upload",
         formData,
         {
           headers: {
@@ -79,12 +81,20 @@ const InquiryWrite = () => {
     } else if (content === "") {
       alert("내용을 입력해주세요.");
       return;
+    } else if (writer === "") {
+      alert("이름을 입력해주세요.");
+      return;
+    } else if (tel === "") {
+      alert("연락처를 입력해주세요.");
+      return;
     }
 
     // 첨부 파일
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("writer", writer);
+    formData.append("tel", tel);
     formData.append("cate", cate);
 
     selectedFiles.forEach((file, index) => {
@@ -95,7 +105,7 @@ const InquiryWrite = () => {
 
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/inquiry_write",
+        "https://ciuc.or.kr:8443/api/post/inquiry_write",
         formData,
         {
           headers: {
@@ -153,6 +163,33 @@ const InquiryWrite = () => {
             onChange={handleContent}
             id="content"
           />
+          <br />
+          <div className="detail_top_box">
+            <div className="detail_title">
+              <input
+                className="detail_input"
+                placeholder="이름을 입력하세요."
+                type="text"
+                id="title"
+                value={writer}
+                onChange={(e) => setWriter(e.target.value)}
+              ></input>
+            </div>
+          </div>
+          <br />
+          <br />
+          <div className="detail_top_box">
+            <div className="detail_title">
+              <input
+                className="detail_input"
+                placeholder="연락처를 입력하세요."
+                type="text"
+                id="title"
+                value={tel}
+                onChange={(e) => setTel(e.target.value)}
+              ></input>
+            </div>
+          </div>
         </div>
         <div className="detail_file_box write">
           <div className="file_title">첨부파일 (최대 5개)</div>

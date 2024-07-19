@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ImageList = () => {
@@ -7,15 +7,35 @@ const ImageList = () => {
   const [page, setPage] = useState(1);
   const [select, setSelect] = useState(0);
   const [tab, setTab] = useState(1);
+  const [searchTerm, setSearchTerm] = useState(""); //검색어
+  const [searchOption, setSearchOption] = useState("제목"); //검색조건(초기값:메뉴)
   const [menuData, setMenuData] = useState([]);
-  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [totalPages, setTotalPages] = useState(1); // 전체 페이지 수
   const navigate = useNavigate();
   const pageSize = 10; // 페이지당 항목 수
+  const [cate, setCate] = useState("archive"); // 카테고리 상태 추가
+
+  function formatDate(isoString) {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 월은 0부터 시작하므로 +1 해준 후 두 자리로 맞춤
+    const day = date.getDate().toString().padStart(2, "0");
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
 
   useEffect(() => {
+    getBoard(page, pageSize);
+  }, [page, pageSize]);
+
+  const getBoard = (page, pageSize) => {
     axios
       .get(
-        `http://101.101.216.95:3001/api/get/board_list?cate=archive&page=${page}&pageSize=${pageSize}`
+        `https://ciuc.or.kr:8443/api/get/board_list?cate=archive&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setMenuData(response.data.data);
@@ -24,7 +44,7 @@ const ImageList = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, [page]);
+  };
 
   const handleSelect = (num) => {
     if (select === num) {
@@ -42,10 +62,41 @@ const ImageList = () => {
     setTab(num);
   };
 
+  /**************************************************************/
+  // 검색
+  /**************************************************************/
+  const handleSearch = useCallback(async () => {
+    try {
+      const url = `https://ciuc.or.kr:8443/api/get/board_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}&category=${cate}`;
+      console.log(url);
+      const res = await axios.get(url);
+      const { totalItems, results } = res.data;
+
+      const searchTotal = Math.ceil(totalItems / pageSize);
+
+      setTotalPages(searchTotal);
+      setMenuData(results);
+      setCurrentPage(1);
+    } catch (error) {
+      console.error("검색 결과 가져오기 오류:", error);
+    }
+  }, [searchTerm, searchOption, currentPage, pageSize, cate]);
+  /**************************************************************/
+  // 검색어 초기화
+  /**************************************************************/
+  const handleReset = useCallback(() => {
+    setSearchTerm(""); // 검색어 초기화
+    setSearchOption("제목"); // 검색 옵션 초기화
+    setCurrentPage(1); // 페이지 초기화
+    setPage(1); // 추가: 페이지 상태 초기화
+    getBoard(1, pageSize); // getBoard 함수 호출 시 초기 페이지와 pageSize 전달
+  }, []);
+  /**************************************************************/
+
   const hitCount = async (idx) => {
     try {
       await axios.post(
-        `http://101.101.216.95:3001/api/post/board/hit_count/${idx}`
+        `https://ciuc.or.kr:8443/api/post/board/hit_count/${idx}`
       );
     } catch (err) {
       console.log(err);
@@ -130,25 +181,25 @@ const ImageList = () => {
                 <div className="select_row" onClick={() => moveBoard("notice")}>
                   알림 및 소식
                 </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  사업분야
+                </div>
                 <div
                   className="select_row"
                   onClick={() => movePage("/company")}
                 >
                   기업연구동
                 </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  보유시설
+                </div>
                 <div className="select_row" onClick={() => movePage("/intro")}>
                   융합원소개
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  사업분야
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  인프라
                 </div>
               </div>
             </div>
             <div className="navi_box" onClick={() => handleSelect(2)}>
-              <div className="navi_main_text">아카이브</div>
+              <div className="navi_main_text">융합원 아카이브</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
                 <div className="select_row" onClick={() => moveBoard("notice")}>
@@ -175,14 +226,8 @@ const ImageList = () => {
                 <div className="select_row" onClick={() => moveBoard("bid")}>
                   입찰공고
                 </div>
-                <div
-                  className="select_row"
-                  onClick={() => moveBoard("related")}
-                >
-                  유관기관공고
-                </div>
                 <div className="select_row" onClick={() => moveBoard("news")}>
-                  융합원뉴스
+                  보도자료
                 </div>
                 <div
                   className="select_row"
@@ -194,7 +239,7 @@ const ImageList = () => {
                   className="select_row"
                   onClick={() => moveBoard("archive")}
                 >
-                  아카이브
+                  융합원 아카이브
                 </div>
               </div>
             </div>
@@ -210,17 +255,32 @@ const ImageList = () => {
             <div className="title_text">융합원 아카이브</div>
           </div>
           <div className="list_area">
-            <div className="write_box">
+            {/* <div className="write_box">
               <div className="write_btn" onClick={handleWrite}>
                 아카이브 등록
               </div>
-            </div>
+            </div> */}
             <div className="search_box">
+              <select
+                value={searchOption}
+                onChange={(e) => setSearchOption(e.target.value)}
+              >
+                <option>제목</option>
+                <option>내용</option>
+                <option>작성자</option>
+              </select>
               <input
                 className="search_input"
-                placeholder="검색어를 입력해주세요"
+                placeholder="검색어를 입력하세요"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               ></input>
-              <div className="search_btn"></div>
+              <div className="option-box">
+                <div className="search_btn" onClick={handleSearch}></div>
+                <div className="reset-btn" onClick={handleReset}>
+                  초기화
+                </div>
+              </div>
             </div>
             <div className="list_box image">
               <div className="img_table">
@@ -249,7 +309,7 @@ const ImageList = () => {
                       <div
                         className="img_box"
                         style={{
-                          backgroundImage: `url(http://101.101.216.95:3001/uploads/${item.img1})`,
+                          backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${item.img1})`,
                         }}
                       ></div>
                       <div className="img_text_box">
@@ -262,9 +322,10 @@ const ImageList = () => {
                           {item.content.replace(/(<([^>]+)>)/gi, "")}
                         </div>
                         <div className="img_bottom_box">
-                          <div className="bottom_row">작성자</div>
                           <div className="bottom_row">{item.writer}</div>
-                          <div className="bottom_row">{item.date}</div>
+                          <div className="bottom_row">
+                            {formatDate(item.date)}
+                          </div>
                         </div>
                       </div>
                     </div>

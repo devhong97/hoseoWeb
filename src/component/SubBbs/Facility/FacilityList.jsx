@@ -18,7 +18,7 @@ const FacilityList = () => {
   useEffect(() => {
     axios
       .get(
-        `http://101.101.216.95:3001/api/get/facility_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+        `https://ciuc.or.kr:8443/api/get/facility_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setFacilityList(response.data.data);
@@ -32,7 +32,7 @@ const FacilityList = () => {
   const hitCount = async (idx) => {
     try {
       await axios.post(
-        `http://101.101.216.95:3001/api/post/board/facility/hit_count/${idx}`
+        `https://ciuc.or.kr:8443/api/post/board/facility/hit_count/${idx}`
       );
     } catch (err) {
       console.log(err);
@@ -120,7 +120,7 @@ const FacilityList = () => {
         <div className="navi_area">
           <div className="navi_back">
             <div className="navi_box" onClick={() => handleSelect(1)}>
-              <div className="navi_main_text">인프라</div>
+              <div className="navi_main_text">보유시설</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 1 && "active"}`}>
                 <div className="select_row" onClick={() => moveBoard("notice")}>
@@ -128,18 +128,24 @@ const FacilityList = () => {
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/company")}
+                  onClick={() => movePage("/formation")}
+                >
+                  사업분야
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/inquiryinfo")}
                 >
                   기업연구동
                 </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/meetingroom")}
+                >
+                  보유시설
+                </div>
                 <div className="select_row" onClick={() => movePage("/intro")}>
                   융합원소개
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  사업분야
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  인프라
                 </div>
               </div>
             </div>
@@ -149,16 +155,28 @@ const FacilityList = () => {
               <div className={`navi_select_box ${select === 2 && "active"}`}>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/company")}
+                  onClick={() => movePage("/meetingroom")}
                 >
                   회의실
                 </div>
-                <div className="select_row" onClick={() => movePage("/floor")}>
-                  컴퓨터
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/computer")}
+                >
+                  전산실습실
                 </div>
-                <div className="select_row">3D프린트</div>
-                <div className="select_row">AR/VR</div>
-                <div className="select_row">CNC</div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/printing")}
+                >
+                  3D프린터
+                </div>
+                <div className="select_row" onClick={() => movePage("/arvr")}>
+                  AR/VR
+                </div>
+                <div className="select_row" onClick={() => movePage("/cnc")}>
+                  CNC/MCT
+                </div>
                 <div
                   className="select_row"
                   onClick={() => moveBoard("facility")}
@@ -173,36 +191,35 @@ const FacilityList = () => {
           <div className="title_box">
             <div className="navi_text">
               <div className="home_icon"></div>
-              {"> "}알림 및 소식{" > "}
+              {"> "}보유시설{" > "}
               시설예약
             </div>
             <div className="title_text">시설예약</div>
           </div>
 
           <div className="list_area">
-            {decodeS1() === "admin" && (
-              <div className="write_box">
-                <div className="write_btn" onClick={handleWrite}>
-                  시설예약 등록
-                </div>
+            <div className="write_box">
+              <div className="write_btn" onClick={handleWrite}>
+                시설예약 등록
               </div>
-            )}
-            <div className="search_box">
+            </div>
+
+            {/* <div className="search_box">
               <input
                 className="search_input"
                 placeholder="검색어를 입력해주세요"
               ></input>
               <div className="search_btn"></div>
-            </div>
+            </div> */}
             <div className="list_box">
               <table className="board_table">
                 <thead className="table_head">
                   <tr className="head_row">
                     <th className="head_section num">번호</th>
-                    <th className="head_section title">기업명</th>
-                    <th className="head_section">대표자</th>
-                    <th className="head_section date">연락처</th>
-                    <th className="head_section date">홈페이지</th>
+                    <th className="head_section title">제목</th>
+                    <th className="head_section">첨부</th>
+                    <th className="head_section">작성자</th>
+                    <th className="head_section date">등록일</th>
                   </tr>
                 </thead>
                 <tbody className="table_body">
@@ -210,7 +227,7 @@ const FacilityList = () => {
                     <tr className="body_row">
                       <td
                         className="no_data"
-                        colSpan="5"
+                        colSpan="6"
                         style={{
                           height: "200px",
                           fontWeight: "bold",
@@ -231,9 +248,11 @@ const FacilityList = () => {
                         >
                           <td className="body_section num">{itemNumber}</td>
                           <td className="body_section title">{item.title}</td>
+                          <td className="body_section date">
+                            {item.img1 ? "O" : "X"}
+                          </td>
                           <td className="body_section date">{item.writer}</td>
-                          <td className="body_section date">{item.date}</td>
-                          <td className="body_section">{item.hit}</td>
+                          <td className="body_section">{item.date}</td>
                         </tr>
                       );
                     })

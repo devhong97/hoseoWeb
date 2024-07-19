@@ -5,13 +5,14 @@ import Router from "./router/Router";
 import React, { Fragment, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Scroll from "./component/Home/Scroll";
+import Popup from "./component/Popup/Popup";
 
 function App() {
-
   return (
     <Fragment>
       <Scroll />
       <div className="screen">
+        <Popup></Popup>
         <div className="header_area">
           <Header />
         </div>

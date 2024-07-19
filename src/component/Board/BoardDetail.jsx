@@ -1,20 +1,33 @@
 import axios from "axios";
 import { Fragment } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
 const BoardDetail = () => {
   const location = useLocation();
-  const { menuData, data, cate } = location.state || {};
+  const { cate } = useParams();
+  const { menuData, data } = location.state || {};
   const navigate = useNavigate();
   const { decodeS1 } = useAuth();
 
+  function formatDate(isoString) {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 월은 0부터 시작하므로 +1 해준 후 두 자리로 맞춤
+    const day = date.getDate().toString().padStart(2, "0");
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
+
+  console.log("menuData:", menuData);
+  console.log("data:", data);
+
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
-    window.open(
-      `http://101.101.216.95:3001/api/download/${fileName}`,
-      "_blank"
-    );
+    window.open(`https://ciuc.or.kr:8443/api/download/${fileName}`, "_blank");
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -102,13 +115,13 @@ const BoardDetail = () => {
     console.log(cate);
     navigate(`/board/${cate}/modify`, {
       state: {
-        menuData: menuData,
-        data: data,
-        img1: menuData.img1,
-        img2: menuData.img2,
-        img3: menuData.img3,
-        img4: menuData.img4,
-        img5: menuData.img5,
+        menuData: menuData || {}, // menuData가 undefined일 경우 빈 객체로 설정
+        data: data || {},
+        img1: menuData?.img1,
+        img2: menuData?.img2,
+        img3: menuData?.img3,
+        img4: menuData?.img4,
+        img5: menuData?.img5,
       },
     });
   };
@@ -121,7 +134,7 @@ const BoardDetail = () => {
 
     try {
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/board_delete",
+        "https://ciuc.or.kr:8443/api/post/board_delete",
         {
           idx: menuData.idx,
           cate: cate,
@@ -147,7 +160,7 @@ const BoardDetail = () => {
               </div>
               <div className="sub_row">
                 <div className="sub_title">작성일</div>
-                <div className="sub_text">{getDate()}</div>
+                <div className="sub_text">{formatDate(getDate())}</div>
               </div>
               <div className="sub_row">
                 <div className="sub_title">조회수</div>
@@ -158,9 +171,9 @@ const BoardDetail = () => {
         )}
 
         <div
-          className="contents_text"
+          className="contents_text_bbs"
           dangerouslySetInnerHTML={{
-            __html: data.content ? data.content : "",
+            __html: getContent(),
           }}
         ></div>
 
@@ -192,7 +205,10 @@ const BoardDetail = () => {
         <div className="detail_btn_box">
           {/* <div className="detail_btn color">교육신청하기</div> */}
 
-          <div className="detail_btn color" onClick={() => navigate(-1)}>
+          <div
+            className="detail_btn color"
+            onClick={() => navigate(`/board/${cate}`, { state: { cate } })}
+          >
             목록으로
           </div>
           {decodeS1() === "admin" && (

@@ -8,9 +8,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const BoardModify = () => {
   const location = useLocation();
-  const { menuData, img1, img2, img3, img4, img5 } = location.state || {};
-  const [title, setTitle] = useState(menuData.title || ""); // 제목
-  const [content, setContent] = useState(menuData.content || ""); // 내용
+  const { menuData } = location.state || {};
+  const [title, setTitle] = useState(menuData?.title || ""); // 제목
+  const [content, setContent] = useState(menuData?.content || ""); // 내용
   const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부
   const [fileUrls, setFileUrls] = useState([]); // 파일 URL
   const editorRef = useRef(null);
@@ -18,8 +18,8 @@ const BoardModify = () => {
 
   // 메뉴 데이터가 변경될 때마다 초기값 설정
   useEffect(() => {
-    setTitle(menuData.title || "");
-    setContent(menuData.content || "");
+    setTitle(menuData?.title || "");
+    setContent(menuData?.content || "");
   }, [menuData]);
 
   // 파일 첨부 삭제
@@ -29,19 +29,8 @@ const BoardModify = () => {
     setSelectedFiles(updatedFiles);
 
     const updatedUrls = [...fileUrls];
-    const deletedFileName = updatedUrls[index]; // 삭제된 파일 이름 가져오기
     updatedUrls.splice(index, 1);
     setFileUrls(updatedUrls);
-
-    // 파일을 삭제한 후에는 이미지 URL 배열의 순서를 조정
-    const newFileUrls = updatedUrls.map((url) => {
-      if (url === deletedFileName) {
-        return ""; // 삭제된 파일은 빈 문자열로 대체
-      }
-      return url;
-    });
-    console.log("Updated Selected Files:", updatedFiles);
-    console.log("Updated File URLs:", updatedUrls);
   };
 
   // 파일 URL 설정
@@ -50,12 +39,10 @@ const BoardModify = () => {
     for (let i = 1; i <= 5; i++) {
       if (menuData && menuData[`img${i}`]) {
         images.push(menuData[`img${i}`]);
-      } else if (eval(`img${i}`)) {
-        images.push(eval(`img${i}`));
       }
     }
     setFileUrls(images);
-  }, [menuData, img1, img2, img3, img4, img5]);
+  }, [menuData]);
 
   // Editor 파일 업로드 관련 함수
   const onUploadImage = async (blob, callback) => {
@@ -64,7 +51,7 @@ const BoardModify = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/upload",
+        "https://ciuc.or.kr:8443/api/post/upload",
         formData,
         {
           headers: {
@@ -73,7 +60,6 @@ const BoardModify = () => {
         }
       );
       const imageUrl = response.data.imageUrl;
-      console.log("Uploaded image URL:", imageUrl); // 이미지 URL
       callback(imageUrl, "alt text");
     } catch (error) {
       console.error("이미지 업로드 중 오류 발생", error);
@@ -87,6 +73,7 @@ const BoardModify = () => {
     setContent(htmlContent);
   };
 
+  // 파일 선택
   const handleFileSelect = (e) => {
     const files = Array.from(e.target.files);
     const totalFiles = selectedFiles.length + files.length;
@@ -99,22 +86,16 @@ const BoardModify = () => {
     const newSelectedFiles = [...selectedFiles];
     const newFileUrls = [...fileUrls];
 
-    const existingFileCount = fileUrls.filter((url) =>
-      url.startsWith("img")
-    ).length;
-
     files.forEach((file, index) => {
       newSelectedFiles.push(file);
-      const newFileIndex = existingFileCount + index + 1;
-      const fileName = file.name; // 원본 이미지 파일 이름 가져오기
-      newFileUrls.push(fileName); // 파일 이름으로 추가
+      const fileName = file.name;
+      newFileUrls.push(fileName);
     });
 
     setSelectedFiles(newSelectedFiles);
     setFileUrls(newFileUrls);
-
-    console.log("새로운 파일 선택 시 상태:", newFileUrls);
   };
+
   // 글 등록 핸들러
   const handleSubmit = async () => {
     if (title === "") {
@@ -147,7 +128,7 @@ const BoardModify = () => {
           const imageFormData = new FormData();
           imageFormData.append("image", file);
           const response = await axios.post(
-            "http://101.101.216.95:3001/api/post/upload",
+            "https://ciuc.or.kr:8443/api/post/upload",
             imageFormData,
             {
               headers: {
@@ -161,7 +142,7 @@ const BoardModify = () => {
 
       // 게시글 수정 요청
       const response = await axios.post(
-        "http://101.101.216.95:3001/api/post/board_modify",
+        "https://ciuc.or.kr:8443/api/post/board_modify",
         formData,
         {
           headers: {
@@ -169,7 +150,6 @@ const BoardModify = () => {
           },
         }
       );
-      console.log(response.data);
       alert(`글 수정이 완료되었습니다.`);
 
       setTitle("");
@@ -204,7 +184,7 @@ const BoardModify = () => {
         </div>
         <div className="detail_contents_box">
           <Editor
-            initialValue={content} // content를 Editor의 초기값으로 사용
+            initialValue={content}
             height="300px"
             initialEditType="wysiwyg"
             plugins={[colorSyntax]}

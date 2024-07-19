@@ -14,14 +14,14 @@ const OrganizationList = () => {
   const pageSize = 10; // 페이지당 항목 수
 
   //교육 상세데이터
-  const categoryDataSet = (category) => {
+  const categoryDataSet = (category, page) => {
     axios
       .get(
-        `http://101.101.216.95:3001/api/get/organization_list?category=${category}&page=${page}&pageSize=${pageSize}`
+        `https://ciuc.or.kr:8443/api/get/organization_list?category=${category}&page=${page}&pageSize=${pageSize}`
       )
-
       .then((response) => {
         setBoardData(response.data.data);
+        setTotalPages(response.data.totalPages);
       })
       .catch((err) => {
         console.error(err);
@@ -29,8 +29,8 @@ const OrganizationList = () => {
   };
 
   useEffect(() => {
-    categoryDataSet(category);
-  }, [category]);
+    categoryDataSet(category, page); // category와 page 상태 모두 의존성 배열에 추가
+  }, [category, page]);
 
   const infoWrite = () => {
     window.location.href = `/organization/${category}/write`;
@@ -43,20 +43,20 @@ const OrganizationList = () => {
     // console.log("category", category);
     navigate(`/organization/${num}`);
   };
-  const handlePage = (cate) => {
-    setPage(cate);
+
+  const handlePage = (pageNum) => {
+    setPage(pageNum);
+    categoryDataSet(category, pageNum);
   };
 
   const getCategoryName = (category) => {
     switch (category) {
       case "management":
-        return "경영혁신실";
+        return "경영기획실";
       case "enterprise":
         return "기업지원실";
-      case "resources":
-        return "인재개발실";
       case "founded":
-        return "창업지원실";
+        return "창업육성실";
       default:
         return "";
     }
@@ -118,7 +118,7 @@ const OrganizationList = () => {
                 className={`tab_box ${tab === "management" && "active"}`}
                 onClick={() => handleTab("management")}
               >
-                경영혁신실
+                경영기획실
               </div>
               <div
                 className={`tab_box ${tab === "enterprise" && "active"}`}
@@ -127,16 +127,10 @@ const OrganizationList = () => {
                 기업지원실
               </div>
               <div
-                className={`tab_box ${tab === "resources" && "active"}`}
-                onClick={() => handleTab("resources")}
-              >
-                인재개발실
-              </div>
-              <div
                 className={`tab_box ${tab === "founded" && "active"}`}
                 onClick={() => handleTab("founded")}
               >
-                창업지원실
+                창업육성실
               </div>
             </div>
           </div>
@@ -149,19 +143,20 @@ const OrganizationList = () => {
                 </div>
               )}
             </div>
-            <div className="search_box">
+            {/* <div className="search_box">
               <input
                 className="search_input"
                 placeholder="검색어를 입력해주세요"
               ></input>
               <div className="search_btn"></div>
-            </div>
+            </div> */}
             <div className="list_box">
               <table className="board_table">
                 <thead className="table_head">
                   <tr className="head_row">
-                    <th className="head_section ">이름</th>
+                    <th className="head_section ">팀</th>
                     <th className="head_section date">직위</th>
+                    {/* <th className="head_section date">이름</th> */}
                     <th className="head_section title">업무</th>
                     <th className="head_section date">전화번호</th>
                     <th className="head_section date">이메일</th>
@@ -172,7 +167,7 @@ const OrganizationList = () => {
                     <tr className="body_row">
                       <td
                         className="no_data"
-                        colSpan="5"
+                        colSpan="6"
                         style={{
                           height: "200px",
                           fontWeight: "bold",
@@ -185,8 +180,9 @@ const OrganizationList = () => {
                   ) : (
                     boardData.map((data, index) => (
                       <tr className="body_row" key={index}>
-                        <td className="body_section">{data.name}</td>
+                        <td className="body_section">{data.team}</td>
                         <td className="body_section date">{data.spot}</td>
+                        {/* <td className="body_section">{data.name}</td> */}
                         <td className="body_section title">{data.work}</td>
                         <td className="body_section date">{data.tel}</td>
                         <td className="body_section">{data.email}</td>

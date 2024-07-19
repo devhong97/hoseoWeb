@@ -18,7 +18,7 @@ const InquiryList = () => {
   useEffect(() => {
     axios
       .get(
-        `http://101.101.216.95:3001/api/get/inquiry_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+        `https://ciuc.or.kr:8443/api/get/inquiry_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setInquiryList(response.data.data);
@@ -32,7 +32,7 @@ const InquiryList = () => {
   const hitCount = async (idx) => {
     try {
       await axios.post(
-        `http://101.101.216.95:3001/api/post/board/inquiry/hit_count/${idx}`
+        `https://ciuc.or.kr:8443/api/post/board/inquiry/hit_count/${idx}`
       );
     } catch (err) {
       console.log(err);
@@ -126,20 +126,20 @@ const InquiryList = () => {
                 <div className="select_row" onClick={() => moveBoard("notice")}>
                   알림 및 소식
                 </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  사업분야
+                </div>
                 <div
                   className="select_row"
                   onClick={() => movePage("/company")}
                 >
                   기업연구동
                 </div>
+                <div className="select_row" onClick={() => movePage("/empty")}>
+                  보유시설
+                </div>
                 <div className="select_row" onClick={() => movePage("/intro")}>
                   융합원소개
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  사업분야
-                </div>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  인프라
                 </div>
               </div>
             </div>
@@ -147,23 +147,20 @@ const InquiryList = () => {
               <div className="navi_main_text">입주문의</div>
               <div className="navi_arrow"></div>
               <div className={`navi_select_box ${select === 2 && "active"}`}>
-                <div className="select_row" onClick={() => movePage("/empty")}>
-                  연구관 소개
-                </div>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/company")}
+                  onClick={() => movePage("/inquiryinfo")}
                 >
-                  입주기업현황
+                  입주안내
                 </div>
                 <div className="select_row" onClick={() => movePage("/floor")}>
                   층별안내
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/inquiryinfo")}
+                  onClick={() => movePage("/company")}
                 >
-                  입주안내
+                  입주기업현황
                 </div>
                 <div
                   className="select_row"
@@ -186,20 +183,18 @@ const InquiryList = () => {
           </div>
 
           <div className="list_area">
-            {decodeS1() === "admin" && (
-              <div className="write_box">
-                <div className="write_btn" onClick={handleWrite}>
-                  입주문의 등록
-                </div>
+            <div className="write_box">
+              <div className="write_btn" onClick={handleWrite}>
+                입주문의 등록
               </div>
-            )}
-            <div className="search_box">
+            </div>
+            {/* <div className="search_box">
               <input
                 className="search_input"
                 placeholder="검색어를 입력해주세요"
               ></input>
               <div className="search_btn"></div>
-            </div>
+            </div> */}
             <div className="list_box">
               <table className="board_table">
                 <thead className="table_head">
@@ -207,8 +202,7 @@ const InquiryList = () => {
                     <th className="head_section num">번호</th>
                     <th className="head_section title">제목</th>
                     <th className="head_section">작성자</th>
-                    <th className="head_section date">연락처</th>
-                    <th className="head_section date">조회수</th>
+                    <th className="head_section date">작성일시</th>
                   </tr>
                 </thead>
                 <tbody className="table_body">
@@ -237,9 +231,11 @@ const InquiryList = () => {
                         >
                           <td className="body_section num">{itemNumber}</td>
                           <td className="body_section title">{item.title}</td>
-                          <td className="body_section date">{item.writer}</td>
+                          <td className="body_section date">
+                            {item.writer.substring(0, 1) +
+                              item.writer.substring(1).replace(/./g, "*")}
+                          </td>
                           <td className="body_section date">{item.date}</td>
-                          <td className="body_section">{item.hit}</td>
                         </tr>
                       );
                     })
