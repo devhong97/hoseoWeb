@@ -8,6 +8,7 @@ import Scroll from "./component/Home/Scroll";
 import Popup from "./component/Popup/Popup";
 
 function App() {
+  //commit
   return (
     <Fragment>
       <Scroll />
