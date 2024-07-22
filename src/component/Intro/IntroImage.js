@@ -108,7 +108,7 @@ const IntroImage = () => {
                 <div className="introduce_image top">
                   <iframe
                     width="560"
-                    height="315"
+                    height="805"
                     src="https://www.youtube.com/embed/4xtiQAOT0uI?autoplay=1&mute=1"
                     title="YouTube video player"
                     frameborder="0"

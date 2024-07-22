@@ -92,7 +92,7 @@
           padding-bottom: 16px !important;
 
           .line_text {
-            font-size: 10px;
+            font-size: 9px;
             border-right: 1px solid #fff;
           }
         }
@@ -310,6 +310,9 @@
               .row_title {
                 font-size: 10px;
                 padding-bottom: 4px;
+                overflow: hidden;
+                //white-space: nowrap;
+                text-overflow: ellipsis;
               }
 
               .row_text {
@@ -537,6 +540,13 @@
 }
 
 @media (max-width: 600px) {
+  .main_area .main_back .first_container .first_back .last_rows .row_top_box .row_btn_box .more_btn {
+    font-size: 15px !important;
+  }
+  .main_area .main_back .first_container .first_back .last_rows .contents_row .contents_text {
+    font-size: 13px !important;
+    height: 48.5px !important;
+  }
   .contents_text_bbs table {
     width: 100%;
     display: block;
@@ -567,6 +577,7 @@
       .sub_banner_area {
         .sub_banner_back {
           width: 90%;
+          padding: 50px 0 !important;
         }
       }
 
@@ -781,15 +792,15 @@
                 }
 
                 &.seventh {
-                  height: 47vw;
+                  height: 48vw;
                 }
 
                 &.eighth {
-                  height: 55vw;
+                  height: 56vw;
                 }
 
                 &.nineth {
-                  height: 67vw;
+                  height: 68vw;
                 }
 
                 &.enterprise_one {
@@ -1048,6 +1059,7 @@
   .detail_wrap {
     .detail_back {
       width: 90%;
+      overflow-x: hidden;
     }
   }
 }
@@ -1239,6 +1251,64 @@
 }
 
 @media (max-width: 900px) {
+    .board_wrap .board_back .board_container .list_area .search_box select{
+    display:block;
+    width:100%;
+    margin-right: 0px !important;
+    margin-bottom: 7px !important;
+  }
+  .board_wrap .board_back .board_container .list_area .search_box .search_input{
+    display:inline-block;
+    width:88%;
+  }
+  .board_wrap .board_back .board_container .list_area .search_box .option-box{
+    width: 12%;
+  }
+  .board_wrap .board_back .board_container .list_area .search_box .option-box .reset-btn{
+    display:none;
+  }
+  .board_wrap .board_back .board_container .inquiry_area .inquiry_img_box .inquiry_img.inquiry_img_1, 
+  .inquiry_img_2,
+  .inquiry_img_3,
+  .inquiry_img_4,
+  .inquiry_img_5 {
+    height: 66vw !important;
+  }
+  .board_container-sub .inquiry_area .inquiry_top_box .top_info_box {
+    display: block !important;
+    width: 100% !important;
+
+    &.right {
+      margin-top: 30px;
+    }
+  }
+  .board_container-sub .inquiry_area .inquiry_img_box .inquiry_img.bottom{
+    height: 15vw !important;
+  }
+  .board_container-sub .inquiry_area .inquiry_img_box.bottom{
+    padding: 50px 0 !important;
+  }
+  .board_container-sub .inquiry_area .inquiry_top_box .top_contents_box .inquiry_table_box{
+    padding: 5px 0 97px !important;
+  }
+  .board_container-sub .inquiry_area .inquiry_top_box .top_contents_box .inquiry_table_box.bottom {
+    padding: 5px 0 80px !important;
+  }
+  .board_container-sub .inquiry_area .inquiry_top_box .top_contents_box .inquiry_table_box .inquiry_table {
+    height: 24vw !important;
+  }
+  .board_container-sub {
+    width: 90% !important;
+  }
+  .sub_wrap .sub_back .sub_banner_area .sub_banner_back .navi_text {
+    font-size: 11px !important;
+  }
+  .sub_wrap .sub_back .sub_main_area .vision_container .introduce_image_box .introduce_image iframe {
+    height: 100% !important;
+  }
+  .sub_wrap .sub_back .sub_main_area .vision_container .introduce_image_box .introduce_image {
+    height: 55vw !important;
+  }
   .footer_area .footer_back .footer_top_box .ftbox-2,
   .footer_area .footer_back .footer_top_box .ftbox-3 {
     width: 50%;
@@ -1249,10 +1319,11 @@
 }
 
 @media (max-width: 600px) {
+  .main_area .main_back .first_container .first_back .last_rows .contents_row .contents_title{
+    font-size:20px !important;
+  }
   .footer_area .footer_back .footer_bottom_box {
     text-align: center;
-  }
-  .main_area .main_back .main_banner_box {
   }
 }
 
@@ -1260,5 +1331,9 @@
   .footer_area .footer_back .footer_top_box .ftbox-2 select,
   .footer_area .footer_back .footer_top_box .ftbox-3 select {
     font-size: 11px;
+  }
+  .board_wrap .board_back .board_container .list_area .search_box .option-box .search_btn{
+    width: 30px !important;
+    height: 22px !important;
   }
 }

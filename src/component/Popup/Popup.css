@@ -69,6 +69,9 @@
 
 /* 태블릿 (1024px 이하) */
 @media (max-width: 1024px) {
+  .popup-content {
+    width: 70%;
+  }
   .popup-container {
     padding: 180px;
   }
@@ -89,6 +92,15 @@
     font-size: 0.9rem;
   }
 }
+
+/* @media (max-width: 600px) {
+  .popup-content {
+    width: 70%;
+  }
+  .popup-container {
+    padding: 180px;
+  }
+} */
 
 .custom-arrow.custom-prev.slick-arrow.slick-prev:before {
   font-size: 40px;

@@ -787,9 +787,11 @@
             .contents_title {
               font-size: 25px;
               font-family: "Pretendard_b";
-              padding-bottom: 18px;
+              padding-bottom: 15px;
+              overflow: hidden;
+              //white-space: nowrap;
+              text-overflow: ellipsis;
               color: #121212;
-              height: 100px;
 
               .new_btn {
                 display: inline-block;
@@ -808,6 +810,7 @@
               font-size: 20px;
               color: #121212;
               overflow: hidden;
+              //white-space: nowrap;
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-line-clamp: 2;
@@ -817,7 +820,7 @@
 
             .contents_date {
               color: $main-color;
-              font-size: 20px;
+              font-size: 15px;
               padding-top: 13px;
             }
           }
