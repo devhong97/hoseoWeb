@@ -16,6 +16,7 @@
 .popup-content {
   width: 70%; /* 팝업 이미지 슬라이더의 너비 설정 */
   height: 100vh; /* 팝업 이미지 슬라이더의 높이 설정 */
+  min-width: 80%; /* 최소 너비 설정 */
   margin: auto; /* 가운데 정렬을 위한 마진 설정 */
   display: flex;
   flex-direction: column;
@@ -73,16 +74,60 @@
     width: 70%;
   }
   .popup-container {
-    padding: 180px;
+    /* padding: 180px; */
+    padding: 100px;
+  }
+  .popup-content {
+    width: 600px;
   }
 }
 
 /* 모바일 (767px 이하) */
 @media (max-width: 767px) {
   .popup-container {
-    padding: 120px;
+    /* padding: 120px; */
+    padding: 70px;
+  }
+  .popup-content {
+    width: 350px;
+    min-width: 60%;
+  }
+  .popup-buttons {
+    margin-top: 30px;
   }
 
+  .popup-buttons button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 모바일 (500px 이하) */
+@media (max-width: 500px) {
+  .popup-container {
+    padding: 50px;
+  }
+  .popup-content {
+    width: 280px;
+  }
+  .popup-buttons {
+    margin-top: 30px;
+  }
+
+  .popup-buttons button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 모바일 (400px 이하) */
+@media (max-width: 400px) {
+  .popup-container {
+    padding: 20px;
+  }
+  .popup-content {
+    width: 240px;
+  }
   .popup-buttons {
     margin-top: 30px;
   }
@@ -107,7 +152,8 @@
 }
 
 .slick-prev {
-  left: -35px;
+  /* left: -35px; */
+  left: -50px;
 }
 
 .custom-arrow.custom-next.slick-arrow.slick-next:before {
@@ -115,7 +161,8 @@
 }
 
 .slick-next {
-  right: -35px;
+  /* right: -35px; */
+  right: -30px;
 }
 
 /* 슬라이드 중앙 정렬 */
