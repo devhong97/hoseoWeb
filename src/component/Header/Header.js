@@ -34,6 +34,7 @@ const Header = () => {
     setOpenMenu("");
     navigate(`/board/${cate}`, { state: { cate: cate } });
   };
+
   return (
     <div
       className={`header_wrap ${openMenu && "menu_active"}`}

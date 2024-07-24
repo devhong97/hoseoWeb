@@ -356,7 +356,11 @@ const BoardList = () => {
               {window.innerWidth <= 768 ? (
                 menuData.length > 0 ? (
                   menuData.map((item, index) => (
-                    <div className="board-mobile" key={index}>
+                    <div
+                      className="board-mobile"
+                      key={index}
+                      onClick={() => handleRowClick(item.idx)}
+                    >
                       <div className="mb-wrap">
                         <div className="mobile-sub">{item.title}</div>
                         <div className="mobile-btm">
