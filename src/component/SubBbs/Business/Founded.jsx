@@ -24,7 +24,9 @@ const Founded = () => {
                 <div className="title_text">충남산학융합원 중장년 창업지원</div>
               </div>
               <div className="founded_img_box first">
-                <div className="founded_img first"></div>
+                <a href="http://djstart.co.kr/" target="_blank">
+                  <div className="founded_img first"></div>
+                </a>
               </div>
               <div className="founded_text_box">
                 <div className="founded_text_row">
@@ -115,7 +117,9 @@ const Founded = () => {
                 <div className="title_text">충남산학융합원 청년 창업지원</div>
               </div>
               <div className="founded_img_box second">
-                <div className="founded_img second"></div>
+                <a href="https://www.dangjin.go.kr/narae.do" target="_blank">
+                  <div className="founded_img second"></div>
+                </a>
               </div>
             </div>
             <div className="vision_container">
