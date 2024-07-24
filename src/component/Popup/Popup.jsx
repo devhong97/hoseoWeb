@@ -8,7 +8,7 @@ import axios from "axios";
 const Popup = () => {
   const [popups, setPopups] = useState([]);
   const [showPopup, setShowPopup] = useState(true);
-  const roots = "https://ciuc.or.kr:8443";
+  const roots = "http://localhost:3001";
 
   useEffect(() => {
     fetchPopups();
@@ -27,9 +27,10 @@ const Popup = () => {
   const fetchPopups = async () => {
     try {
       const response = await axios.get(
-        "https://ciuc.or.kr:8443/api/get/popup_print"
+        "http://localhost:3001/api/get/popup_print"
       );
       setPopups(response.data.data); // 모든 팝업 데이터를 가져옴
+      console.log(response.data.data);
     } catch (error) {
       console.error("Error fetching popups:", error);
     }

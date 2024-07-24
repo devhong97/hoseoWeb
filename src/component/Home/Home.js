@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import MainSwiper from "../swiper/MainSwiper";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Popup from "../Popup/Popup";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ const Home = () => {
     const fetchNotice = async () => {
       try {
         const response = await axios.get(
-          "https://ciuc.or.kr:8443/api/get/home/notice"
+          "http://localhost:3001/api/get/home/notice"
         );
         setNoticeList(response.data);
       } catch (err) {
@@ -87,7 +88,7 @@ const Home = () => {
     const fetchBusiness = async () => {
       try {
         const response = await axios.get(
-          "https://ciuc.or.kr:8443/api/get/home/business"
+          "http://localhost:3001/api/get/home/business"
         );
         setBusinessList(response.data);
       } catch (err) {
@@ -98,7 +99,7 @@ const Home = () => {
     const fetchEducation = async () => {
       try {
         const response = await axios.get(
-          "https://ciuc.or.kr:8443/api/get/home/education"
+          "http://localhost:3001/api/get/home/education"
         );
         setEcucationList(response.data);
       } catch (err) {
@@ -109,7 +110,7 @@ const Home = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "https://ciuc.or.kr:8443/api/get/home/news"
+          "http://localhost:3001/api/get/home/news"
         );
         setNewsList(response.data);
       } catch (err) {
@@ -125,9 +126,7 @@ const Home = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(
-        `https://ciuc.or.kr:8443/api/post/board/hit_count/${idx}`
-      );
+      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
     } catch (err) {
       console.log(err);
     }
@@ -177,6 +176,7 @@ const Home = () => {
 
   return (
     <div className="main_wrap">
+      <Popup></Popup>
       <div className="main_back" ref={topRef}>
         <div className="scroll_box">
           <div className="scroll_icon" onClick={() => scrollTop()}></div>
@@ -318,7 +318,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${
+                    backgroundImage: `url(http://localhost:3001/uploads/${
                       data.img1 ? data.img1 : "src/assets/image/no_image.png"
                     })`,
                     backgroundSize: data.img1 ? "" : "35% auto",
@@ -414,7 +414,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${
+                    backgroundImage: `url(http://localhost:3001/uploads/${
                       data.img1 || "src/assets/image/no_image.png"
                     })`,
                     backgroundSize: "35% auto",

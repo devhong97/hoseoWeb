@@ -15,7 +15,7 @@ const OrganizationWrite = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://ciuc.or.kr:8443/api/post/organization_write",
+        "http://localhost:3001/api/post/organization_write",
         {
           category,
           name,

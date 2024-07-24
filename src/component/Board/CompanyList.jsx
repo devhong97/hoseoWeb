@@ -13,7 +13,7 @@ const CompanyList = () => {
   useEffect(() => {
     axios
       .get(
-        `https://ciuc.or.kr:8443/api/get/company_list?page=${page}&pageSize=${pageSize}`
+        `http://localhost:3001/api/get/company_list?page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setCompanyData(response.data.data);
