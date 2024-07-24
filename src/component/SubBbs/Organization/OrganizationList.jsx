@@ -17,7 +17,7 @@ const OrganizationList = () => {
   const categoryDataSet = (category, page) => {
     axios
       .get(
-        `https://ciuc.or.kr:8443/api/get/organization_list?category=${category}&page=${page}&pageSize=${pageSize}`
+        `http://localhost:3001/api/get/organization_list?category=${category}&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setBoardData(response.data.data);

@@ -1,14 +1,34 @@
 import axios from "axios";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
 const BoardDetail = () => {
   const location = useLocation();
-  const { cate } = useParams();
-  const { menuData, data } = location.state || {};
+  // const { cate } = useParams();
+  // const { menuData, data } = location.state || {};
+  const { menuData } = location.state || {};
+  const [data, setdata] = useState("");
   const navigate = useNavigate();
   const { decodeS1 } = useAuth();
+  let { idx, cate } = useParams();
+
+  useEffect(() => {
+    getDetail();
+  }, []);
+
+  const getDetail = () => {
+    axios
+      .get(`http://localhost:3001/api/get/board_detail?cate=${cate}&idx=${idx}`)
+      .then((response) => {
+        console.log("!!!!!!!!!!", response);
+        const data = response.data[0];
+        setdata(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   function formatDate(isoString) {
     const date = new Date(isoString);
@@ -27,7 +47,7 @@ const BoardDetail = () => {
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
-    window.open(`https://ciuc.or.kr:8443/api/download/${fileName}`, "_blank");
+    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -134,7 +154,7 @@ const BoardDetail = () => {
 
     try {
       const response = await axios.post(
-        "https://ciuc.or.kr:8443/api/post/board_delete",
+        "http://localhost:3001/api/post/board_delete",
         {
           idx: menuData.idx,
           cate: cate,
@@ -217,7 +237,7 @@ const BoardDetail = () => {
                 수정
               </div>
               <div className="detail_btn short" onClick={() => boardDel()}>
-                삭제
+                삭제a
               </div>
             </Fragment>
           )}

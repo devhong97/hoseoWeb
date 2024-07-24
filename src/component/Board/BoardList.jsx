@@ -32,6 +32,7 @@ const BoardList = () => {
     return `${year}-${month}-${day}`;
   };
 
+  console.log(menuData);
   useEffect(() => {
     getBoard();
   }, [cate, page]);
@@ -39,7 +40,7 @@ const BoardList = () => {
   const getBoard = () => {
     axios
       .get(
-        `https://ciuc.or.kr:8443/api/get/board_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+        `http://localhost:3001/api/get/board_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         const formattedData = response.data.data.map((item) => ({
@@ -101,7 +102,7 @@ const BoardList = () => {
   /**************************************************************/
   const handleSearch = useCallback(async () => {
     try {
-      const url = `https://ciuc.or.kr:8443/api/get/board_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}&category=${cate}`;
+      const url = `http://localhost:3001/api/get/board_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}&category=${cate}`;
       console.log(url);
       const res = await axios.get(url);
       const { totalItems, results } = res.data;
@@ -128,9 +129,7 @@ const BoardList = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(
-        `https://ciuc.or.kr:8443/api/post/board/hit_count/${idx}`
-      );
+      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
     } catch (err) {
       console.log(err);
     }

@@ -29,7 +29,7 @@ const FloorList = () => {
   const getBoard = async () => {
     try {
       const response = await axios.get(
-        `https://ciuc.or.kr:8443/api/get/floor_list?cate=${cate}&tab=${tab}`
+        `http://localhost:3001/api/get/floor_list?cate=${cate}&tab=${tab}`
       );
       setFloorList(response.data.data);
     } catch (error) {
@@ -52,7 +52,7 @@ const FloorList = () => {
     try {
       setTab(num);
       const response = await axios.get(
-        `https://ciuc.or.kr:8443/api/get/floor_list?cate=${cate}&tab=${num}`
+        `http://localhost:3001/api/get/floor_list?cate=${cate}&tab=${num}`
       );
       setFloorList(response.data.data);
     } catch (error) {

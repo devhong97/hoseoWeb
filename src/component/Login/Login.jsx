@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await Axios.post(
-        "https://ciuc.or.kr:8443/api/post/login",
+        "http://localhost:3001/api/post/login",
         {
           id: id,
           password: pw,
