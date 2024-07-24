@@ -28,7 +28,7 @@ const Footer = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/get/seo")
+      .get("https://ciuc.or.kr:8443/api/get/seo")
       .then((response) => {
         setSeoSettingData(response.data);
       })

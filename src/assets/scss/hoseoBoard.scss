@@ -2,6 +2,7 @@
 
 .board_wrap {
   background-color: #f8f8f8;
+  min-height:80vh;
 
   .board_back {
     .navi_area {
@@ -112,7 +113,7 @@
       }
 
       .title_box {
-        padding: 50px 0;
+        padding: 50px 0 10px 0;
         text-align: center;
 
         .navi_text {

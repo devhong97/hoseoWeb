@@ -18,7 +18,7 @@ const FacilityList = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:3001/api/get/facility_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+        `https://ciuc.or.kr:8443/api/get/facility_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setFacilityList(response.data.data);
@@ -32,7 +32,7 @@ const FacilityList = () => {
   const hitCount = async (idx) => {
     try {
       await axios.post(
-        `http://localhost:3001/api/post/board/facility/hit_count/${idx}`
+        `https://ciuc.or.kr:8443/api/post/board/facility/hit_count/${idx}`
       );
     } catch (err) {
       console.log(err);

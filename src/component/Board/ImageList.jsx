@@ -35,7 +35,7 @@ const ImageList = () => {
   const getBoard = (page, pageSize) => {
     axios
       .get(
-        `http://localhost:3001/api/get/board_list?cate=archive&page=${page}&pageSize=${pageSize}`
+        `https://ciuc.or.kr:8443/api/get/board_list?cate=archive&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setMenuData(response.data.data);
@@ -67,7 +67,7 @@ const ImageList = () => {
   /**************************************************************/
   const handleSearch = useCallback(async () => {
     try {
-      const url = `http://localhost:3001/api/get/board_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}&category=${cate}`;
+      const url = `https://ciuc.or.kr:8443/api/get/board_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}&category=${cate}`;
       console.log(url);
       const res = await axios.get(url);
       const { totalItems, results } = res.data;
@@ -95,7 +95,9 @@ const ImageList = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+      await axios.post(
+        `https://ciuc.or.kr:8443/api/post/board/hit_count/${idx}`
+      );
     } catch (err) {
       console.log(err);
     }
@@ -307,7 +309,7 @@ const ImageList = () => {
                       <div
                         className="img_box"
                         style={{
-                          backgroundImage: `url(http://localhost:3001/uploads/${item.img1})`,
+                          backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${item.img1})`,
                         }}
                       ></div>
                       <div className="img_text_box">

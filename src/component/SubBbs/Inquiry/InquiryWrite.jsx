@@ -35,7 +35,7 @@ const InquiryWrite = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://localhost:3001/api/post/upload",
+        "https://ciuc.or.kr:8443/api/post/upload",
         formData,
         {
           headers: {
@@ -105,7 +105,7 @@ const InquiryWrite = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/inquiry_write",
+        "https://ciuc.or.kr:8443/api/post/inquiry_write",
         formData,
         {
           headers: {

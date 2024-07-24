@@ -33,7 +33,7 @@ const FacilityWrite = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://localhost:3001/api/post/upload",
+        "https://ciuc.or.kr:8443/api/post/upload",
         formData,
         {
           headers: {
@@ -95,7 +95,7 @@ const FacilityWrite = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/facility_write",
+        "https://ciuc.or.kr:8443/api/post/facility_write",
         formData,
         {
           headers: {

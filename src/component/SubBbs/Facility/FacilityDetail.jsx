@@ -12,7 +12,7 @@ const FacilityDetail = () => {
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
-    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
+    window.open(`https://ciuc.or.kr:8443/api/download/${fileName}`, "_blank");
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -118,7 +118,7 @@ const FacilityDetail = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/facility_delete",
+        "https://ciuc.or.kr:8443/api/post/facility_delete",
         {
           idx: facilityList.idx,
           cate: cate,

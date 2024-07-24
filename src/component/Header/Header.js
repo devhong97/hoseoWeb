@@ -7,6 +7,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState("");
+
   const handleMenu = (type) => {
     if (type === openMenu) {
       setOpenMenu("");
@@ -23,6 +24,7 @@ const Header = () => {
     setOpenMenu("");
     navigate(`/board/${cate}`, { state: { cate: cate } });
   };
+
   return (
     <div className={`header_wrap ${openMenu && "menu_active"}`}>
       {/* <div className="header_top_box">

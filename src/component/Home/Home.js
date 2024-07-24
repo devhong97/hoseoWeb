@@ -76,7 +76,7 @@ const Home = () => {
     const fetchNotice = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/notice"
+          "https://ciuc.or.kr:8443/api/get/home/notice"
         );
         setNoticeList(response.data);
       } catch (err) {
@@ -87,7 +87,7 @@ const Home = () => {
     const fetchBusiness = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/business"
+          "https://ciuc.or.kr:8443/api/get/home/business"
         );
         setBusinessList(response.data);
       } catch (err) {
@@ -98,7 +98,7 @@ const Home = () => {
     const fetchEducation = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/education"
+          "https://ciuc.or.kr:8443/api/get/home/education"
         );
         setEcucationList(response.data);
       } catch (err) {
@@ -109,7 +109,7 @@ const Home = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/news"
+          "https://ciuc.or.kr:8443/api/get/home/news"
         );
         setNewsList(response.data);
       } catch (err) {
@@ -125,7 +125,9 @@ const Home = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+      await axios.post(
+        `https://ciuc.or.kr:8443/api/post/board/hit_count/${idx}`
+      );
     } catch (err) {
       console.log(err);
     }
@@ -316,7 +318,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://localhost:3001/uploads/${
+                    backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${
                       data.img1 ? data.img1 : "src/assets/image/no_image.png"
                     })`,
                     backgroundSize: data.img1 ? "" : "35% auto",
@@ -412,7 +414,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://localhost:3001/uploads/${
+                    backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${
                       data.img1 || "src/assets/image/no_image.png"
                     })`,
                     backgroundSize: "35% auto",
