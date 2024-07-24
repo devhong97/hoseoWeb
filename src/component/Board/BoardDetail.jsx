@@ -1,14 +1,34 @@
 import axios from "axios";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
 const BoardDetail = () => {
   const location = useLocation();
-  const { cate } = useParams();
-  const { menuData, data } = location.state || {};
+  // const { cate } = useParams();
+  // const { menuData, data } = location.state || {};
+  const { menuData } = location.state || {};
+  const [data, setdata] = useState("");
   const navigate = useNavigate();
   const { decodeS1 } = useAuth();
+  let { idx, cate } = useParams();
+
+  useEffect(() => {
+    getDetail();
+  }, []);
+
+  const getDetail = () => {
+    axios
+      .get(`http://localhost:3001/api/get/board_detail?cate=${cate}&idx=${idx}`)
+      .then((response) => {
+        console.log("!!!!!!!!!!", response);
+        const data = response.data[0];
+        setdata(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   function formatDate(isoString) {
     const date = new Date(isoString);
