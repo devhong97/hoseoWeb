@@ -14,6 +14,12 @@
 
   .header_area {
     .header_wrap {
+      .menu_show_area {
+        .menu_show_box.web {
+          display: none !important;
+        }
+      }
+
       .header_back {
         width: 90%;
       }
