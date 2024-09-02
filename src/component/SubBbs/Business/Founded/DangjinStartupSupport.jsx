@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import enterprise_img from "../../../../assets/image/dangjinStartupSupport_img.jpg";
 
-const Founded = () => {
+const DangjinStartupSupport = () => {
+  const [select, setSelect] = useState(0);
+  const navigate = useNavigate();
+  const handleSelect = (num) => {
+    if (select === num) {
+      setSelect(0);
+    } else {
+      setSelect(num);
+    }
+  };
+  const moveBoard = (cate) => {
+    navigate(`/board/${cate}`, { state: { cate: cate } });
+  };
+  const movePage = (path) => {
+    navigate(path);
+  };
+
   return (
     <div className="sub_wrap">
       <div className="sub_back">
@@ -13,10 +31,74 @@ const Founded = () => {
             <div className="banner_main_text">창업 육성 사업</div>
           </div>
         </div>
-
-        <div className="sub_main_area founded">
-          <div className="sub_main_back">
-            <div className="vision_container">
+        <div className="navi_area">
+          <div className="navi_back">
+            <div
+              className="navi_box business_field"
+              onClick={() => handleSelect(1)}
+            >
+              <div className="navi_main_text">창업육성사업</div>
+              <div className="navi_arrow"></div>
+              <div className={`navi_select_box ${select === 1 && "active"}`}>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/fusionSupportProgram")}
+                >
+                  산학융합지구조성사업
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/chungnamInnovationProject")}
+                >
+                  기업지원사업
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/localIndustryTalentDevelopment")}
+                >
+                  인재양성사업
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/dangjinStartupSupport")}
+                >
+                  창업육성사업
+                </div>
+              </div>
+            </div>
+            <div className="navi_box founded" onClick={() => handleSelect(2)}>
+              <div className="navi_main_text">당진시 창업지원사업</div>
+              <div className="navi_arrow"></div>
+              <div className={`navi_select_box ${select === 2 && "active"}`}>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/dangjinStartupSupport")}
+                >
+                  당진시 창업지원사업
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/hopeReturnPackage")}
+                >
+                  희망리턴패키지 사업
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/hongseongIssueWarehouse")}
+                >
+                  홍성군 잇슈창고운영사업
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="sub_main_area temporary">
+          <div className="sub_main_back image_box">
+            <div className="fusionSupportProgram">
+              <div className="dangjinStartupSupport_img"></div>
+              {/* <img src={enterprise_img}></img> */}
+            </div>
+            {/* <div className="vision_container">
               <div className="vision_title_box">
                 <div className="logo_box">
                   <div className="logo_img"></div>
@@ -165,7 +247,7 @@ const Founded = () => {
               <div className="founded_img_box sixth">
                 <div className="founded_img sixth"></div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -173,4 +255,4 @@ const Founded = () => {
   );
 };
 
-export default Founded;
+export default DangjinStartupSupport;

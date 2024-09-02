@@ -16,6 +16,15 @@ const IntroImage = () => {
   const movePage = (path) => {
     navigate(path);
   };
+
+  const handleDownload = (fileName) => {
+    const link = document.createElement("a");
+    window.open(`https://ciuc.or.kr:8443/api/download/${fileName}`, "_blank");
+    link.setAttribute("download", fileName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <div className="sub_wrap">
       <div className="sub_back">
@@ -39,7 +48,7 @@ const IntroImage = () => {
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/formation")}
+                  onClick={() => movePage("/fusionSupportProgram")}
                 >
                   사업분야
                 </div>
@@ -103,6 +112,16 @@ const IntroImage = () => {
                   <div className="logo_img"></div>
                 </div>
                 <div className="title_text">소개자료</div>
+              </div>
+              <div className="file_box">
+                <div
+                  className="file_row"
+                  // key={index}
+                  onClick={() => handleDownload("충남산학융합지구현황.pdf")}
+                >
+                  <div className="file_icon"></div>
+                  <div className="file_text">충남산학융합지구현황.pdf</div>
+                </div>
               </div>
               <div className="introduce_image_box">
                 <div className="introduce_image top">

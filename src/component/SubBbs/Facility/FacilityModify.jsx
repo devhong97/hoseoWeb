@@ -65,7 +65,7 @@ const FacilityModify = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://localhost:3001/api/post/upload",
+        "https://ciuc.or.kr:8443/api/post/upload",
         formData,
         {
           headers: {
@@ -148,7 +148,7 @@ const FacilityModify = () => {
           const imageFormData = new FormData();
           imageFormData.append("image", file);
           const response = await axios.post(
-            "http://localhost:3001/api/post/upload",
+            "https://ciuc.or.kr:8443/api/post/upload",
             imageFormData,
             {
               headers: {
@@ -162,7 +162,7 @@ const FacilityModify = () => {
 
       // 게시글 수정 요청
       const response = await axios.post(
-        "http://localhost:3001/api/post/facility_modify",
+        "https://ciuc.or.kr:8443/api/post/facility_modify",
         formData,
         {
           headers: {

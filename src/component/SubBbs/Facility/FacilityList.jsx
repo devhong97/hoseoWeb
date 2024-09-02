@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Context/AuthContext";
 
@@ -10,43 +10,54 @@ const FacilityList = () => {
   const [tab, setTab] = useState(1);
   const [title, setTitle] = useState("");
   const [facilityList, setFacilityList] = useState([]);
-  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+
   const navigate = useNavigate();
   const pageSize = 10; // 페이지당 항목 수
   const cate = "facility";
 
+  const [searchTerm, setSearchTerm] = useState(""); //검색어
+  const [searchOption, setSearchOption] = useState("예약자"); //검색조건(초기값:메뉴)
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [totalPages, setTotalPages] = useState(1); // 전체 페이지 수
+  const [totalItems, setTotalItems] = useState(""); // 총  게시글 수
+
   useEffect(() => {
+    getBoard();
+  }, [page]);
+
+  const getBoard = () => {
     axios
       .get(
-        `http://localhost:3001/api/get/facility_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+        `https://ciuc.or.kr:8443/api/get/facility_reserve_list?&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         setFacilityList(response.data.data);
         setTotalPages(response.data.totalPages);
+        setTotalItems(response.data.totalItems);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [cate, page]);
-
-  const hitCount = async (idx) => {
-    try {
-      await axios.post(
-        `http://localhost:3001/api/post/board/facility/hit_count/${idx}`
-      );
-    } catch (err) {
-      console.log(err);
-    }
   };
 
+  // const hitCount = async (idx) => {
+  //   try {
+  //     await axios.post(
+  //       `https://ciuc.or.kr:8443/api/post/board/facility/hit_count/${idx}`
+  //     );
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   const handleRowClick = (idx) => {
-    const selectedItem = facilityList.find((item) => item.idx === idx);
-    if (selectedItem) {
-      hitCount(idx);
-      navigate(`/board/${cate}/${idx}`, {
-        state: { facilityList: selectedItem },
-      });
-    }
+    // const selectedItem = facilityList.find((item) => item.idx === idx);
+    // if (selectedItem) {
+    //   hitCount(idx);
+    //   navigate(`/board/${cate}/${idx}`, {
+    //     state: { facilityList: selectedItem },
+    //   });
+    // }
   };
 
   const handleWrite = () => {
@@ -114,6 +125,36 @@ const FacilityList = () => {
     return pages;
   };
 
+  /**************************************************************/
+  // 검색
+  /**************************************************************/
+  const handleSearch = useCallback(async () => {
+    try {
+      const url = `https://ciuc.or.kr:8443/api/get/facility_reserve_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}`;
+      console.log(url);
+      const res = await axios.get(url);
+      const { totalItems, data } = res.data;
+      const searchTotal = Math.ceil(totalItems / pageSize);
+      setTotalPages(searchTotal);
+      setFacilityList(data);
+      setTotalItems(totalItems);
+      setCurrentPage(1);
+      setPage(1);
+    } catch (error) {
+      console.error("검색 결과 가져오기 오류:", error);
+    }
+  }, [searchTerm, searchOption, currentPage, pageSize]);
+  /**************************************************************/
+  // 검색어 초기화
+  /**************************************************************/
+  const handleReset = useCallback(() => {
+    setSearchTerm(""); // 검색어 초기화
+    setSearchOption("예약자"); // 검색 옵션 초기화
+    setCurrentPage(1); // 페이지 초기화
+    // 리스트 다시 불러오기
+    getBoard(); // 적절한 함수명으로 변경 필요
+  }, []);
+
   return (
     <div className="board_wrap">
       <div className="board_back">
@@ -128,7 +169,7 @@ const FacilityList = () => {
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/formation")}
+                  onClick={() => movePage("/fusionSupportProgram")}
                 >
                   사업분야
                 </div>
@@ -179,7 +220,10 @@ const FacilityList = () => {
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => moveBoard("facility")}
+                  // onClick={() => moveBoard("facility")}
+                  onClick={() =>
+                    navigate("/board/facility/write", { state: { step: 1 } })
+                  }
                 >
                   시설예약
                 </div>
@@ -203,23 +247,35 @@ const FacilityList = () => {
                 시설예약 등록
               </div>
             </div>
-
-            {/* <div className="search_box">
+            <div className="search_box">
+              <select
+                value={searchOption}
+                onChange={(e) => setSearchOption(e.target.value)}
+              >
+                <option>예약자</option>
+                <option>연락처</option>
+              </select>
               <input
                 className="search_input"
-                placeholder="검색어를 입력해주세요"
+                placeholder="검색어를 입력하세요"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               ></input>
-              <div className="search_btn"></div>
-            </div> */}
+              <div className="option-box">
+                <div className="search_btn" onClick={handleSearch}></div>
+                <div className="reset-btn" onClick={handleReset}>
+                  초기화
+                </div>
+              </div>
+            </div>
             <div className="list_box">
               <table className="board_table">
                 <thead className="table_head">
                   <tr className="head_row">
                     <th className="head_section num">번호</th>
-                    <th className="head_section title">제목</th>
-                    <th className="head_section">첨부</th>
-                    <th className="head_section">작성자</th>
-                    <th className="head_section date">등록일</th>
+                    <th className="head_section title">시설명</th>
+                    <th className="head_section date">예약자</th>
+                    <th className="head_section date2">등록일</th>
                   </tr>
                 </thead>
                 <tbody className="table_body">
@@ -227,7 +283,7 @@ const FacilityList = () => {
                     <tr className="body_row">
                       <td
                         className="no_data"
-                        colSpan="6"
+                        colSpan="5"
                         style={{
                           height: "200px",
                           fontWeight: "bold",
@@ -239,7 +295,8 @@ const FacilityList = () => {
                     </tr>
                   ) : (
                     facilityList.map((item, index) => {
-                      const itemNumber = (page - 1) * pageSize + index + 1; // 실제 항목 번호 계산
+                      const itemNumber =
+                        totalItems - ((page - 1) * pageSize + index); // 실제 항목 번호 계산
                       return (
                         <tr
                           className="body_row"
@@ -247,12 +304,13 @@ const FacilityList = () => {
                           onClick={() => handleRowClick(item.idx)}
                         >
                           <td className="body_section num">{itemNumber}</td>
-                          <td className="body_section title">{item.title}</td>
-                          <td className="body_section date">
-                            {item.img1 ? "O" : "X"}
+                          <td className="body_section title">
+                            {item.facility_code}
                           </td>
-                          <td className="body_section date">{item.writer}</td>
-                          <td className="body_section">{item.date}</td>
+                          <td className="body_section date">
+                            {item.reservation_name}
+                          </td>
+                          <td className="body_section date2">{item.date}</td>
                         </tr>
                       );
                     })

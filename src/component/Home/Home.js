@@ -15,6 +15,7 @@ const Home = () => {
   const [educationList, setEcucationList] = useState([]);
   const [newsList, setNewsList] = useState([]);
   const topRef = useRef(null);
+  const [searchText, setSearchText] = useState("");
 
   const mouseWheelHandler = (e, containerRef) => {
     const delta = Math.max(-1, Math.min(1, e.deltaY || -e.detail));
@@ -77,7 +78,7 @@ const Home = () => {
     const fetchNotice = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/notice"
+          "https://ciuc.or.kr:8443/api/get/home/notice"
         );
         setNoticeList(response.data);
       } catch (err) {
@@ -88,7 +89,7 @@ const Home = () => {
     const fetchBusiness = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/business"
+          "https://ciuc.or.kr:8443/api/get/home/business"
         );
         setBusinessList(response.data);
       } catch (err) {
@@ -99,7 +100,7 @@ const Home = () => {
     const fetchEducation = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/education"
+          "https://ciuc.or.kr:8443/api/get/home/education"
         );
         setEcucationList(response.data);
       } catch (err) {
@@ -110,7 +111,7 @@ const Home = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/home/news"
+          "https://ciuc.or.kr:8443/api/get/home/news"
         );
         setNewsList(response.data);
       } catch (err) {
@@ -126,7 +127,9 @@ const Home = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+      await axios.post(
+        `https://ciuc.or.kr:8443/api/post/board/hit_count/${idx}`
+      );
     } catch (err) {
       console.log(err);
     }
@@ -174,14 +177,26 @@ const Home = () => {
     }
   };
 
+  const handlerIntegratedSearch = () => {
+    navigate("/integratedSearch", { state: { searchText: searchText } });
+  };
   return (
     <div className="main_wrap">
       <Popup></Popup>
       <div className="main_back" ref={topRef}>
-        <div className="scroll_box">
+        {/* <div className="scroll_box">
           <div className="scroll_icon" onClick={() => scrollTop()}></div>
-        </div>
+        </div> */}
         <div className="main_banner_box">
+          {/* <div>
+            <input
+              style={{ border: "2px solid black", marginTop: "50px" }}
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            <div onClick={() => handlerIntegratedSearch()}>버튼</div>
+          </div> */}
           <MainSwiper></MainSwiper>
         </div>
         <div className="home_menu_container">
@@ -318,11 +333,10 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://localhost:3001/uploads/${
+                    backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${
                       data.img1 ? data.img1 : "src/assets/image/no_image.png"
                     })`,
                     backgroundSize: data.img1 ? "" : "35% auto",
-                    backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                   }}
                 ></div>
@@ -414,7 +428,7 @@ const Home = () => {
                 <div
                   className="row_image"
                   style={{
-                    backgroundImage: `url(http://localhost:3001/uploads/${
+                    backgroundImage: `url(https://ciuc.or.kr:8443/uploads/${
                       data.img1 || "src/assets/image/no_image.png"
                     })`,
                     backgroundSize: "35% auto",

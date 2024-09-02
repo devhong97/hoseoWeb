@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
@@ -13,6 +13,8 @@ const InquiryWrite = () => {
   const [tel, setTel] = useState(""); //연락처
   const [selectedFiles, setSelectedFiles] = useState([]); // 파일 첨부
   const [fileUrls, setFileUrls] = useState([]); // 파일 URL
+  const [secretChk, setSecretChk] = useState(false); // 파일 URL
+  const [password, setPassword] = useState(""); // 파일 URL
   const editorRef = useRef(null);
   const navigate = useNavigate();
   const cate = "inquiry";
@@ -35,7 +37,7 @@ const InquiryWrite = () => {
       formData.append("image", blob);
 
       const response = await axios.post(
-        "http://localhost:3001/api/post/upload",
+        "https://ciuc.or.kr:8443/api/post/upload",
         formData,
         {
           headers: {
@@ -87,6 +89,9 @@ const InquiryWrite = () => {
     } else if (tel === "") {
       alert("연락처를 입력해주세요.");
       return;
+    } else if (secretChk && password === "") {
+      alert("비밀번호를 입력해주세요.");
+      return;
     }
 
     // 첨부 파일
@@ -95,6 +100,7 @@ const InquiryWrite = () => {
     formData.append("content", content);
     formData.append("writer", writer);
     formData.append("tel", tel);
+    formData.append("password", password);
     formData.append("cate", cate);
 
     selectedFiles.forEach((file, index) => {
@@ -105,7 +111,7 @@ const InquiryWrite = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/inquiry_write",
+        "https://ciuc.or.kr:8443/api/post/inquiry_write",
         formData,
         {
           headers: {
@@ -134,6 +140,11 @@ const InquiryWrite = () => {
     document.getElementById("file_input").click();
   };
 
+  useEffect(() => {
+    if (!secretChk) {
+      setPassword("");
+    }
+  }, [secretChk]);
   return (
     <div className="detail_wrap">
       <div className="detail_back">
@@ -191,7 +202,10 @@ const InquiryWrite = () => {
             </div>
           </div>
         </div>
-        <div className="detail_file_box write">
+        <div
+          className="detail_file_box write"
+          style={{ padding: "0px 0", paddingTop: "10px" }}
+        >
           <div className="file_title">첨부파일 (최대 5개)</div>
           <div className="file_contents_box">
             <div className="file_row color" onClick={() => handleFileClick()}>
@@ -219,6 +233,27 @@ const InquiryWrite = () => {
               </div>
             ))}
           </div>
+        </div>
+        <div className="detail_secret_box">
+          <div className="secret-select">
+            <input
+              type="checkbox"
+              id="secretChk"
+              onClick={() => setSecretChk(!secretChk)}
+            />
+            <label htmlFor="secretChk">비밀글</label>
+          </div>
+          {secretChk && (
+            <div className="secret-password-box">
+              <input
+                className="detail_input"
+                placeholder="비밀번호를 입력하세요."
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
+          )}
         </div>
         <div className="detail_btn_box">
           <div className="detail_btn color" onClick={handleSubmit}>

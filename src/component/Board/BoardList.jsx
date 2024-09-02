@@ -20,6 +20,23 @@ const BoardList = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalPages, setTotalPages] = useState(1); // 전체 페이지 수
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    // 화면 크기 변경을 감지하여 상태를 업데이트합니다.
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // 컴포넌트가 마운트될 때 리사이즈 이벤트 리스너를 추가합니다.
+    window.addEventListener("resize", handleResize);
+
+    // 컴포넌트가 언마운트될 때 리스너를 제거합니다.
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // 빈 배열을 의존성으로 설정하여 컴포넌트가 마운트될 때만 실행합니다.
+
   // 날짜 포맷 변환 함수
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -40,7 +57,7 @@ const BoardList = () => {
   const getBoard = () => {
     axios
       .get(
-        `http://localhost:3001/api/get/board_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
+        `https://ciuc.or.kr:8443/api/get/board_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
       )
       .then((response) => {
         const formattedData = response.data.data.map((item) => ({
@@ -102,7 +119,7 @@ const BoardList = () => {
   /**************************************************************/
   const handleSearch = useCallback(async () => {
     try {
-      const url = `http://localhost:3001/api/get/board_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}&category=${cate}`;
+      const url = `https://ciuc.or.kr:8443/api/get/board_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}&category=${cate}`;
       console.log(url);
       const res = await axios.get(url);
       const { totalItems, results } = res.data;
@@ -129,7 +146,9 @@ const BoardList = () => {
 
   const hitCount = async (idx) => {
     try {
-      await axios.post(`http://localhost:3001/api/post/board/hit_count/${idx}`);
+      await axios.post(
+        `https://ciuc.or.kr:8443/api/post/board/hit_count/${idx}`
+      );
     } catch (err) {
       console.log(err);
     }
@@ -222,7 +241,7 @@ const BoardList = () => {
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/formation")}
+                  onClick={() => movePage("/fusionSupportProgram")}
                 >
                   사업분야
                 </div>
@@ -352,7 +371,7 @@ const BoardList = () => {
               </div>
             </div>
             <div className="list_box">
-              {window.innerWidth <= 768 ? (
+              {isMobile ? (
                 menuData.length > 0 ? (
                   menuData.map((item, index) => (
                     <div
@@ -366,10 +385,8 @@ const BoardList = () => {
                           <span>{item.writer}&nbsp;|&nbsp;</span>
                           <span>{item.date}&nbsp;|&nbsp;</span>
                           <span>조회수: {item.hit}</span>
-                          {item.img1 === undefined &&
-                          item.img === "" &&
-                          item.img == null ? (
-                            <span>X</span>
+                          {item.img1 == null ? (
+                            ""
                           ) : (
                             <span className="clip_icon"></span>
                           )}
@@ -378,7 +395,9 @@ const BoardList = () => {
                     </div>
                   ))
                 ) : (
-                  <div>데이터가 존재하지 않습니다</div>
+                  <div className="no_data_mobile">
+                    데이터가 존재하지 않습니다
+                  </div>
                 )
               ) : (
                 <table className="board_table">
