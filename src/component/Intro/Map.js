@@ -40,7 +40,7 @@ const Map = () => {
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/formation")}
+                  onClick={() => movePage("/fusionSupportProgram")}
                 >
                   사업분야
                 </div>
@@ -112,7 +112,70 @@ const Map = () => {
               <div className="map_box">
                 <KakaoMap></KakaoMap>
               </div>
-              <div className="map_text_box">
+              <div className="map_info_box">
+                <div className="map_info_title">주소 및 연락처</div>
+                <div className="map_info_content">
+                  <dl>
+                    <dt>주소</dt>
+                    <dd>
+                      충남 당진시 석문면 산단7로 201, 충남산학융합원 302호
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>TEL</dt>
+                    <dd>041-354-8558</dd>
+                  </dl>
+                  <dl>
+                    <dt>FAX</dt>
+                    <dd>041-354-8559</dd>
+                  </dl>
+                  <dl>
+                    <dt>E-MAIL</dt>
+                    <dd>master@ciuc.or.kr</dd>
+                  </dl>
+                </div>
+              </div>
+              <div className="traffic_box">
+                <div className="traffic_title">교통 정보</div>
+                <div className="traffic_content">
+                  <dl>
+                    <dt>대중교통 이용 안내</dt>
+                    <dd>
+                      <span>
+                        <strong>시내버스 이용 안내</strong>
+                        당진버스터미널 승차 → 호서대 하차 140, 142번
+                      </span>
+                      <span>
+                        <strong>시외버스 이용 안내</strong>
+                        당진버스터미널 하차
+                      </span>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>자가용 이용 안내</dt>
+                    <dd>
+                      <span>
+                        <strong>{"<면천IC>"}</strong>
+                        면천IC교차로에서 ‘당진’ 방면으로 좌회전 →
+                        당진1교교차로에서 ‘석문, 당진IC’ 방면으로 직진 → 통정2
+                        교차로에서 ‘아산, 송악IC’ 방면으로 좌회전 →
+                        ‘산학융합지구’ 방면으로 좌회전
+                      </span>
+                      <span>
+                        <strong>{"<송악IC>"}</strong>
+                        송악IC에서 ‘고대·부곡, 산업단지’ 방면 →
+                        현대제철교차로에서 ‘대산, 석문‘방면으로 지하차도 진입 →
+                        동 곡교차로에서 ’대산, 석문‘ 방면으로 왼쪽 지하차도 진입
+                        → 가곡교차로에서 ‘대산, 석문’ 방면으로 왼쪽 지하차도
+                        진입 → 통정1로 교차로에서 ‘석문방조제, 석문국가산업단지’
+                        방면으로 오른쪽 방향 → 통정1 교차로에서 ‘산단3로’
+                        방면으로 우회전 → ‘산학융합지구’ 방면으로 좌회전
+                      </span>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+              {/* <div className="map_text_box">
                 <div className="text_box left">
                   <div className="map_title">문의</div>
                   <div className="map_text_row">
@@ -136,7 +199,7 @@ const Map = () => {
                     <div className="map_text">충남산학융합원 302호</div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

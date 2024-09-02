@@ -8,7 +8,7 @@ import axios from "axios";
 const Popup = () => {
   const [popups, setPopups] = useState([]);
   const [showPopup, setShowPopup] = useState(true);
-  const roots = "http://localhost:3001";
+  const roots = "https://ciuc.or.kr:8443";
 
   useEffect(() => {
     fetchPopups();
@@ -27,7 +27,7 @@ const Popup = () => {
   const fetchPopups = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/api/get/popup_print"
+        "https://ciuc.or.kr:8443/api/get/popup_print"
       );
       setPopups(response.data.data); // 모든 팝업 데이터를 가져옴
       console.log(response.data.data);
@@ -76,8 +76,8 @@ const Popup = () => {
     slidesToShow: 3, // 기본적으로 3개 슬라이드를 보여줌
     slidesToScroll: 1,
     autoplay: numPopups > 3, // 데이터가 3개보다 많을 때만 자동 재생 활성화
-    speed: 1000,
-    autoplaySpeed: 2000,
+    speed: 2000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,

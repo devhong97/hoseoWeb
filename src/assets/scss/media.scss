@@ -1,6 +1,12 @@
 @import "hoseoUtil.scss";
 
 @media (max-width: 1500px) {
+  .quick-menu {
+    display: none;
+  }
+  .board_wrap .board_back .board_container {
+    width: 80%;
+  }
   .board_wrap .board_back .board_container .list_area {
     padding-bottom: 100px;
   }
@@ -51,12 +57,13 @@
           }
 
           .icon_box {
+            display: flex;
             border-left: none !important;
-
+            float: right;
             .menu_icon {
               width: 34px;
               height: 34px;
-
+              order: 2;
               &.list {
                 margin-left: 10px !important;
               }
@@ -67,6 +74,14 @@
 
               &.mobile {
                 display: inline-block;
+              }
+            }
+            .search_icon_box {
+              display: flex;
+              order: 1;
+              .search_icon {
+                width: 34px;
+                height: 34px;
               }
             }
           }
@@ -113,6 +128,37 @@
           font-size: 10px;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 1380px) {
+    .sub_wrap
+      .sub_back
+      .sub_main_area.intro
+      .intro_top_box
+      .intro_box
+      .right_top_box
+      .image_box
+      .intro_image {
+      width: 280px !important;
+      height: 280px !important;
+    }
+    // .intro_top_box {
+    //   text-align: center;
+    // }
+    .sub_wrap .sub_back .sub_main_area .intro_top_box .intro_box.left {
+      width: 100% !important;
+    }
+    .sub_wrap
+      .sub_back
+      .sub_main_area
+      .intro_top_box
+      .intro_box
+      .left_bottom_box {
+      padding-top: 40px !important;
+    }
+    .sub_wrap .sub_back .sub_main_area .intro_top_box .intro_box.right {
+      padding-bottom: 40px !important;
     }
   }
 
@@ -543,6 +589,44 @@
   .detail_wrap .detail_back .detail_top_box .detail_title {
     font-size: 25px !important;
   }
+
+  // .board_wrap
+  //   .board_back
+  //   .board_container
+  //   .facility_box
+  //   .facility_first
+  //   .facility_right
+  //   .facility_inner_box
+  //   .facility_view
+  //   .facility_view_content {
+  //   .facility_data {
+  //     font-size: 20px;
+  //   }
+  // }
+  .board_wrap
+    .board_back
+    .board_container
+    .facility_box
+    .facility_first
+    .facility_right
+    .facility_inner_box
+    .facility_view
+    .date_view_content
+    .date_box
+    .date_start_data,
+  .board_wrap
+    .board_back
+    .board_container
+    .facility_box
+    .facility_first
+    .facility_right
+    .facility_inner_box
+    .facility_view
+    .date_view_content
+    .date_box
+    .date_end_data {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -579,6 +663,9 @@
 }
 
 @media (max-width: 1000px) {
+  // .sub_main_back.intro {
+  //   width: 80% !important;
+  // }
   .sub_wrap .sub_back .sub_main_area.founded {
     padding: 50px 0 0;
   }
@@ -1033,7 +1120,8 @@
               .table_body {
                 .body_row {
                   .body_section {
-                    font-size: 12px;
+                    // font-size: 12px;
+                    font-size: 15px;
 
                     .state_icon {
                       font-size: 10px;
@@ -1081,9 +1169,38 @@
       overflow-x: hidden;
     }
   }
+
+  .header_area
+    .header_wrap
+    .header_bottom_box
+    .right_box
+    .icon_box
+    .search_icon_box {
+    .search_form {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      margin: 10px 0;
+      border-radius: 0;
+    }
+  }
 }
 
 @media (max-width: 500px) {
+  .sub_wrap .sub_back .sub_main_area .sub_main_back {
+    width: 90% !important;
+  }
+  .sub_wrap
+    .sub_back
+    .sub_main_area.intro
+    .intro_top_box
+    .intro_box
+    .right_top_box
+    .image_box
+    .intro_image {
+    width: 220px !important;
+    height: 220px !important;
+  }
   .sub_wrap
     .sub_back
     .sub_main_area
@@ -1267,6 +1384,92 @@
     border-bottom: 1px solid #869593;
     padding: 15px 0 15px 0;
   }
+
+  .board_wrap
+    .board_back
+    .board_container
+    .facility_box
+    .facility_select_box
+    .facility_list_box {
+    .facility_item {
+      width: calc((100% - 25px) / 2);
+    }
+    .facility_item:nth-child(2n) {
+      margin-left: 25px !important;
+    }
+    .facility_item + .facility_item {
+      margin-left: 0px;
+    }
+  }
+
+  .myCalendar {
+    .calendar_date {
+      display: flex;
+    }
+  }
+
+  .myCalendar .calendar_box .calendar_List .day.in-range::after {
+    width: 45px;
+    height: 45px;
+  }
+  .myCalendar .calendar_box .calendar_List .day.start-date::before,
+  .myCalendar .calendar_box .calendar_List .day.end-date::before {
+    width: 45px;
+    height: 45px;
+  }
+
+  .myCalendar .calendar_box .calendar_List .day.today {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .search_wrap {
+    background-color: #f8f8f8;
+    min-height: 80vh;
+    .search_back {
+      .search_container {
+        width: 80%;
+        margin: 0 auto;
+        .list_area .list_box {
+          .board_body .body_row {
+            .row_wrap {
+              display: block;
+              padding: 15px 5px;
+              .row_title {
+                font-size: 17px;
+              }
+              .row_date {
+                padding-top: 15px;
+              }
+              .no_data {
+                font-size: 17px;
+                display: flex;
+                justify-content: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .sub_wrap .sub_back .fusionSupportProgram {
+    .fusionSupportProgram_img,
+    .chungnamInnovationProject_img,
+    .chungnamInnovationCluster_img,
+    .carbonNeutralInfrastructure_img,
+    .localIndustryTalentDevelopment_img,
+    .koreanQuickStartProgram_img,
+    .smeResearchTalentSupport_img,
+    .chungnamIndustryAcademiaProgram_img,
+    .youthVentureProgram_img,
+    .dangjinStartupSupport_img,
+    .hopeReturnPackage_img,
+    .hongseongIssueWarehouse_img {
+      @include background-set(100%, 180vw, contain);
+    }
+  }
 }
 
 @media (max-width: 900px) {
@@ -1375,8 +1578,94 @@
   .footer_area .footer_back .footer_bottom_box {
     width: 90%;
   }
+
+  .board_wrap .board_back .board_container .facility_box .facility_first {
+    flex-direction: column;
+    .facility_left,
+    .facility_right {
+      width: 100%; /* 전체 너비를 차지 */
+      margin-bottom: 20px; /* 요소 간의 간격 추가 */
+    }
+    .facility_right {
+      margin-left: 0px;
+    }
+  }
+  .board_wrap .board_back .board_container .facility_box .facility_second {
+    flex-direction: column;
+    .facility_left,
+    .facility_right {
+      width: 100%; /* 전체 너비를 차지 */
+      margin-bottom: 20px; /* 요소 간의 간격 추가 */
+    }
+    .facility_right {
+      margin-left: 0px;
+      .facility_input {
+        height: 400px;
+      }
+    }
+  }
+  .board_wrap
+    .board_back
+    .board_container
+    .facility_box
+    .facility_second
+    .facility_right
+    .facility_input
+    .row_btn_box {
+    height: 20%;
+  }
+
+  .myCalendar .calendar_box .calendar_List .day.in-range::after {
+    width: 50px;
+    height: 50px;
+  }
+  .myCalendar .calendar_box .calendar_List .day.start-date::before,
+  .myCalendar .calendar_box .calendar_List .day.end-date::before {
+    width: 50px;
+    height: 50px;
+  }
+
+  .myCalendar .calendar_box .calendar_List .day.today {
+    width: 50px;
+    height: 50px;
+  }
 }
 
+@media (max-width: 700px) {
+  .board_wrap
+    .board_back
+    .board_container
+    .facility_box
+    .facility_select_box
+    .facility_list_box {
+    .facility_item {
+      width: calc((100%));
+    }
+    .facility_item:nth-child(2n) {
+      margin-left: 0px !important;
+    }
+    .facility_item + .facility_item {
+      margin-left: 0px;
+    }
+  }
+  .sub_wrap .sub_back .navi_area .navi_back .navi_box {
+    &.business_field {
+      width: 100%;
+    }
+    &.formation {
+      width: 100%;
+    }
+    &.enterprise {
+      width: 100%;
+    }
+    &.human {
+      width: 100%;
+    }
+    &.founded {
+      width: 100%;
+    }
+  }
+}
 @media (max-width: 600px) {
   .main_area
     .main_back
@@ -1389,6 +1678,21 @@
   }
   .footer_area .footer_back .footer_bottom_box {
     text-align: center;
+  }
+
+  .myCalendar .calendar_box .calendar_List .day.in-range::after {
+    width: 50px;
+    height: 50px;
+  }
+  .myCalendar .calendar_box .calendar_List .day.start-date::before,
+  .myCalendar .calendar_box .calendar_List .day.end-date::before {
+    width: 50px;
+    height: 50px;
+  }
+
+  .myCalendar .calendar_box .calendar_List .day.today {
+    width: 50px;
+    height: 50px;
   }
 }
 
@@ -1406,5 +1710,32 @@
     .search_btn {
     width: 30px !important;
     height: 22px !important;
+  }
+
+  .myCalendar .calendar_box .calendar_List .day.in-range::after {
+    width: 35px;
+    height: 35px;
+  }
+  .myCalendar .calendar_box .calendar_List .day.start-date::before,
+  .myCalendar .calendar_box .calendar_List .day.end-date::before {
+    width: 35px;
+    height: 35px;
+  }
+
+  .myCalendar .calendar_box .calendar_List .day.today {
+    width: 35px;
+    height: 35px;
+  }
+  .search_wrap
+    .search_back
+    .search_container
+    .list_area
+    .list_box
+    .board_body
+    .body_row
+    .row_wrap {
+    .row_title {
+      font-size: 16px;
+    }
   }
 }

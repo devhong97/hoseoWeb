@@ -1,6 +1,22 @@
-import React from "react";
-
-const Formation = () => {
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import fusionSupportProgramImg from "../../../../assets/image/fusionSupportProgram_img.jpg";
+const FusionSupportProgram = () => {
+  const [select, setSelect] = useState(0);
+  const navigate = useNavigate();
+  const handleSelect = (num) => {
+    if (select === num) {
+      setSelect(0);
+    } else {
+      setSelect(num);
+    }
+  };
+  const moveBoard = (cate) => {
+    navigate(`/board/${cate}`, { state: { cate: cate } });
+  };
+  const movePage = (path) => {
+    navigate(path);
+  };
   return (
     <div className="sub_wrap">
       <div className="sub_back">
@@ -13,10 +29,65 @@ const Formation = () => {
             <div className="banner_main_text">산학융합지구조성사업</div>
           </div>
         </div>
-
-        <div className="sub_main_area founded">
-          <div className="sub_main_back">
-            <div className="vision_container">
+        <div className="navi_area">
+          <div className="navi_back">
+            <div
+              className="navi_box business_field"
+              onClick={() => handleSelect(1)}
+            >
+              <div className="navi_main_text">산학융합지구조성사업</div>
+              <div className="navi_arrow"></div>
+              <div className={`navi_select_box ${select === 1 && "active"}`}>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/fusionSupportProgram")}
+                >
+                  산학융합지구조성사업
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/chungnamInnovationProject")}
+                >
+                  기업지원사업
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/localIndustryTalentDevelopment")}
+                >
+                  인재양성사업
+                </div>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/dangjinStartupSupport")}
+                >
+                  창업육성사업
+                </div>
+              </div>
+            </div>
+            <div className="navi_box formation" onClick={() => handleSelect(2)}>
+              <div className="navi_main_text">
+                충남당진산학융합지구 기업밀착형 산학융합촉진지원사업
+              </div>
+              <div className="navi_arrow"></div>
+              <div className={`navi_select_box ${select === 2 && "active"}`}>
+                <div
+                  className="select_row"
+                  onClick={() => movePage("/fusionSupportProgram")}
+                >
+                  충남당진산학융합지구 기업밀착형 산학융합촉진지원사업
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="sub_main_area founded "> */}
+        <div className="sub_main_area temporary">
+          <div className="sub_main_back image_box">
+            <div className="fusionSupportProgram">
+              <div className="fusionSupportProgram_img"></div>
+              {/* <img src={fusionSupportProgramImg}></img> */}
+            </div>
+            {/* <div className="vision_container">
               <div className="vision_title_box">
                 <div className="logo_box">
                   <div className="logo_img"></div>
@@ -103,7 +174,7 @@ const Formation = () => {
               <div className="founded_img_box formation_three">
                 <div className="founded_img formation_three"></div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -111,4 +182,4 @@ const Formation = () => {
   );
 };
 
-export default Formation;
+export default FusionSupportProgram;

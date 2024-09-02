@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Context/AuthContext";
 
@@ -10,29 +10,68 @@ const InquiryList = () => {
   const [tab, setTab] = useState(1);
   const [title, setTitle] = useState("");
   const [inquiryList, setInquiryList] = useState([]);
-  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+
   const navigate = useNavigate();
   const pageSize = 10; // 페이지당 항목 수
   const cate = "inquiry";
 
+  const [searchTerm, setSearchTerm] = useState(""); //검색어
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [searchOption, setSearchOption] = useState("연락처"); //검색조건
+  const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
+  const [totalItems, setTotalItems] = useState(""); // 총  게시글 수
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost:3001/api/get/inquiry_list?cate=${cate}&page=${page}&pageSize=${pageSize}`
-      )
-      .then((response) => {
-        setInquiryList(response.data.data);
-        setTotalPages(response.data.totalPages);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    // 화면 크기 변경을 감지하여 상태를 업데이트합니다.
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // 컴포넌트가 마운트될 때 리사이즈 이벤트 리스너를 추가합니다.
+    window.addEventListener("resize", handleResize);
+
+    // 컴포넌트가 언마운트될 때 리스너를 제거합니다.
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // 빈 배열을 의존성으로 설정하여 컴포넌트가 마운트될 때만 실행합니다.
+
+  /**************************************************************/
+  // 리스트 / 페이징처리
+  /**************************************************************/
+  useEffect(() => {
+    getBoard();
   }, [cate, page]);
+
+  //page - 현재 페이지, currentPage
+  const getBoard = () => {
+    axios
+      .get("https://ciuc.or.kr:8443/api/get/inquiry_search", {
+        params: {
+          page,
+          pageSize,
+          category: cate, // cate 값을 파라미터에 추가
+          searchTerm,
+          searchOption,
+        },
+      })
+      .then((res) => {
+        const { totalItems, results } = res.data;
+        setInquiryList(results);
+        setTotalPages(Math.ceil(totalItems / pageSize));
+        setTotalItems(totalItems);
+      })
+      .catch((error) => {
+        console.error("리스트출력 오류", error);
+      });
+  };
 
   const hitCount = async (idx) => {
     try {
       await axios.post(
-        `http://localhost:3001/api/post/board/inquiry/hit_count/${idx}`
+        `https://ciuc.or.kr:8443/api/post/board/inquiry/hit_count/${idx}`
       );
     } catch (err) {
       console.log(err);
@@ -43,9 +82,7 @@ const InquiryList = () => {
     const selectedItem = inquiryList.find((item) => item.idx === idx);
     if (selectedItem) {
       hitCount(idx);
-      navigate(`/board/${cate}/${idx}`, {
-        state: { inquiryList: selectedItem },
-      });
+      navigate(`/board/${cate}/${idx}`);
     }
   };
 
@@ -114,6 +151,35 @@ const InquiryList = () => {
     return pages;
   };
 
+  /**************************************************************/
+  // 검색
+  /**************************************************************/
+  const handleSearch = useCallback(async () => {
+    try {
+      const url = `https://ciuc.or.kr:8443/api/get/inquiry_search?page=${currentPage}&searchTerm=${searchTerm}&searchOption=${searchOption}&pageSize=${pageSize}&category=${cate}`;
+      const res = await axios.get(url);
+      const { totalItems, results } = res.data;
+      const searchTotal = Math.ceil(totalItems / pageSize);
+
+      setTotalPages(searchTotal);
+      setTotalItems(totalItems);
+      setInquiryList(results);
+      setCurrentPage(1);
+      setPage(1);
+    } catch (error) {
+      console.error("검색 결과 가져오기 오류:", error);
+    }
+  }, [searchTerm, searchOption, currentPage, pageSize, cate]);
+
+  /**************************************************************/
+  // 검색어 초기화
+  /**************************************************************/
+  const handleReset = useCallback(() => {
+    setSearchTerm(""); // 검색어 초기화
+    setSearchOption("연락처"); // 검색 옵션 초기화
+    setCurrentPage(1); // 페이지 초기화
+    getBoard();
+  }, []);
   return (
     <div className="board_wrap">
       <div className="board_back">
@@ -188,6 +254,26 @@ const InquiryList = () => {
                 입주문의 등록
               </div>
             </div>
+            <div className="search_box">
+              <select
+                value={searchOption}
+                onChange={(e) => setSearchOption(e.target.value)}
+              >
+                <option>연락처</option>
+              </select>
+              <input
+                className="search_input"
+                placeholder="검색어를 입력하세요"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              ></input>
+              <div className="option-box">
+                <div className="search_btn" onClick={handleSearch}></div>
+                <div className="reset-btn" onClick={handleReset}>
+                  초기화
+                </div>
+              </div>
+            </div>
             {/* <div className="search_box">
               <input
                 className="search_input"
@@ -196,52 +282,86 @@ const InquiryList = () => {
               <div className="search_btn"></div>
             </div> */}
             <div className="list_box">
-              <table className="board_table">
-                <thead className="table_head">
-                  <tr className="head_row">
-                    <th className="head_section num">번호</th>
-                    <th className="head_section title">제목</th>
-                    <th className="head_section">작성자</th>
-                    <th className="head_section date">작성일시</th>
-                  </tr>
-                </thead>
-                <tbody className="table_body">
-                  {inquiryList.length === 0 ? (
-                    <tr className="body_row">
-                      <td
-                        className="no_data"
-                        colSpan="5"
-                        style={{
-                          height: "200px",
-                          fontWeight: "bold",
-                          fontSize: "18px",
-                        }}
-                      >
-                        데이터가 존재하지 않습니다.
-                      </td>
+              {isMobile ? (
+                inquiryList.length > 0 ? (
+                  inquiryList.map((item, index) => (
+                    <div
+                      className="board-mobile"
+                      key={index}
+                      onClick={() => handleRowClick(item.idx)}
+                    >
+                      <div className="mb-wrap">
+                        <div className="mobile-sub">{item.title}</div>
+                        <div className="mobile-btm">
+                          <span>{item.writer}&nbsp;|&nbsp;</span>
+                          <span>{item.date}&nbsp;|&nbsp;</span>
+                          <span>조회수: {item.hit}</span>
+                          {item.img1 == null ? (
+                            ""
+                          ) : (
+                            <span className="clip_icon"></span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="no_data_mobile">
+                    데이터가 존재하지 않습니다
+                  </div>
+                )
+              ) : (
+                <table className="board_table">
+                  <thead className="table_head">
+                    <tr className="head_row">
+                      <th className="head_section num">번호</th>
+                      <th className="head_section title">제목</th>
+                      <th className="head_section">첨부파일</th>
+                      <th className="head_section date">작성일시</th>
                     </tr>
-                  ) : (
-                    inquiryList.map((item, index) => {
-                      const itemNumber = (page - 1) * pageSize + index + 1; // 실제 항목 번호 계산
-                      return (
-                        <tr
-                          className="body_row"
-                          key={index}
-                          onClick={() => handleRowClick(item.idx)}
+                  </thead>
+                  <tbody className="table_body">
+                    {inquiryList.length === 0 ? (
+                      <tr className="body_row">
+                        <td
+                          className="no_data"
+                          colSpan="5"
+                          style={{
+                            height: "200px",
+                            fontWeight: "bold",
+                            fontSize: "18px",
+                          }}
                         >
-                          <td className="body_section num">{itemNumber}</td>
-                          <td className="body_section title">{item.title}</td>
-                          <td className="body_section date">
-                            {item.writer.substring(0, 1) +
-                              item.writer.substring(1).replace(/./g, "*")}
-                          </td>
-                          <td className="body_section date">{item.date}</td>
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
+                          데이터가 존재하지 않습니다.
+                        </td>
+                      </tr>
+                    ) : (
+                      inquiryList.map((item, index) => {
+                        const itemNumber =
+                          totalItems - ((page - 1) * pageSize + index); // 실제 항목 번호 계산
+                        return (
+                          <tr
+                            className="body_row"
+                            key={index}
+                            onClick={() => handleRowClick(item.idx)}
+                          >
+                            <td className="body_section num">{itemNumber}</td>
+                            <td className="body_section title">{item.title}</td>
+                            <td className="body_section file">
+                              {item.img1 === null ? (
+                                ""
+                              ) : (
+                                <div className="clip_icon"></div>
+                              )}
+                            </td>
+                            <td className="body_section date">{item.date}</td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              )}
             </div>
             <div className="pagination_box">{renderPagination()}</div>
           </div>

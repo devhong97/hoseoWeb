@@ -28,16 +28,24 @@ import FacilityDetail from "../component/SubBbs/Facility/FacilityDetail";
 import InquiryModify from "../component/SubBbs/Inquiry/InquiryModify";
 import FacilityModify from "../component/SubBbs/Facility/FacilityModify";
 import InquiryInfo from "../component/SubBbs/Inquiry/InquiryInfo";
-import Founded from "../component/SubBbs/Business/Founded";
-import Enterprise from "../component/SubBbs/Business/Enterprise";
-import Human from "../component/SubBbs/Business/Human";
-import Formation from "../component/SubBbs/Business/Formation";
+import DangjinStartupSupport from "../component/SubBbs/Business/Founded/DangjinStartupSupport";
+import HopeReturnPackage from "../component/SubBbs/Business/Founded/HopeReturnPackage";
+import HongseongIssueWarehouse from "../component/SubBbs/Business/Founded/HongseongIssueWarehouse";
+import ChungnamInnovationProject from "../component/SubBbs/Business/Enterprise/ChungnamInnovationProject";
+import ChungnamInnovationCluster from "../component/SubBbs/Business/Enterprise/ChungnamInnovationCluster";
+import CarbonNeutralInfrastructure from "../component/SubBbs/Business/Enterprise/CarbonNeutralInfrastructure";
+import LocalIndustryTalentDevelopment from "../component/SubBbs/Business/Human/LocalIndustryTalentDevelopment";
+import KoreanQuickStartProgram from "../component/SubBbs/Business/Human/KoreanQuickStartProgram";
+import SMEResearchTalentSupport from "../component/SubBbs/Business/Human/SMEResearchTalentSupport";
+import ChungnamIndustryAcademiaProgram from "../component/SubBbs/Business/Human/ChungnamIndustryAcademiaProgram";
+import YouthVentureProgram from "../component/SubBbs/Business/Human/YouthVentureProgram";
+import FusionSupportProgram from "../component/SubBbs/Business/Formation/FusionSupportProgram";
 import MeetingRoom from "../component/Empty/MeetingRoom";
 import Computer from "../component/Empty/Computer";
 import Printing from "../component/Empty/Printing";
 import ArVr from "../component/Empty/ArVr";
 import Cnc from "../component/Empty/Cnc";
-
+import IntegratedSearch from "../component/IntegratedSearch/IntegratedSearch";
 const Router = () => {
   return (
     <Routes>
@@ -95,13 +103,55 @@ const Router = () => {
       <Route path="/arvr" element={<ArVr />} />
       <Route path="/cnc" element={<Cnc />} />
       {/* 창업육성사업 */}
-      <Route path="/founded" element={<Founded />}></Route>
+      <Route
+        path="/dangjinStartupSupport"
+        element={<DangjinStartupSupport />}
+      ></Route>
+      <Route path="/hopeReturnPackage" element={<HopeReturnPackage />}></Route>
+      <Route
+        path="/hongseongIssueWarehouse"
+        element={<HongseongIssueWarehouse />}
+      ></Route>
       {/* 기업지원사업 */}
-      <Route path="/enterprise" element={<Enterprise />}></Route>
+      <Route
+        path="/chungnamInnovationProject"
+        element={<ChungnamInnovationProject />}
+      ></Route>
+      <Route
+        path="/chungnamInnovationCluster"
+        element={<ChungnamInnovationCluster />}
+      ></Route>
+      <Route
+        path="/carbonNeutralInfrastructure"
+        element={<CarbonNeutralInfrastructure />}
+      ></Route>
       {/* 인재양성사업 */}
-      <Route path="/human" element={<Human />}></Route>
+      <Route
+        path="/localIndustryTalentDevelopment"
+        element={<LocalIndustryTalentDevelopment />}
+      ></Route>
+      <Route
+        path="/koreanQuickStartProgram"
+        element={<KoreanQuickStartProgram />}
+      ></Route>
+      <Route
+        path="/smeResearchTalentSupport"
+        element={<SMEResearchTalentSupport />}
+      ></Route>
+      <Route
+        path="/chungnamIndustryAcademiaProgram"
+        element={<ChungnamIndustryAcademiaProgram />}
+      ></Route>
+      <Route
+        path="/youthVentureProgram"
+        element={<YouthVentureProgram />}
+      ></Route>
       {/* 산학조성사업 */}
-      <Route path="/formation" element={<Formation />}></Route>
+      <Route
+        path="/fusionSupportProgram"
+        element={<FusionSupportProgram />}
+      ></Route>
+      <Route path="/integratedSearch" element={<IntegratedSearch />}></Route>
     </Routes>
   );
 };

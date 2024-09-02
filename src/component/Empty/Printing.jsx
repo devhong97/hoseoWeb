@@ -41,7 +41,7 @@ const Printing = () => {
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => movePage("/formation")}
+                  onClick={() => movePage("/fusionSupportProgram")}
                 >
                   사업분야
                 </div>
@@ -92,7 +92,10 @@ const Printing = () => {
                 </div>
                 <div
                   className="select_row"
-                  onClick={() => moveBoard("facility")}
+                  // onClick={() => moveBoard("facility")}
+                  onClick={() =>
+                    navigate("/board/facility/write", { state: { step: 1 } })
+                  }
                 >
                   시설예약
                 </div>

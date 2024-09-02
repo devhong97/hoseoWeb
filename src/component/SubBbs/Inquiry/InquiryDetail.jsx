@@ -1,18 +1,83 @@
 import axios from "axios";
-import { Fragment } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Fragment, useState, useCallback, useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../Context/AuthContext";
 
 const InquiryDetail = () => {
   const location = useLocation();
-  const { inquiryList, data } = location.state || {};
+  const { data } = location.state || {};
   const navigate = useNavigate();
   const cate = "inquiry";
   const { decodeS1 } = useAuth();
+  const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [secretChk, setSecretChk] = useState(false);
+  const [inquiryList, setInquiryList] = useState(null);
+  const { idx } = useParams();
+  useEffect(() => {
+    getSecretVerify();
+  }, []);
+
+  const getSecretVerify = () => {
+    axios
+      .get("https://ciuc.or.kr:8443/api/get/inquiry_secretVerify", {
+        params: {
+          idx: idx,
+        },
+      })
+      .then((res) => {
+        const { result } = res.data;
+        if (result) {
+          setSecretChk(true);
+        } else {
+          getDetail();
+        }
+      })
+      .catch((error) => {
+        console.error("데이터 출력 오류", error);
+      });
+  };
+
+  const getDetail = () => {
+    axios
+      .get("https://ciuc.or.kr:8443/api/get/inquiry_detail", {
+        params: {
+          idx: idx,
+        },
+      })
+      .then((res) => {
+        const { results } = res.data;
+        setInquiryList(results);
+      })
+      .catch((error) => {
+        console.error("데이터 출력 오류", error);
+      });
+  };
+
+  const handlePasswordSubmit = useCallback(async () => {
+    try {
+      const res = await axios.post(
+        "https://ciuc.or.kr:8443/api/post/inquiry_check_password",
+        {
+          idx: idx,
+          password,
+        }
+      );
+      if (res.data.success) {
+        getDetail();
+        setIsAuthenticated(true);
+      } else {
+        alert(res.data.message);
+      }
+    } catch (error) {
+      console.log("비밀번호 확인 오류:", error);
+      alert("비밀번호 검증 중 오류 발생하였습니다.");
+    }
+  }, [idx, password]);
 
   const handleDownload = (fileName) => {
     const link = document.createElement("a");
-    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
+    window.open(`https://ciuc.or.kr:8443/api/download/${fileName}`, "_blank");
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -61,9 +126,9 @@ const InquiryDetail = () => {
 
   const getContent = () => {
     if (inquiryList && inquiryList.content) {
-      return inquiryList.content.replace(/(<([^>]+)>)/gi, "");
+      return inquiryList.content;
     } else if (data && data.content) {
-      return data.content.replace(/(<([^>]+)>)/gi, "");
+      return data.content;
     } else {
       return "";
     }
@@ -118,7 +183,7 @@ const InquiryDetail = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/inquiry_delete",
+        "https://ciuc.or.kr:8443/api/post/inquiry_delete",
         {
           idx: inquiryList.idx,
           cate: cate,
@@ -131,7 +196,43 @@ const InquiryDetail = () => {
     }
   };
 
-  return (
+  return secretChk && !isAuthenticated ? (
+    <div className="detail_wrap">
+      <div className="detail_back">
+        <div className="detail-secret">
+          <div className="secret-title">비밀글 보기</div>
+          <div className="secret-info">
+            <div>이 글은 비밀글입니다.</div>
+            <div>비밀번호를 입력해 주세요.</div>
+          </div>
+          <div className="secret-password-box">
+            <label>비밀번호</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+          <div className="detail_secret_btn_box">
+            <div
+              className="detail_secret_btn prev"
+              onClick={() => navigate("/board/inquiry")}
+            >
+              목록으로
+            </div>
+            <div
+              className="detail_secret_btn check"
+              onClick={() => handlePasswordSubmit()}
+            >
+              확인
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
     <div className="detail_wrap">
       <div className="detail_back">
         {getTitle() && (
@@ -158,7 +259,7 @@ const InquiryDetail = () => {
         )} */}
         <div
           className="detail_contents_box"
-          dangerouslySetInnerHTML={{ __html: inquiryList.content }}
+          dangerouslySetInnerHTML={{ __html: getContent() }}
         ></div>
         <div className="detail_file_box">
           <div className="file_title">
@@ -187,7 +288,10 @@ const InquiryDetail = () => {
         <div className="detail_btn_box">
           {/* <div className="detail_btn color">교육신청하기</div> */}
 
-          <div className="detail_btn color" onClick={() => navigate(-1)}>
+          <div
+            className="detail_btn color"
+            onClick={() => navigate("/board/inquiry")}
+          >
             목록으로
           </div>
           {decodeS1() === "admin" && (

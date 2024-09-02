@@ -19,7 +19,9 @@ const BoardDetail = () => {
 
   const getDetail = () => {
     axios
-      .get(`http://localhost:3001/api/get/board_detail?cate=${cate}&idx=${idx}`)
+      .get(
+        `https://ciuc.or.kr:8443/api/get/board_detail?cate=${cate}&idx=${idx}`
+      )
       .then((response) => {
         console.log("!!!!!!!!!!", response);
         const data = response.data[0];
@@ -46,8 +48,9 @@ const BoardDetail = () => {
   console.log("data:", data);
 
   const handleDownload = (fileName) => {
+    console.log("!@!@!@", fileName);
     const link = document.createElement("a");
-    window.open(`http://localhost:3001/api/download/${fileName}`, "_blank");
+    window.open(`https://ciuc.or.kr:8443/api/download/${fileName}`, "_blank");
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -154,7 +157,7 @@ const BoardDetail = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/post/board_delete",
+        "https://ciuc.or.kr:8443/api/post/board_delete",
         {
           idx: menuData.idx,
           cate: cate,
@@ -237,7 +240,7 @@ const BoardDetail = () => {
                 수정
               </div>
               <div className="detail_btn short" onClick={() => boardDel()}>
-                삭제a
+                삭제
               </div>
             </Fragment>
           )}
